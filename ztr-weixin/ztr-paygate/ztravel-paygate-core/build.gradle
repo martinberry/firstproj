@@ -1,0 +1,9 @@
+
+dependencies {
+	compile project(':ztr-paygate:ztravel-paygate-thrift')
+		
+	compile project(":ztr-framework:framework-dao-base")
+	compile project(":ztr-framework:framework-config")
+	
+	compile libraries.xstream
+}

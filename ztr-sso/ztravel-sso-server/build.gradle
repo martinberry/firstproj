@@ -1,0 +1,9 @@
+apply plugin : 'eclipse'
+
+dependencies {
+
+	compile project(":ztr-common:ztravel-common-resource")
+  	compile project(":ztr-sso:ztravel-sso-client")
+  	compile project(":ztr-member:ztravel-member-client")
+  	compile project(":ztr-product:ztravel-product-client")
+}

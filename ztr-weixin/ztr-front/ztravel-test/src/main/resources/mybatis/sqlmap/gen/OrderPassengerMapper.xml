@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.test.gen.dao.OrderPassengerMapper" >
+  <resultMap id="BaseResultMap" type="com.ztravel.test.gen.po.OrderPassenger" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="first_name" property="firstName" jdbcType="VARCHAR" />
+    <result column="last_name" property="lastName" jdbcType="VARCHAR" />
+    <result column="passenger_type" property="passengerType" jdbcType="VARCHAR" />
+    <result column="credential_type" property="credentialType" jdbcType="VARCHAR" />
+    <result column="credential_num" property="credentialNum" jdbcType="VARCHAR" />
+    <result column="credential_dead_line" property="credentialDeadLine" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_id, name, first_name, last_name, passenger_type, credential_type, credential_num, 
+    credential_dead_line, country, birthday, gender
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ztravel.test.gen.po.OrderPassengerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ztorder.t_order_passenger
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ztorder.t_order_passenger
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ztorder.t_order_passenger
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ztravel.test.gen.po.OrderPassengerExample" >
+    delete from ztorder.t_order_passenger
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ztravel.test.gen.po.OrderPassenger" >
+    insert into ztorder.t_order_passenger (id, order_id, name, 
+      first_name, last_name, passenger_type, 
+      credential_type, credential_num, credential_dead_line, 
+      country, birthday, gender
+      )
+    values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{firstName,jdbcType=VARCHAR}, #{lastName,jdbcType=VARCHAR}, #{passengerType,jdbcType=VARCHAR}, 
+      #{credentialType,jdbcType=VARCHAR}, #{credentialNum,jdbcType=VARCHAR}, #{credentialDeadLine,jdbcType=VARCHAR}, 
+      #{country,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ztravel.test.gen.po.OrderPassenger" >
+    insert into ztorder.t_order_passenger
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="firstName != null" >
+        first_name,
+      </if>
+      <if test="lastName != null" >
+        last_name,
+      </if>
+      <if test="passengerType != null" >
+        passenger_type,
+      </if>
+      <if test="credentialType != null" >
+        credential_type,
+      </if>
+      <if test="credentialNum != null" >
+        credential_num,
+      </if>
+      <if test="credentialDeadLine != null" >
+        credential_dead_line,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="firstName != null" >
+        #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null" >
+        #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="passengerType != null" >
+        #{passengerType,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialType != null" >
+        #{credentialType,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialNum != null" >
+        #{credentialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialDeadLine != null" >
+        #{credentialDeadLine,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ztravel.test.gen.po.OrderPassengerExample" resultType="java.lang.Integer" >
+    select count(*) from ztorder.t_order_passenger
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ztorder.t_order_passenger
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstName != null" >
+        first_name = #{record.firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastName != null" >
+        last_name = #{record.lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passengerType != null" >
+        passenger_type = #{record.passengerType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.credentialType != null" >
+        credential_type = #{record.credentialType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.credentialNum != null" >
+        credential_num = #{record.credentialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.credentialDeadLine != null" >
+        credential_dead_line = #{record.credentialDeadLine,jdbcType=VARCHAR},
+      </if>
+      <if test="record.country != null" >
+        country = #{record.country,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null" >
+        gender = #{record.gender,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ztorder.t_order_passenger
+    set id = #{record.id,jdbcType=VARCHAR},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      first_name = #{record.firstName,jdbcType=VARCHAR},
+      last_name = #{record.lastName,jdbcType=VARCHAR},
+      passenger_type = #{record.passengerType,jdbcType=VARCHAR},
+      credential_type = #{record.credentialType,jdbcType=VARCHAR},
+      credential_num = #{record.credentialNum,jdbcType=VARCHAR},
+      credential_dead_line = #{record.credentialDeadLine,jdbcType=VARCHAR},
+      country = #{record.country,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=VARCHAR},
+      gender = #{record.gender,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ztravel.test.gen.po.OrderPassenger" >
+    update ztorder.t_order_passenger
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="firstName != null" >
+        first_name = #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null" >
+        last_name = #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="passengerType != null" >
+        passenger_type = #{passengerType,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialType != null" >
+        credential_type = #{credentialType,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialNum != null" >
+        credential_num = #{credentialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialDeadLine != null" >
+        credential_dead_line = #{credentialDeadLine,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ztravel.test.gen.po.OrderPassenger" >
+    update ztorder.t_order_passenger
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      first_name = #{firstName,jdbcType=VARCHAR},
+      last_name = #{lastName,jdbcType=VARCHAR},
+      passenger_type = #{passengerType,jdbcType=VARCHAR},
+      credential_type = #{credentialType,jdbcType=VARCHAR},
+      credential_num = #{credentialNum,jdbcType=VARCHAR},
+      credential_dead_line = #{credentialDeadLine,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.ztravel.test.gen.po.OrderPassengerExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ztorder.t_order_passenger
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

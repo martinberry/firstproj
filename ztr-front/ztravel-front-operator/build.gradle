@@ -1,0 +1,14 @@
+apply plugin : 'eclipse-wtp'
+apply plugin : 'war'
+
+dependencies {
+	compile project(":ztr-common:ztravel-datasource")
+	compile project(":ztr-member:ztravel-operator")
+	compile project(":ztr-member:ztravel-member")
+	compile project(":ztr-order:ztravel-order")
+	compile project(":ztr-common:ztravel-common-resource")
+	compile project(":ztr-product:ztravel-product")
+	compile project(":ztr-common:ztravel-rbac")
+	compile project(":ztr-weixin:ztravel-weixin")
+	compile project(":ztr-payment:ztravel-payment")
+}

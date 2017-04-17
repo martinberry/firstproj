@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+  <sqlMap namespace="ztorder_t_order_material_contactor" >
+    <resultMap id="BaseResultMap" class="com.ztravel.paygate.core.po.gen.OrderMateriaContactor" >
+      <result column="contactor" property="contactor" jdbcType="VARCHAR" />
+      <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+      <result column="phone" property="phone" jdbcType="VARCHAR" />
+      <result column="email" property="email" jdbcType="VARCHAR" />
+      <result column="province" property="province" jdbcType="VARCHAR" />
+      <result column="city" property="city" jdbcType="VARCHAR" />
+      <result column="county" property="county" jdbcType="VARCHAR" />
+      <result column="address" property="address" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="ztorder_t_order_material_contactor.Base_Column_List" >
+      contactor, order_id, phone, email, province, city, county, address
+    </sql>
+    <select id="ztorder_t_order_material_contactor.selectByExample" resultMap="BaseResultMap" parameterClass="com.ztravel.paygate.core.po.gen.OrderMateriaContactorExample" >
+      select
+      <isParameterPresent >
+        <isEqual property="distinct" compareValue="true" >
+          distinct
+        </isEqual>
+      </isParameterPresent>
+      <include refid="ztorder_t_order_material_contactor.Base_Column_List" />
+      from ztorder.t_order_material_contactor
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+        <isNotNull property="orderByClause" >
+          <![CDATA[ order by $orderByClause$ ]]>
+        </isNotNull>
+      </isParameterPresent>
+      <include refid="common.Postgres_Pagination_Limit" />
+    </select>
+    <delete id="ztorder_t_order_material_contactor.deleteByExample" parameterClass="com.ztravel.paygate.core.po.gen.OrderMateriaContactorExample" >
+      delete from ztorder.t_order_material_contactor
+      <include refid="common.Example_Where_Clause" />
+    </delete>
+    <insert id="ztorder_t_order_material_contactor.insert" parameterClass="com.ztravel.paygate.core.po.gen.OrderMateriaContactor" >
+      <![CDATA[
+      insert into ztorder.t_order_material_contactor (contactor, order_id, phone, email, province, city, county, address
+        )
+      values (#contactor#, #orderId#, #phone#, #email#, #province#, #city#, #county#, #address#
+        )
+      ]]>
+    </insert>
+    <insert id="ztorder_t_order_material_contactor.insertSelective" parameterClass="com.ztravel.paygate.core.po.gen.OrderMateriaContactor" >
+      insert into ztorder.t_order_material_contactor
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="contactor" >
+          contactor
+        </isNotNull>
+        <if test="orderId != null" >
+          order_id
+        </if>
+        <isNotNull prepend="," property="phone" >
+          phone
+        </isNotNull>
+        <isNotNull prepend="," property="email" >
+          email
+        </isNotNull>
+        <isNotNull prepend="," property="province" >
+          province
+        </isNotNull>
+        <isNotNull prepend="," property="city" >
+          city
+        </isNotNull>
+        <isNotNull prepend="," property="county" >
+          county
+        </isNotNull>
+        <isNotNull prepend="," property="address" >
+          address
+        </isNotNull>
+        )
+      </dynamic>
+      values
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="contactor" >
+          <![CDATA[ #contactor# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="orderId" >
+          <![CDATA[ #orderId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="phone" >
+          <![CDATA[ #phone# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="email" >
+          <![CDATA[ #email# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="province" >
+          <![CDATA[ #province# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="city" >
+          <![CDATA[ #city# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="county" >
+          <![CDATA[ #county# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="address" >
+          <![CDATA[ #address# ]]>
+        </isNotNull>
+        )
+      </dynamic>
+    </insert>
+    <select id="ztorder_t_order_material_contactor.countByExample" parameterClass="com.ztravel.paygate.core.po.gen.OrderMateriaContactorExample" resultClass="java.lang.Integer" >
+      select count(*) from ztorder.t_order_material_contactor
+      <include refid="common.Example_Where_Clause" />
+    </select>
+    <update id="ztorder_t_order_material_contactor.updateByExampleSelective" >
+      update ztorder.t_order_material_contactor
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="record.contactor" >
+          <![CDATA[ contactor = #record.contactor# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.orderId" >
+          <![CDATA[ order_id = #record.orderId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.phone" >
+          <![CDATA[ phone = #record.phone# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.email" >
+          <![CDATA[ email = #record.email# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.province" >
+          <![CDATA[ province = #record.province# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.city" >
+          <![CDATA[ city = #record.city# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.county" >
+          <![CDATA[ county = #record.county# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.address" >
+          <![CDATA[ address = #record.address# ]]>
+        </isNotNull>
+      </dynamic>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="ztorder_t_order_material_contactor.updateByExample" >
+      <![CDATA[
+      update ztorder.t_order_material_contactor
+      set contactor = #record.contactor#,
+        order_id = #record.orderId#,
+        phone = #record.phone#,
+        email = #record.email#,
+        province = #record.province#,
+        city = #record.city#,
+        county = #record.county#,
+        address = #record.address#
+      ]]>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+  </sqlMap>

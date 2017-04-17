@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.common.rbac.wo.PermissionMapper" >
+<resultMap id="BaseResultMap" type="com.ztravel.common.rbac.wo.Permission" >
+    <id column="permission_id" property="permissionId" jdbcType="VARCHAR" />
+    <result column="permission_name" property="permissionName" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="BOOLEAN" />
+    <result column="createdby" property="createdby" jdbcType="VARCHAR" />
+    <result column="updatedby" property="updatedby" jdbcType="VARCHAR" />
+    <result column="update_time" property="updated" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="created" jdbcType="TIMESTAMP" />
+    <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+	    permission_id, permission_name, url, description, type, parent_id,createdby, updatedby, update_time, create_time
+	</sql>
+
+	<select id="selectById" resultMap="BaseResultMap" parameterType="string">
+		SELECT * FROM rbac.t_permission
+        WHERE permission_id= #{permissionId,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectByPermName" resultMap="BaseResultMap" parameterType="map">
+		SELECT * FROM rbac.t_permission
+        WHERE permission_name = #{permissionName,jdbcType=VARCHAR}
+	</select>
+
+    <select id="selectByType" resultMap="BaseResultMap" parameterType="map">
+                SELECT
+               <include refid="Base_Column_List" />
+               FROM rbac.t_permission
+                WHERE type= #{type,jdbcType=VARCHAR}
+                order by description asc
+    </select>
+
+    <select id="selectByParentId" resultMap="BaseResultMap" parameterType="map">
+                SELECT
+               <include refid="Base_Column_List" />
+               FROM rbac.t_permission
+                WHERE parent_id= #{parentId,jdbcType=VARCHAR}
+                order by description asc
+    </select>
+
+    <select id="selectByUserName" resultMap="BaseResultMap" parameterType="map">
+                SELECT rbac.t_permission.* FROM rbac.t_permission, rbac.t_role_permission, rbac.t_user_role, rbac.t_user
+            <where>
+            rbac.t_permission.permission_id = rbac.t_role_permission.permission_id
+            and rbac.t_role_permission.role_id = rbac.t_user_role.role_id
+            and rbac.t_user_role.user_id = rbac.t_user.user_id
+            <if test="userName != null">
+                and rbac.t_user.user_name = #{userName,jdbcType=VARCHAR}
+            </if>
+            <if test="permissionName != null">
+                and rbac.t_permission.permission_name = #{permissionName,jdbcType=VARCHAR}
+            </if>
+        </where>
+        order by rbac.t_permission.description asc
+    </select>
+
+    <insert id="insert" parameterType="com.ztravel.common.rbac.wo.Permission">
+		insert into rbac.t_permission
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="permissionId != null">
+	        permission_id,
+	      </if>
+	      <if test="permissionName != null">
+	        permission_name,
+	      </if>
+	      <if test="url != null">
+	        url,
+	      </if>
+	      <if test="type != null">
+	        type,
+	      </if>
+	      <if test="parentId != null">
+	        parent_id,
+	      </if>
+	      <if test="description != null">
+	        description,
+	      </if>
+	      <if test="createdby != null">
+	        createdby,
+	      </if>
+	      <if test="updatedby != null">
+	        updatedby,
+	      </if>
+	      <if test="updated != null">
+	        update_time,
+	      </if>
+	      <if test="created != null">
+	        create_time,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="permissionId != null">
+	        #{permissionId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="permissionName != null">
+	        #{permissionName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="url != null">
+	        #{url,jdbcType=VARCHAR},
+	      </if>
+	      <if test="type != null">
+	        #{type,jdbcType=VARCHAR},
+	      </if>
+	      <if test="parentId != null">
+	        #{parentId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="description != null">
+	        #{description,jdbcType=VARCHAR},
+	      </if>
+	      <if test="createdby != null">
+	        #{createdby,jdbcType=VARCHAR},
+	      </if>
+	      <if test="updatedby != null">
+	        #{updatedby,jdbcType=VARCHAR},
+	      </if>
+	      <if test="updated != null">
+	        #{updated,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="created != null">
+	        #{created,jdbcType=TIMESTAMP},
+	      </if>
+	    </trim>
+	</insert>
+
+</mapper>

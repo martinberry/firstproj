@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.product.client.entity.VoucherLockMapper" >
+	<resultMap id="BaseResultMap" type="com.ztravel.product.client.entity.VoucherLock">
+	    <id column="lock_couponid"  property="couponId"  jdbcType="VARCHAR"  />
+    </resultMap>
+
+    <select id="forUpdateByCouponId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select lock_couponid from activity.t_voucher_lock
+        where lock_couponid=#{couponId,jdbcType=VARCHAR} for update
+    </select>
+
+    <insert id="insert" parameterType="com.ztravel.product.client.entity.VoucherLock" >
+     insert into activity.t_voucher_lock
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="couponId != null" >
+        lock_couponid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="couponId != null" >
+        #{couponId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

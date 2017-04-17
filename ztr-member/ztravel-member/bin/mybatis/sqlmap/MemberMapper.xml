@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.member.po.MemberMapper" >
+	<resultMap id="BaseResultMap" type="com.ztravel.member.po.Member">
+	    <id column="id" jdbcType="VARCHAR" property="id" />
+	    <result column="mid" jdbcType="VARCHAR" property="mid" />
+	    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+	    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+	    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+	    <result column="password" jdbcType="VARCHAR" property="password" />
+	    <result column="gender" jdbcType="VARCHAR" property="gender" />
+	    <result column="email" jdbcType="VARCHAR" property="email" />
+	    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+	    <result column="province" jdbcType="VARCHAR" property="province" />
+	    <result column="city" jdbcType="VARCHAR" property="city" />
+	    <result column="area" jdbcType="VARCHAR" property="area" />
+	    <result column="head_image_id" jdbcType="VARCHAR" property="headImageId" />
+	    <result column="detail_address" jdbcType="VARCHAR" property="detailAddress" />
+	    <result column="last_login_date" jdbcType="TIMESTAMP" property="lastLoginDate" />
+	    <result column="description" jdbcType="VARCHAR" property="description" />
+	    <result column="is_active" jdbcType="BOOLEAN" property="isActive" />
+	    <result column="createdby" jdbcType="VARCHAR" property="createdBy" />
+	    <result column="updatedby" jdbcType="VARCHAR" property="updatedBy" />
+	    <result column="updatetime" jdbcType="TIMESTAMP" property="updateTime" />
+	    <result column="createtime" jdbcType="TIMESTAMP" property="createTime" />
+    </resultMap>
+
+    <resultMap id="MinMember" type="com.ztravel.member.po.Member">
+	    <id column="id" jdbcType="VARCHAR" property="id" />
+	    <result column="mid" jdbcType="VARCHAR" property="mid" />
+	    <result column="email" jdbcType="VARCHAR" property="email" />
+	    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+	    <result column="head_image_id" jdbcType="VARCHAR" property="headImageId" />
+	    <result column="last_login_date" jdbcType="TIMESTAMP" property="lastLoginDate" />
+	    <result column="is_active" jdbcType="BOOLEAN" property="isActive" />
+	    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    </resultMap>
+
+    <resultMap id="MemberTime" type="com.ztravel.member.po.MemberTimeEntity">
+	    <result column="createtime" jdbcType="TIMESTAMP" property="createTime" />
+    </resultMap>
+
+    <resultMap id="WxUser" type="com.ztravel.member.po.WxUserEntity">
+        <result column="id" jdbcType="VARCHAR" property="id" />
+        <result column="openid" jdbcType="VARCHAR" property="openid" />
+        <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+        <result column="sex" jdbcType="NUMERIC" property="sex" />
+        <result column="city" jdbcType="VARCHAR" property="city" />
+        <result column="country" jdbcType="VARCHAR" property="country" />
+        <result column="province" jdbcType="VARCHAR" property="province" />
+        <result column="language" jdbcType="VARCHAR" property="language" />
+        <result column="headimgurl" jdbcType="VARCHAR" property="headimgurl" />
+        <result column="subscribe" jdbcType="NUMERIC" property="subscribe" />
+        <result column="subscribe_time" jdbcType="VARCHAR" property="subscribe_time" />
+        <result column="unionid" jdbcType="VARCHAR" property="unionid" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="groupid" jdbcType="VARCHAR" property="groupid" />
+        <result column="last_modify_time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+        <result column="mp_id" jdbcType="VARCHAR" property="mpId" />
+    </resultMap>
+
+	<sql id="Base_Column_List">
+	    id, mid, open_id,nick_name, real_name, password, gender, email, mobile, province, city, area, detail_address,
+	    last_login_date, description, is_active,createdby, updatedby, updated, created
+	</sql>
+
+	<select id="selectById" resultMap="BaseResultMap" parameterType="string">
+		<![CDATA[select * from member.t_member
+		where id=#{id,jdbcType=VARCHAR}]]>
+	</select>
+
+	<select id="selectMemberByMid" resultMap="BaseResultMap" parameterType="string">
+		<![CDATA[select * from member.t_member
+		where mid=#{mid,jdbcType=VARCHAR}]]>
+	</select>
+
+	<select id="selectMinById" resultMap="MinMember" parameterType="string">
+		<![CDATA[select id,mid,email,mobile,head_image_id,last_login_date,is_active,nick_name from member.t_member
+		where id=#{id,jdbcType=VARCHAR}]]>
+	</select>
+
+	<select id="getMemberRegisterTime" resultMap="MemberTime" parameterType="string">
+		<![CDATA[select createtime from member.t_member
+		where id=#{id,jdbcType=VARCHAR}]]>
+	</select>
+
+	<select id="countByIdPassword" resultType="Integer" parameterType="map">
+		select count(id) from member.t_member
+		where password=#{password,jdbcType=VARCHAR} and is_active=TRUE and id=#{id,jdbcType=VARCHAR}
+	</select>
+
+
+	<select id="countMobile" resultType="Integer" parameterType="string">
+		select count(id) from member.t_member
+		where mobile=#{mobile,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectByMobile" resultType="String" parameterType="string">
+		select id||':'||nick_name from member.t_member
+		where mobile=#{mobile,jdbcType=VARCHAR}
+	</select>
+
+	<select id="count" resultType="Integer" parameterType="map">
+		select count(id) from member.t_member
+        <where>1=1
+            <if test="memberId != null and memberId != ''">
+                AND <![CDATA[mid = #{memberId}]]>
+            </if>
+            <if test="mobile != null and mobile != ''">
+                AND <![CDATA[mobile = #{mobile}]]>
+            </if>
+            <if test="email != null and email != ''">
+                AND <![CDATA[email = #{email}]]>
+            </if>
+            <if test="realName != null and realName != ''">
+                AND <![CDATA[real_name like #{realName}]]>
+            </if>
+            <if test="nickName != null and nickName != ''">
+                AND <![CDATA[nick_name like #{nickName}]]>
+            </if>
+            <if test="fromDate != null and fromDate != ''">
+                AND <![CDATA[createtime >= #{fromDate}]]>
+            </if>
+            <if test="toDate != null and toDate != ''">
+                AND <![CDATA[createtime <= #{toDate}]]>
+            </if>
+            <if test="isActive != null">
+                AND <![CDATA[is_active = #{isActive}]]>
+            </if>
+            <if test="lastLoginDate != null and lastLoginDate != ''">
+                AND <![CDATA[last_login_date >= #{lastLoginDate}]]>
+            </if>
+        </where>
+	</select>
+
+	<select id="countAll" resultType="Integer">
+		select count(id) from member.t_member
+	</select>
+
+
+	<insert id="insertWxUser" parameterType="com.ztravel.member.po.WxUserEntity">
+        insert into member.t_wx_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+          <if test="id != null">
+            id,
+          </if>
+          <if test="openid != null">
+            openid,
+          </if>
+            <if test="nickname != null">
+            nickname,
+          </if>
+          <if test="sex != null">
+            sex,
+          </if>
+          <if test="city != null">
+            city,
+          </if>
+            <if test="country != null">
+            country,
+          </if>
+            <if test="province != null">
+            province,
+          </if>
+             <if test="language != null">
+            language,
+          </if>
+             <if test="headimgurl != null">
+            headimgurl,
+          </if>
+             <if test="subscribe != null">
+            subscribe,
+          </if>
+             <if test="subscribe_time != null">
+            subscribe_time,
+          </if>
+            <if test="unionid != null">
+            unionid,
+          </if>
+            <if test="remark != null">
+            remark,
+          </if>
+            <if test="groupid != null">
+            groupid,
+          </if>
+            <if test="lastModifyTime != null">
+            last_modify_time,
+          </if>
+            <if test="mpId != null">
+            mp_id,
+          </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+          <if test="id != null">
+            #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="openid != null">
+            #{openid,jdbcType=VARCHAR},
+          </if>
+          <if test="nickname != null">
+            #{nickname,jdbcType=VARCHAR},
+          </if>
+          <if test="sex != null">
+            #{sex,jdbcType=NUMERIC},
+          </if>
+          <if test="city != null">
+            #{city,jdbcType=VARCHAR},
+          </if>
+            <if test="country != null">
+            #{country,jdbcType=VARCHAR},
+          </if>
+            <if test="province != null">
+            #{province,jdbcType=VARCHAR},
+          </if>
+            <if test="language != null">
+            #{language,jdbcType=VARCHAR},
+          </if>
+            <if test="headimgurl != null">
+            #{headimgurl,jdbcType=NUMERIC},
+          </if>
+            <if test="subscribe != null">
+                #{subscribe,jdbcType=VARCHAR},
+              </if>
+              <if test="subscribe_time != null">
+                #{subscribe_time,jdbcType=VARCHAR},
+              </if>
+                <if test="unionid != null">
+                #{unionid,jdbcType=VARCHAR},
+              </if>
+                <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+              </if>
+                <if test="groupid != null">
+                #{groupid,jdbcType=VARCHAR},
+              </if>
+                <if test="lastModifyTime != null">
+                #{lastModifyTime,jdbcType=TIMESTAMP},
+              </if>
+                <if test="mpId != null">
+                #{mpId,jdbcType=VARCHAR},
+              </if>
+        </trim>
+    </insert>
+
+    <select id="selectWxUserByOpenId" resultMap="WxUser" parameterType="string">
+        select * from member.t_wx_user where openid = #{openId}
+    </select>
+
+    <select id="selectWxNickNameByOpenId" resultType="String">
+        select nickname from member.t_wx_user where openid = #{openId}
+    </select>
+
+    <select id="countOpenidMemberByMemberId" resultType="Integer">
+        select count(open_id) from member.t_wx_openid_member where member_id = #{memberId}
+    </select>
+
+    <select id="selectMemberIdByOpenId" resultType="String">
+        select member_id from member.t_wx_openid_member where open_id = #{openId}
+    </select>
+
+	<select id="selectRecommender" resultType="String">
+		select recommender from member.t_member where id = #{id}
+	</select>
+
+	<select id="select" resultMap="BaseResultMap" parameterType="map">
+		select * from member.t_member
+		<where>1=1
+            <if test="memberId != null and memberId != ''">
+                AND <![CDATA[mid = #{memberId}]]>
+            </if>
+			<if test="mobile != null and mobile != ''">
+				AND <![CDATA[mobile = #{mobile}]]>
+			</if>
+			<if test="email != null and email != ''">
+				AND <![CDATA[email = #{email}]]>
+			</if>
+			<if test="realName != null and realName != ''">
+				AND <![CDATA[real_name like #{realName}]]>
+			</if>
+            <if test="nickName != null and nickName != ''">
+                AND <![CDATA[nick_name like #{nickName}]]>
+            </if>
+            <if test="fromDate != null and fromDate != ''">
+                AND <![CDATA[createtime >= #{fromDate}]]>
+            </if>
+            <if test="toDate != null and toDate != ''">
+                AND <![CDATA[createtime <= #{toDate}]]>
+            </if>
+            <if test="isActive != null">
+                AND <![CDATA[is_active = #{isActive}]]>
+            </if>
+            <if test="lastLoginDate != null and lastLoginDate != ''">
+                AND <![CDATA[last_login_date >= #{lastLoginDate}]]>
+            </if>
+            <if test="province != null and province != ''">
+                AND <![CDATA[province = #{province}]]>
+            </if>
+            <if test="city != null and city != ''">
+                AND <![CDATA[city = #{city}]]>
+            </if>
+		</where>
+        order by createtime DESC
+        <if test="offset != null and offset != '0'">
+            offset #{offset}
+        </if>
+        <if test="limit != null and limit != ''">
+            limit #{limit}
+        </if>
+	</select>
+
+    <update id="updateMemberMobileAndPassword" parameterType="map">
+        update member.t_member set mobile = #{mobile,jdbcType=VARCHAR}, password = #{password,jdbcType=VARCHAR}
+        where id=#{id,jdbcType=VARCHAR}
+    </update>
+
+	<update id="updateMemberPasswordByMobile" parameterType="map">
+		update member.t_member set password = #{password,jdbcType=VARCHAR}
+	    where mobile=#{mobile,jdbcType=VARCHAR}
+	</update>
+
+	<update id="updateMemberPasswordByEmail" parameterType="map">
+		update member.t_member set password = #{password,jdbcType=VARCHAR}
+	    where email=#{email,jdbcType=VARCHAR}
+	</update>
+
+	<update id="updateMemberHeadImage" parameterType="com.ztravel.member.po.Member">
+		update member.t_member set head_image_id = #{headImageId,jdbcType=VARCHAR}
+	    where id=#{id,jdbcType=VARCHAR}
+	</update>
+
+	<update id="updateMemberHeadImageById" parameterType="map">
+		update member.t_member set head_image_id = #{headImageId,jdbcType=VARCHAR}
+	    where id=#{id,jdbcType=VARCHAR}
+	</update>
+
+	<update id="updateMemberBasicParam" parameterType="map">
+		update member.t_member set
+		<if test="paramName != null and paramName == 'nickName' ">
+			nick_name
+		</if>
+		<if test="paramName != null and paramName == 'realName' ">
+			real_name
+		</if>
+		<if test="paramName != null and paramName == 'gender' ">
+			gender
+		</if>
+		= #{paramValue,jdbcType=VARCHAR},
+		updatetime = now()
+	    where id=#{id,jdbcType=VARCHAR}
+	</update>
+
+	<update id="updateImproveDataById" parameterType="map">
+		update member.t_member set
+      	<if test="nickName != null and nickName != '' ">
+        	nick_name = #{nickName,jdbcType=VARCHAR},
+      	</if>
+      	<if test="email != null and email != '' ">
+       		email = #{email,jdbcType=VARCHAR},
+      	</if>
+      	<if test="recommender != null and recommender != '' ">
+        	recommender = #{recommender,jdbcType=VARCHAR},
+      	</if>
+      	<if test="headImageId != null and headImageId != '' ">
+        	head_image_id = #{headImageId,jdbcType=VARCHAR},
+      	</if>
+	    updatetime = now()
+	    where id=#{id,jdbcType=VARCHAR}
+	</update>
+
+	<update id="updateMemberAddress" parameterType="map">
+		update member.t_member
+		set province = #{province,jdbcType=VARCHAR},
+		city = #{city,jdbcType=VARCHAR},
+		area = #{area, jdbcType=VARCHAR},
+		detail_address = #{detailAddress, jdbcType=VARCHAR},
+		updatetime = now()
+	    where id=#{id,jdbcType=VARCHAR}
+	</update>
+
+	<update id="updateMemberPasswordById" parameterType="map">
+		update member.t_member
+		set password = #{password,jdbcType=VARCHAR},
+		updatetime = now()
+	    where id=#{id,jdbcType=VARCHAR}
+	</update>
+
+	<insert id="insert" parameterType="com.ztravel.member.po.Member">
+		insert into member.t_member
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        id,
+	      </if>
+	      <if test="mid != null">
+	        mid,
+	      </if>
+	      <if test="openId != null">
+	        open_id,
+	      </if>
+	      <if test="nickName != null">
+	        nick_name,
+	      </if>
+	      <if test="realName != null">
+	        real_name,
+	      </if>
+	      <if test="password != null">
+	        password,
+	      </if>
+	      <if test="gender != null">
+	        gender,
+	      </if>
+	      <if test="email != null">
+	        email,
+	      </if>
+	      <if test="area != null">
+	        area,
+	      </if>
+	      <if test="description != null">
+	        description,
+	      </if>
+	      <if test="detailAddress != null">
+	        detail_address,
+	      </if>
+	      <if test="mobile != null">
+	        mobile,
+	      </if>
+	      <if test="province != null">
+	        province,
+	      </if>
+	      <if test="city != null">
+	        city,
+	      </if>
+	      <if test="lastLoginDate != null">
+	        last_login_date,
+	      </if>
+	      <if test="isActive != null">
+	        is_active,
+	      </if>
+	      <if test="createdBy != null">
+	        createdby,
+	      </if>
+	      <if test="updatedBy != null">
+	        updatedby,
+	      </if>
+	      <if test="updateTime != null">
+	        updatetime,
+	      </if>
+	      <if test="createTime != null">
+	        createtime,
+	      </if>
+	      <if test="headImageId != null">
+	        head_image_id,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        #{id,jdbcType=VARCHAR},
+	      </if>
+	      <if test="mid != null">
+	        #{mid,jdbcType=VARCHAR},
+	      </if>
+	      <if test="openId != null">
+	        #{open_id,jdbcType=VARCHAR},
+	      </if>
+	      <if test="nickName != null">
+	        #{nickName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="realName != null">
+	        #{realName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="password != null">
+	        #{password,jdbcType=VARCHAR},
+	      </if>
+	      <if test="gender != null">
+	        #{gender,jdbcType=VARCHAR},
+	      </if>
+	      <if test="email != null">
+	        #{email,jdbcType=VARCHAR},
+	      </if>
+	      <if test="area != null">
+	        #{area,jdbcType=VARCHAR},
+	      </if>
+	      <if test="description != null">
+	        #{description,jdbcType=VARCHAR},
+	      </if>
+	      <if test="detailAddress != null">
+	        #{detailAddress,jdbcType=VARCHAR},
+	      </if>
+	      <if test="mobile != null">
+	        #{mobile,jdbcType=VARCHAR},
+	      </if>
+	      <if test="province != null">
+	        #{province,jdbcType=VARCHAR},
+	      </if>
+	      <if test="city != null">
+	        #{city,jdbcType=VARCHAR},
+	      </if>
+	      <if test="lastLoginDate != null">
+	        #{lastLoginDate,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="isActive != null">
+	        #{isActive,jdbcType=BOOLEAN},
+	      </if>
+	      <if test="createdBy != null">
+	        #{createdBy,jdbcType=VARCHAR},
+	      </if>
+	      <if test="updatedBy != null">
+	        #{updatedBy,jdbcType=VARCHAR},
+	      </if>
+	      <if test="updateTime != null">
+	        #{updateTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="createTime != null">
+	        #{createTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="headImageId != null">
+	        #{headImageId,jdbcType=VARCHAR},
+	      </if>
+	    </trim>
+	</insert>
+
+	<update id="updateByExample" parameterType="com.ztravel.member.po.Member">
+		update member.t_member
+		<set>
+			<if test="mid != null">
+				mid = #{mid,jdbcType=VARCHAR},
+			</if>
+			<if test="openId != null">
+				open_id = #{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="nickName != null">
+				nick_name = #{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="realName != null">
+				real_name = #{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="gender != null">
+				gender = #{gender,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="area != null">
+				area = #{area,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="detailAddress != null">
+				detail_address = #{detailAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				province = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				city = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLoginDate != null">
+				last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isActive != null">
+				is_active = #{isActive,jdbcType=BOOLEAN},
+			</if>
+			<if test="createdBy != null">
+				createdby = #{createdBy,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedBy != null">
+				updatedby = #{updatedBy,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				updatetime = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				createtime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<select id="selectMinsByIds" resultMap="MinMember" parameterType="map">
+		select id,mid,head_image_id,nick_name from member.t_member
+		<where>
+			id in
+			<foreach collection="list" item="listItem" open="(" close=")" separator="," >
+	          #{listItem}
+	        </foreach>
+		</where>
+	</select>
+
+	<update id="updateActiveByIds" parameterType="map">
+        update member.t_member
+        set is_active=#{isActive}
+        where id in
+        <foreach item="id" collection="idList" separator="," open="(" close=")">
+            #{id, jdbcType=VARCHAR}
+        </foreach>
+    </update>
+
+</mapper>

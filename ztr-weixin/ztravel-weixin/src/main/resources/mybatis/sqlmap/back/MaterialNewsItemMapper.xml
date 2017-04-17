@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.weixin.back.entity.MaterialNewsItemEntityMapper" >
+	<resultMap id="BaseResultMap" type="com.ztravel.weixin.back.entity.MaterialNewsItemEntity">
+	    <id column="id" jdbcType="VARCHAR" property="id" />
+	    <result column="title" jdbcType="VARCHAR" property="title" />
+	    <result column="thumb_media_id" jdbcType="VARCHAR" property="thumbMediaId" />
+	    <result column="show_cover_pic" jdbcType="VARCHAR" property="showCoverPic" />
+        <result column="author" jdbcType="VARCHAR" property="author" />
+        <result column="digest" jdbcType="VARCHAR" property="digest" />
+        <result column="url" jdbcType="VARCHAR" property="url" />
+        <result column="content_source_url" jdbcType="VARCHAR" property="contentSourceUrl" />
+        <result column="related_media_id" jdbcType="VARCHAR" property="relatedMediaId" />
+        <result column="priority" jdbcType="NUMERIC" property="priority" />
+	    <result column="last_modify_time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+    </resultMap>
+
+	<insert id="insert" parameterType="com.ztravel.weixin.back.entity.MaterialNewsItemEntity">
+		insert into weixin.material_news_item
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        id,
+	      </if>
+	      <if test="title != null">
+	        title,
+	      </if>
+	      <if test="thumbMediaId != null">
+	        thumb_media_id,
+	      </if>
+	      <if test="showCoverPic != null">
+	        show_cover_pic,
+	      </if>
+	      <if test="author != null">
+	        author,
+	      </if>
+          <if test="digest != null">
+            digest,
+          </if>
+          <if test="url != null">
+            url,
+          </if>
+          <if test="contentSourceUrl != null">
+            content_source_url,
+          </if>
+          <if test="relatedMediaId != null">
+            related_media_id,
+          </if>
+          <if test="priority != null">
+            priority,
+          </if>
+          <if test="lastModifyTime != null">
+            last_modify_time,
+          </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        #{id,jdbcType=VARCHAR},
+	      </if>
+	      <if test="title != null">
+	        #{title,jdbcType=VARCHAR},
+	      </if>
+	      <if test="thumbMediaId != null">
+	        #{thumbMediaId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="showCoverPic != null">
+	        #{showCoverPic,jdbcType=VARCHAR},
+	      </if>
+	      <if test="author != null">
+	        #{author,jdbcType=VARCHAR},
+	      </if>
+          <if test="digest != null">
+            #{digest,jdbcType=VARCHAR},
+          </if>
+          <if test="url != null">
+            #{url,jdbcType=VARCHAR},
+          </if>
+          <if test="contentSourceUrl != null">
+            #{contentSourceUrl,jdbcType=VARCHAR},
+          </if>
+          <if test="relatedMediaId != null">
+            #{relatedMediaId,jdbcType=VARCHAR},
+          </if>
+          <if test="priority != null">
+            #{priority,jdbcType=NUMERIC},
+          </if>
+          <if test="lastModifyTime != null">
+            #{lastModifyTime,jdbcType=TIMESTAMP},
+          </if>
+	    </trim>
+	</insert>
+
+	<select id="select" resultMap="BaseResultMap" parameterType="map">
+    select *
+    from weixin.material_news_item
+   <where>
+   		true
+      <if test="id != null and id != ''">
+           AND id=#{id, jdbcType=VARCHAR}
+        </if>
+        <if test="title != null and title != ''">
+           AND title like #{title, jdbcType=VARCHAR}
+        </if>
+         <if test="thumbMediaId != null and thumbMediaId != ''">
+           AND thumb_media_id=#{thumbMediaId, jdbcType=VARCHAR}
+        </if>
+         <if test="showCoverPic != null and showCoverPic != ''">
+           AND show_cover_pic=#{showCoverPic, jdbcType=VARCHAR}
+        </if>
+     <if test="author != null and author != ''">
+           AND author=#{author, jdbcType=VARCHAR}
+        </if>
+         <if test="digest != null and digest != ''">
+           AND digest=#{digest, jdbcType=VARCHAR}
+        </if>
+        <if test="url != null and url != ''">
+           AND title=#{url, jdbcType=VARCHAR}
+        </if>
+         <if test="contentSourceUrl != null and contentSourceUrl != ''">
+           AND content_source_url=#{contentSourceUrl, jdbcType=VARCHAR}
+        </if>
+         <if test="relatedMediaId != null and relatedMediaId != ''">
+           AND related_media_id=#{relatedMediaId, jdbcType=VARCHAR}
+        </if>
+    	 <if test="priority != null and priority != ''">
+           AND priority=#{priority,jdbcType=NUMERIC}
+        </if>
+             <if test="lastModifyTime != null">
+	       and last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP}
+	      </if>
+  </where>
+  <if test="offset != null and offset != '0'">
+        OFFSET #{offset}
+    </if>
+    <if test="limit != null and limit != ''">
+        LIMIT #{limit}
+    </if>
+     <if test="priority != null and priority != ''">
+           order by priority;
+        </if>
+</select>
+
+<select id="count" resultType="Integer" parameterType="map">
+    select count( weixin.material_news_item.id)
+    from weixin.material_news_item
+<where>
+    <if test="priority != null and priority != ''">
+              priority=#{priority,jdbcType=NUMERIC}
+        </if>
+        <if test="title != null and title != ''">
+             AND title like #{title, jdbcType=VARCHAR}
+        </if>
+     </where>
+</select>
+
+
+<delete id="deleteAll">
+delete from weixin.material_news_item
+</delete>
+
+
+
+</mapper>

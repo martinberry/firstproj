@@ -1,0 +1,11 @@
+apply plugin : 'eclipse'
+
+dependencies {
+
+    compile project(":ztr-common:ztravel-common")
+    compile project(":ztr-search:ztravel-search-client")
+	compile 'org.apache.lucene:lucene-core:4.10.3'
+	compile 'org.apache.lucene:lucene-queryparser:4.10.3'
+	compile 'org.wltea.analyzer.lucene:IKAnalyzer:2012FF_u1'
+	
+}

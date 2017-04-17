@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		   http://www.springframework.org/schema/context				http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	default-autowire="byName">
+
+	<!-- cache config -->
+	<bean id="ehCacheManager"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache.xml" />
+	</bean>
+
+	<!-- load properties -->
+	<bean class="com.travelzen.framework.config.tops.TzPropertyPlaceholderConfigurer">
+		<property name="tzProperties">
+			<list>
+				<value>R:properties/mongo-database.properties</value>
+				<value>G:properties/media-cache.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="imageCacheConfig" class="com.ztravel.mediaserver.cache.MediaRedisCacheConfig">
+		<property name="capacity">
+			<bean class="java.lang.Long">
+			    <constructor-arg index="0" value="${image.cache.capacity}"/>
+			</bean>			
+		</property>
+		<property name="timeToLiveSeconds">
+			<bean class="java.lang.Long">
+			    <constructor-arg index="0" value="${image.cache.timeToLiveSeconds}"/>
+			</bean>			
+		</property>		
+	
+<!-- 		<constructor-arg index="0" value="${image.cache.capacity}" type="long"/> -->
+<!-- 		<constructor-arg index="1" value="${image.cache.timeToLiveSeconds}" type="long" /> -->
+	</bean>
+	
+
+	
+	<bean id="invalidImageIdCacheConfig" class="com.ztravel.mediaserver.cache.MediaRedisCacheConfig">
+	
+		<property name="capacity">
+			<bean class="java.lang.Long">
+			    <constructor-arg index="0" value="${invalid.imageid.cache.capacity}"/>
+			</bean>			
+		</property>
+		<property name="timeToLiveSeconds">
+			<bean class="java.lang.Long">
+			    <constructor-arg index="0" value="${invalid.imageid.cache.timeToLiveSeconds}"/>
+			</bean>			
+		</property>	
+	
+<!-- 		<constructor-arg index="0" value="${invalid.imageid.cache.capacity}" type="long"/> -->
+<!-- 		<constructor-arg index="1" value="${invalid.imageid.cache.timeToLiveSeconds}" type="long" /> -->
+	</bean>
+
+
+	<context:component-scan base-package="com.ztravel.mediaserver.dao.impl" />
+	<context:component-scan base-package="com.ztravel.mediaserver.service" />
+	<context:component-scan base-package="com.ztravel.mediaserver.cache" />
+	
+	<bean id="mediaDatastore" name="mediaDatastore" factory-bean="ztravelDatastoreFactory" factory-method="createDatastore">
+		<constructor-arg value="${media.mongodb.uri}" type="java.lang.String" />
+	</bean>
+
+	<!-- 自定义morphia，在初始化时扫描mongo entities 并且加上索引 -->
+	<bean id="ztravelDatastoreFactory" class="com.travelzen.mongo.morphia.DataStoreFactory" init-method="init">
+	</bean>
+</beans>

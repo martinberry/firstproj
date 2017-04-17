@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.sso.po.OpenidMemberEntityMapper" >
+
+    <resultMap id="BasicResultMap" type="com.ztravel.sso.po.OpenidMemberEntity">
+	    <id column="open_id" jdbcType="VARCHAR" property="openId" />
+	    <result column="member_id" jdbcType="VARCHAR" property="memberId" />
+        <result column="pre_member_id" jdbcType="VARCHAR" property="preMemberId" />
+	    <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
+	    <result column="token" jdbcType="VARCHAR" property="token" />
+    </resultMap>
+
+    <select id="selectById" resultMap="BasicResultMap" parameterType="string">
+        <![CDATA[select open_id, member_id, pre_member_id, login_time, token from member.t_wx_openid_member
+         where open_id=#{openId,jdbcType=VARCHAR}]]>
+    </select>
+
+    <select id="select" resultMap="BasicResultMap" parameterType="map">
+        select * from member.t_wx_openid_member
+        <where>
+            <if test="openId != null and openId != ''">
+                <![CDATA[open_id = #{openId}]]>
+            </if>
+            <if test="memberId != null and memberId != ''">
+                <![CDATA[member_id = #{memberId}]]>
+            </if>
+            <if test="token != null and token != ''">
+                <![CDATA[token = #{token}]]>
+            </if>
+        </where>
+    </select>
+
+    <select id="count" resultType="Integer" parameterType="map">
+        select count(open_id) from member.t_wx_openid_member
+        <where>
+            <if test="openId != null and openId != ''">
+                <![CDATA[open_id = #{openId}]]>
+            </if>
+            <if test="memberId != null and memberId != ''">
+                <![CDATA[member_id = #{memberId}]]>
+            </if>
+            <if test="token != null and token != ''">
+                <![CDATA[token = #{token}]]>
+            </if>
+        </where>
+    </select>
+
+	<insert id="insert" parameterType="com.ztravel.sso.po.OpenidMemberEntity">
+		insert into member.t_wx_openid_member
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="openId != null">
+	        open_id,
+	      </if>
+	      <if test="memberId != null">
+	        member_id,
+	      </if>
+	      <if test="loginTime != null">
+	        login_time,
+	      </if>
+	      <if test="token != null">
+	        token,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="openId != null">
+	        #{openId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="memberId != null">
+	        #{memberId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="loginTime != null">
+	        #{loginTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="token != null">
+	        #{token,jdbcType=VARCHAR},
+	      </if>
+	    </trim>
+	</insert>
+
+	<update id="update" parameterType="com.ztravel.sso.po.OpenidMemberEntity">
+        update member.t_wx_openid_member
+        <set>
+            <if test="memberId != null">
+                member_id = #{memberId,jdbcType=VARCHAR},
+            </if>
+            <if test="preMemberId != null">
+                pre_member_id = #{preMemberId,jdbcType=VARCHAR},
+            </if>
+            <if test="loginTime != null">
+                login_time = #{loginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="token != null">
+                token = #{token,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where open_id = #{openId,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateToUnBind" parameterType="com.ztravel.sso.po.OpenidMemberEntity">
+        update member.t_wx_openid_member
+        set member_id = null, pre_member_id = null, token = null, login_time = #{loginTime,jdbcType=TIMESTAMP}
+        where open_id = #{openId,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete from member.t_wx_openid_member where open_id = #{openId,jdbcType=VARCHAR}
+    </delete>
+
+</mapper>

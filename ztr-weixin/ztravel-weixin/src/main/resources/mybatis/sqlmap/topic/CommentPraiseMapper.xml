@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ztravel.weixin.po.CommentPraiseMapper">
+
+<resultMap id="BaseResultMap" type="com.ztravel.weixin.po.CommentPraise" >
+    <id column="praise_id" property="praiseId" jdbcType="VARCHAR" />
+    <result column="comment_id" property="commentId" jdbcType="VARCHAR" />
+    <result column="praise_openid" property="openId" jdbcType="VARCHAR" />
+    <result column="praise_flag" property="flag" jdbcType="NUMERIC" />
+</resultMap>
+
+<sql id="Column_List">
+  cp.praise_id,cp.comment_id,cp.praise_openid,cp.praise_flag
+</sql>
+
+<insert id="insert" parameterType="com.ztravel.weixin.po.CommentPraise" >
+     insert into weixin.t_comment_praise
+    <trim prefix="(" suffix=")" suffixOverrides="," >   
+      <if test="praiseId != null and praiseId !=''"  >
+        praise_id,
+      </if>
+      <if test="commentId != null and commentId !=''" >
+        comment_id,
+      </if>
+      <if test="openId != null and openId !=''" >
+        praise_openid,
+      </if>
+       <if test="flag != null and flag !=''" >
+        praise_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="praiseId != null and praiseId !=''" >
+        #{praiseId,jdbcType=VARCHAR},
+      </if>
+      <if test="commentId != null and commentId !=''" >
+        #{commentId,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null and openId !=''" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null and flag !=''" >
+        #{flag,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+
+
+<update id="update" parameterType="com.ztravel.weixin.po.CommentPraise">
+	update weixin.t_comment_praise
+		<set>
+		       <if test="praiseId != null and praiseId !=''" >
+		        praise_id = #{praiseId,jdbcType=VARCHAR},
+		      </if>
+		      <if test="commentId != null and commentId !=''" >
+		        comment_id = #{commentId,jdbcType=VARCHAR},
+		      </if>
+		       <if test="openId != null and openId !=''" >
+		        praise_openid = #{openId,jdbcType=VARCHAR},
+		      </if>
+		      <if test="flag != null" >
+		         praise_flag = #{flag,jdbcType=NUMERIC},
+		      </if>
+		</set>
+		<where>
+		     <if test="praiseId != null and praiseId !=''" >
+		        praise_id = #{praiseId,jdbcType=VARCHAR}
+		     </if>		
+	    </where>
+</update>
+
+
+<select id="selectByOpenIdAndCommentId" resultMap="BaseResultMap" parameterType="map" >
+    select <include refid="Column_List" />
+    from weixin.t_comment_praise cp
+     <where>
+      true      
+        <if test="commentId != null and commentId != ''">
+            AND comment_id = #{commentId, jdbcType=VARCHAR}
+        </if>
+        <if test="openId != null and openId != ''">
+            AND praise_openid = #{openId, jdbcType=VARCHAR}
+        </if>
+        
+    </where> 
+</select>
+
+
+</mapper>

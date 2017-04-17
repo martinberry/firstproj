@@ -1,0 +1,2 @@
+include ':ztr-weixin:ztravel-weixin'
+include ':ztr-weixin:ztravel-weixin-client'

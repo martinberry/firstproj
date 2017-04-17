@@ -1,0 +1,10 @@
+apply plugin : 'eclipse'
+
+group = 'com.travelzen'
+version = "${versions.swordfish}"
+
+dependencies {
+//	compile project(':swordfish-common') 
+//	compile project(':swordfish-thrift-client') 
+	compile project(":ztr-common:swordfish-thrift")
+}

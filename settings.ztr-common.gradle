@@ -1,0 +1,17 @@
+
+
+include ':ztr-common:ztravel-dao'
+include ':ztr-common:ztravel-reuse'
+include ':ztr-common:ztravel-common-mediaserver-dao'
+include ':ztr-common:ztravel-media-compress'
+include ':ztr-common:ztravel-mq'
+include ':ztr-common:swordfish-thrift'
+include ':ztr-common:swordfish-thrift-server'
+include ':ztr-common:ztravel-common-resource'
+include ':ztr-common:ztravel-common-mock'
+include ':ztr-common:ztravel-common-adapter'
+include ':ztr-common:ztravel-rbac'
+include ':ztr-common:ztravel-datasource'
+include ':ztr-common:ztravel-common'
+include ':ztr-common:ztravel-common-mediaserver'
+include ':ztr-common:ztravel-common-mediaclient'

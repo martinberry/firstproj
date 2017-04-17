@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ibatorConfiguration
+  PUBLIC "-//Apache Software Foundation//DTD Apache iBATIS Ibator Configuration 1.0//EN"
+  "http://ibatis.apache.org/dtd/ibator-config_1_0.dtd">
+
+<ibatorConfiguration>
+
+	<classPathEntry
+		location="/home/shenzuoning/.gradle/caches/modules-2/files-2.1/postgresql/postgresql/9.1-901.jdbc4/153f2f92a786f12fc111d0111f709012df87c808/postgresql-9.1-901.jdbc4.jar"/>
+
+	<ibatorContext id="FlatJava5" targetRuntime="Ibatis2Java5"
+		defaultModelType="flat">
+
+		<property name="suppressTypeWarnings" value="true" /> <!-- should be ignored -->
+
+		 <!-- Serializable化 -->
+        <ibatorPlugin type="org.apache.ibatis.ibator.plugins.SerializablePlugin" />
+
+		<ibatorPlugin type="org.apache.ibatis.ibator.plugins.EqualsHashCodePlugin" />
+
+		<ibatorPlugin type="org.apache.ibatis.ibator.plugins.SqlMapConfigPlugin">
+			<property name="targetPackage" value="ibatis.sqlmap.gen" />
+			<property name="targetProject"
+				value="/home/shenzuoning/workspace/code/git/tz-ztravel/ztr-paygate/ztravel-paygate-core/src/test/resources"/>
+		</ibatorPlugin>
+
+		<ibatorPlugin type="org.apache.ibatis.ibator.plugins.PaginationPlugin">
+			<property name="enablePagination" value="true" />
+			<property name="dbType" value="postgres" />
+		</ibatorPlugin>
+
+		<jdbcConnection driverClass="org.postgresql.Driver"
+			connectionURL="jdbc:postgresql://192.168.161.28:5436/ztravel" userId="postgres"
+			password="Abc12345" />
+
+		<javaModelGenerator targetPackage="com.ztravel.paygate.core.po.gen"
+			targetProject="/home/shenzuoning/workspace/code/git/tz-ztravel/ztr-paygate/ztravel-paygate-core/src/main/java">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="ibatis.sqlmap.gen"
+			targetProject="/home/shenzuoning/workspace/code/git/tz-ztravel/ztr-paygate/ztravel-paygate-core/src/main/resources">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<daoGenerator type="GENERIC-SI"
+			targetPackage="com.ztravel.paygate.core.dao.gen"
+			targetProject="/home/shenzuoning/workspace/code/git/tz-ztravel/ztr-paygate/ztravel-paygate-core/src/main/java">
+			<property name="enableSubPackages" value="false" />
+		</daoGenerator>
+		
+		
+		<table tableName="alipay" schema="paygate" />
+		<table tableName="alipay_refund" schema="paygate" />
+		<table tableName="paygate_client" schema="paygate" />
+	</ibatorContext>
+
+</ibatorConfiguration>

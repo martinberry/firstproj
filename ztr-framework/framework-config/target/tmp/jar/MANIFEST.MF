@@ -1,0 +1,37 @@
+Manifest-Version: 1.0
+Implementation-Title: framework-config
+Implementation-Version: 1.0
+Built-By: N
+Built-JDK: 1.7.0_79
+Implementation-Timestamp: 2016-04-25T15:24:42+0800
+Created-By: Gradle 1.12
+Main-Class: com.travelzen.framwork.config.app.AppMain
+Class-Path: lib/framework-core-1.0.jar lib/framework-logger-core-1.0.j
+ ar lib/framework-spring-1.0.jar lib/commons-io-2.4.jar lib/curator-cl
+ ient-2.7.0.jar lib/curator-framework-2.7.0.jar lib/curator-recipes-2.
+ 7.0.jar lib/curator-x-discovery-2.7.0.jar lib/zkclient-2.1.1.jar lib/
+ config-1.2.1.jar lib/snakeyaml-1.14.jar lib/spring-beans-3.2.9.RELEAS
+ E.jar lib/spring-context-3.2.9.RELEASE.jar lib/javax.servlet-api-3.1.
+ 0.jar lib/spring-core-3.2.9.RELEASE.jar lib/commons-lang3-3.3.2.jar l
+ ib/guava-18.0.jar lib/joda-time-2.4.jar lib/fastjson-1.1.29.jar lib/j
+ cl-over-slf4j-1.7.7.jar lib/logback-classic-1.1.2.jar lib/gson-2.3.ja
+ r lib/javatuples-1.2.jar lib/commons-collections-3.2.1.jar lib/cat-cl
+ ient-1.2.5.jar lib/commons-pool-1.6.jar lib/op4j-1.2.jar lib/zookeepe
+ r-3.4.6.jar lib/aspectjweaver-1.7.2.jar lib/aspectjrt-1.7.2.jar lib/p
+ erf4j-0.9.16.jar lib/janino-2.7.6.jar lib/spring-test-3.2.9.RELEASE.j
+ ar lib/spring-batch-core-2.1.9.RELEASE.jar lib/spring-webmvc-3.2.9.RE
+ LEASE.jar lib/ehcache-core-2.6.5.jar lib/freemarker-2.3.20.jar lib/ma
+ il-1.4.7.jar lib/hibernate-validator-4.1.0.Final.jar lib/spring-aop-3
+ .2.9.RELEASE.jar lib/spring-expression-3.2.9.RELEASE.jar lib/logback-
+ core-1.1.2.jar lib/foundation-service-2.1.0.jar lib/netty-3.2.7.Final
+ .jar lib/commons-lang-2.4.jar lib/javaruntype-1.2.jar lib/commons-com
+ piler-2.7.6.jar lib/spring-batch-infrastructure-2.1.9.RELEASE.jar lib
+ /jettison-1.1.jar lib/spring-web-3.2.9.RELEASE.jar lib/activation-1.1
+ .jar lib/validation-api-1.0.0.GA.jar lib/junit-4.8.1.jar lib/plexus-c
+ ontainer-default-1.5.5.jar lib/plexus-utils-3.0.8.jar lib/plexus-clas
+ sworlds-2.2.2.jar lib/xbean-reflect-3.4.jar lib/commons-logging-api-1
+ .1.jar lib/jackson-mapper-asl-1.9.13.jar lib/jline-0.9.94.jar lib/net
+ ty-3.7.0.Final.jar lib/slf4j-api-1.7.7.jar lib/aopalliance-1.0.jar li
+ b/jackson-core-asl-1.9.13.jar
+Build-At: Mon Apr 25 15:24:50 CST 2016
+

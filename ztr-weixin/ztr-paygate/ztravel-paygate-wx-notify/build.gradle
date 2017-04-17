@@ -1,0 +1,6 @@
+apply plugin : 'eclipse-wtp'
+apply plugin : 'war'
+dependencies {
+	compile project(":ztr-paygate:ztravel-paygate-wx")
+	compile project(":ztr-common:ztravel-datasource")
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/test/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
+	<classpathentry kind="src" path="/ztravel-common" exported="true"/>
+	<classpathentry kind="src" path="/ztravel-search-client" exported="true"/>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.lucene/lucene-core/4.10.3/source/44ddf42c2156a388127234c45f5cc209b04e6f18/lucene-core-4.10.3-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.lucene/lucene-core/4.10.3/jar/ea0344b37d8668e6beb21ec41c67c9ca2df9f2a4/lucene-core-4.10.3.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.lucene/lucene-queryparser/4.10.3/source/e71822715737ce55d3472861f506dd2b3680fbc/lucene-queryparser-4.10.3-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.lucene/lucene-queryparser/4.10.3/jar/e7a0384c99257136e7295efd69516615b19d92bc/lucene-queryparser-4.10.3.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.wltea.analyzer.lucene/IKAnalyzer/2012FF_u1/source/9f8901e90dbefd07de334f2a70becaa01a4b1c0e/IKAnalyzer-2012FF_u1-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.wltea.analyzer.lucene/IKAnalyzer/2012FF_u1/jar/3719f3dd8d234cd834e794d9e2c67ef9e9286882/IKAnalyzer-2012FF_u1.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/junit/junit/4.11/source/28e0ad201304e4a4abf999ca0570b7cffc352c3c/junit-4.11-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/junit/junit/4.11/jar/4e031bb61df09069aeb2bffb4019e7a5034a4ee0/junit-4.11.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.lucene/lucene-queries/4.10.3/source/67864b61cbc8ba144575d6592e5e5076ccf11116/lucene-queries-4.10.3-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.lucene/lucene-queries/4.10.3/jar/40a4d378a857ec0c7cc32d3122a36f22beae2fd7/lucene-queries-4.10.3.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.lucene/lucene-sandbox/4.10.3/source/624ac8269e8b2dbbd748056e80ae77d1b2d0961a/lucene-sandbox-4.10.3-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.lucene/lucene-sandbox/4.10.3/jar/39ecd581b636adc15379dbd53878928e0f05a89c/lucene-sandbox-4.10.3.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.hamcrest/hamcrest-core/1.3/source/1dc37250fbc78e23a65a67fbbaf71d2e9cbc3c0b/hamcrest-core-1.3-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.hamcrest/hamcrest-core/1.3/jar/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+</classpath>

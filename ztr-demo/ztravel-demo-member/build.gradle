@@ -1,0 +1,8 @@
+apply plugin : 'eclipse'
+
+
+//sourceSets.main.java.srcDirs 'src/main/webapp'
+dependencies {
+	compile project(":ztr-demo:ztravel-demo-common")
+	compile project(":ztr-common:ztravel-rbac")
+}

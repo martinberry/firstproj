@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.rbac.entity.UserMapper" >
+<resultMap id="BaseResultMap" type="com.ztravel.rbac.entity.User" >
+    <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="is_active" property="isActive" jdbcType="BOOLEAN" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="employee_code" property="employeeCode" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="createdby" property="createdby" jdbcType="VARCHAR" />
+    <result column="updatedby" property="updatedby" jdbcType="VARCHAR" />
+    <result column="update_time" property="updated" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="created" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+	    user_id, user_name, password, description, is_active, real_name, email, mobile, employee_code, createdby, updatedby, update_time, create_time
+	</sql>
+
+	<delete id="deleteById" parameterType="String">
+    DELETE FROM rbac.t_user WHERE user_id = #{userId,jdbcType=VARCHAR}
+</delete>
+
+	<select id="countBySearch" resultType="Integer">
+		select count(rbac.t_user.user_id) from rbac.t_user
+		    <if test="roleId != null and roleId != ''">
+                 join rbac.t_user_role
+                on (rbac.t_user.user_id = rbac.t_user_role.user_id
+				and rbac.t_user_role.role_id = #{roleId,jdbcType=VARCHAR})
+			</if>
+        <where>
+            rbac.t_user.description is null
+            <if test="realName != null and realName != ''">
+                and rbac.t_user.real_name like #{realName,jdbcType=VARCHAR}
+			</if>
+			<if test="employeeCode != null and employeeCode != ''">
+				and rbac.t_user.employee_code = #{employeeCode,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+		<select id="countByS" resultType="Integer">
+		select count(M.id) from
+        (select rbac.t_user.user_id as id
+        from rbac.t_user
+           <if test="roleId != null and roleId != ''">
+                 join rbac.t_user_role
+                on (rbac.t_user.user_id = rbac.t_user_role.user_id
+				and rbac.t_user_role.role_id = #{roleId,jdbcType=VARCHAR})
+			</if>
+        <where>
+			<if test="employeeCode != null and employeeCode != ''">
+				and rbac.t_user.employee_code = #{employeeCode,jdbcType=VARCHAR}
+			</if>
+			<if test="realName != null and realName != ''">
+				and rbac.t_user.real_name like #{realName,jdbcType=VARCHAR}
+			</if>
+		</where>
+    ) as M
+	</select>
+
+    <select id="selectByUserName" resultMap="BaseResultMap" parameterType="map">
+                SELECT * FROM rbac.t_user
+                WHERE user_name= #{userName,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByPage" resultMap="BaseResultMap" parameterType="map">
+        select rbac.t_user.*
+        from rbac.t_user
+           <if test="roleId != null and roleId != ''">
+                 join rbac.t_user_role
+                on (rbac.t_user.user_id = rbac.t_user_role.user_id
+				and rbac.t_user_role.role_id = #{roleId,jdbcType=VARCHAR})
+			</if>
+        <where>
+            rbac.t_user.description is null
+			<if test="employeeCode != null and employeeCode != ''">
+				and rbac.t_user.employee_code = #{employeeCode,jdbcType=VARCHAR}
+			</if>
+			<if test="realName != null and realName != ''">
+				and rbac.t_user.real_name like #{realName,jdbcType=VARCHAR}
+			</if>
+		</where>
+        <if test="offset != null and offset != '0'">
+            offset #{offset}
+        </if>
+        <if test="limit != null and limit != ''">
+            limit #{limit}
+        </if>
+    </select>
+
+    <update id="update" parameterType="com.ztravel.rbac.entity.User">
+		update rbac.t_user set
+      	<if test="userName != null and userName != '' ">
+        	user_name = #{userName,jdbcType=VARCHAR},
+      	</if>
+      	<if test="password != null and password != '' ">
+       		password = #{password,jdbcType=VARCHAR},
+      	</if>
+      	<if test="realName != null">
+       		real_name = #{realName,jdbcType=VARCHAR},
+      	</if>
+      	<if test="employeeCode != null">
+       		employee_code = #{employeeCode,jdbcType=VARCHAR},
+      	</if>
+      	<if test="mobile != null">
+       		mobile = #{mobile,jdbcType=VARCHAR},
+      	</if>
+      	<if test="email != null">
+       		email = #{email,jdbcType=VARCHAR},
+      	</if>
+      	<if test="description != null">
+       		description = #{description,jdbcType=VARCHAR},
+      	</if>
+      	<if test="isActive != null">
+       		is_active = #{isActive,jdbcType=BOOLEAN},
+      	</if>
+        	updatedby = #{updatedby,jdbcType=VARCHAR},
+        	update_time = #{updated,jdbcType=VARCHAR}
+	    where user_id=#{userId,jdbcType=VARCHAR}
+	</update>
+
+    <insert id="insert" parameterType="com.ztravel.rbac.entity.User">
+		insert into rbac.t_user
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="userId != null">
+	        user_id,
+	      </if>
+	      <if test="userName != null">
+	        user_name,
+	      </if>
+	      <if test="realName != null">
+	        real_name,
+	      </if>
+	      <if test="password != null">
+	        password,
+	      </if>
+	      <if test="employeeCode != null">
+	        employee_code,
+	      </if>
+	      <if test="email != null">
+	        email,
+	      </if>
+	      <if test="description != null">
+	        description,
+	      </if>
+	      <if test="mobile != null">
+	        mobile,
+	      </if>
+	      <if test="isActive != null">
+	        is_active,
+	      </if>
+	      <if test="createdby != null">
+	        createdby,
+	      </if>
+	      <if test="updatedby != null">
+	        updatedby,
+	      </if>
+	      <if test="updated != null">
+	        update_time,
+	      </if>
+	      <if test="created != null">
+	        create_time,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="userId != null">
+	        #{userId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="userName != null">
+	        #{userName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="realName != null">
+	        #{realName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="password != null">
+	        #{password,jdbcType=VARCHAR},
+	      </if>
+	      <if test="employeeCode != null">
+	        #{employeeCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="email != null">
+	        #{email,jdbcType=VARCHAR},
+	      </if>
+	      <if test="description != null">
+	        #{description,jdbcType=VARCHAR},
+	      </if>
+	      <if test="mobile != null">
+	        #{mobile,jdbcType=VARCHAR},
+	      </if>
+	      <if test="isActive != null">
+	        #{isActive,jdbcType=BOOLEAN},
+	      </if>
+	      <if test="createdby != null">
+	        #{createdby,jdbcType=VARCHAR},
+	      </if>
+	      <if test="updatedby != null">
+	        #{updatedby,jdbcType=VARCHAR},
+	      </if>
+	      <if test="updated != null">
+	        #{updated,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="created != null">
+	        #{created,jdbcType=TIMESTAMP},
+	      </if>
+	    </trim>
+	</insert>
+
+</mapper>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.weixin.activity.entity.NewYearAwardStockMapper" >
+	<resultMap id="BaseResultMap" type="com.ztravel.weixin.activity.entity.NewYearAwardStock">
+	    <id column="award_code" jdbcType="VARCHAR" property="awardCode" />
+	    <result column="award_name" jdbcType="VARCHAR" property="awardName" />
+	    <result column="total_amount" jdbcType="NUMERIC" property="totalAmount" />
+	    <result column="left_amount" jdbcType="NUMERIC" property="leftAmount" />
+	    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    </resultMap>
+
+    <select id="selectLeftAmountByAwardCode" resultType="Integer" parameterType="String">
+        select left_amount from activity.new_year_award_stock where award_code = #{awardCode,jdbcType=VARCHAR} for update
+    </select>
+
+    <select id="select" resultMap="BaseResultMap" parameterType="map">
+        select * from activity.new_year_award_stock
+        <where>
+            <if test="awardCode != null and awardCode != ''">
+                <![CDATA[award_code = #{awardCode}]]>
+            </if>
+        </where>
+    </select>
+
+	<insert id="insert" parameterType="com.ztravel.weixin.activity.entity.NewYearAwardStock">
+		insert into activity.new_year_award_stock
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="awardCode != null">
+	        award_code,
+	      </if>
+	      <if test="awardName != null">
+	        award_name,
+	      </if>
+	      <if test="totalAmount != null">
+	        total_amount,
+	      </if>
+	      <if test="leftAmount != null">
+	        left_amount,
+	      </if>
+	      <if test="remark != null">
+	        remark,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="awardCode != null">
+	        #{awardCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="awardName != null">
+	        #{awardName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="totalAmount != null">
+	        #{totalAmount,jdbcType=NUMERIC},
+	      </if>
+	      <if test="leftAmount != null">
+	        #{leftAmount,jdbcType=NUMERIC},
+	      </if>
+	      <if test="remark != null">
+	        #{remark,jdbcType=VARCHAR},
+	      </if>
+	    </trim>
+	</insert>
+
+	<update id="update" parameterType="com.ztravel.weixin.activity.entity.NewYearAwardStock">
+          update activity.new_year_award_stock
+          <set>
+              <if test="awardName != null">
+                  award_name = #{awardName,jdbcType=VARCHAR},
+              </if>
+              <if test="totalAmount != null">
+                  total_amount = #{totalAmount,jdbcType=NUMERIC},
+              </if>
+             <if test="leftAmount != null">
+                 left_amount = #{leftAmount,jdbcType=NUMERIC},
+             </if>
+              <if test="remark != null">
+                  remark = #{remark,jdbcType=VARCHAR},
+              </if>
+              </set>
+          where award_code = #{awardCode,jdbcType=VARCHAR}
+      </update>
+
+      <update id="updateStock" parameterType="map">
+          update activity.new_year_award_stock
+          <set>
+              <if test="totalAmount != null">
+                  total_amount = #{totalAmount,jdbcType=NUMERIC},
+              </if>
+             <if test="leftAmount != null">
+                 left_amount = #{leftAmount,jdbcType=NUMERIC},
+             </if>
+             </set>
+          where award_code = #{awardCode,jdbcType=VARCHAR}
+      </update>
+
+      <update id="updateStockMinusOne" parameterType="String">
+          update activity.new_year_award_stock set left_amount = left_amount - 1
+          where award_code = #{awardCode,jdbcType=VARCHAR} and left_amount > 0
+      </update>
+
+      <update id="updateStockPlusOne"  parameterType="String">
+          update activity.new_year_award_stock set left_amount = left_amount + 1
+          where award_code = #{awardCode,jdbcType=VARCHAR} and <![CDATA[left_amount < total_amount]]>
+      </update>
+
+    <update id="updateStockByChangeNum" parameterType="map">
+        update activity.new_year_award_stock set
+            left_amount = left_amount + #{changeNum,jdbcType=NUMERIC},
+            total_amount = total_amount + #{changeNum,jdbcType=NUMERIC},
+            remark = remark || #{remark,jdbcType=VARCHAR}
+        where award_code = #{awardCode,jdbcType=VARCHAR} and left_amount + #{changeNum,jdbcType=NUMERIC} >= 0
+    </update>
+
+</mapper>

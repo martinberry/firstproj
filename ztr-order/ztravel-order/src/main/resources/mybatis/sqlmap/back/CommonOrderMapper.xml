@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ztravel.order.po.CommonOrderMapper" >
+
+<resultMap id="BaseResultMap" type="com.ztravel.order.po.CommonOrder" >
+    <id column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="order_no_origin" property="orderNoOrigin" jdbcType="VARCHAR" />
+    <result column="order_id_origin" property="orderIdOrigin" jdbcType="VARCHAR" />
+    <result column="order_no_vice" property="orderNoVice" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="NUMERIC" />
+    <result column="member_id" property="memberId" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="order_type" property="orderType" jdbcType="VARCHAR" />
+    <result column="pay_type" property="payType" jdbcType="VARCHAR" />
+    <result column="pay_serial_num" property="paySerialNum" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="state_change_history" property="stateChangeHistory" jdbcType="VARCHAR" />
+</resultMap>
+
+
+<resultMap id="PoResultMap" type="com.ztravel.order.po.CommonOrderPo" >
+    <id column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="order_no_origin" property="orderNoOrigin" jdbcType="VARCHAR" />
+    <result column="order_id_origin" property="orderIdOrigin" jdbcType="VARCHAR" />
+    <result column="order_no_vice" property="orderNoVice" jdbcType="VARCHAR" />
+    <result column="back_state" property="backState" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="NUMERIC" />
+    <result column="member_id" property="memberId" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="order_type" property="orderType" jdbcType="VARCHAR" />
+    <result column="pay_type" property="payType" jdbcType="VARCHAR" />
+    <result column="pay_serial_num" property="paySerialNum" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="state_change_history" property="stateChangeHistory" jdbcType="VARCHAR" />
+    <result column="traveller_names" property="travellerNames" jdbcType="VARCHAR" />
+</resultMap>
+
+<sql id="Column_List">
+    co.order_id, co.order_no_origin, co.order_id_origin, co.order_no_vice, co.status, co.price, co.member_id,co.remark,co.order_type,co.pay_type,co.pay_serial_num,
+    co.create_date,co.update_date,co.state_change_history
+</sql>
+
+<sql id="PoColumn_List">
+    co.order_id, co.order_no_origin, co.order_id_origin, o.back_state, co.order_no_vice, co.status, co.price, co.member_id,co.remark,co.order_type,co.pay_type,co.pay_serial_num,
+    co.create_date,co.update_date,co.state_change_history,pa.traveller_names
+</sql>
+
+
+<insert id="insert" parameterType="com.ztravel.order.po.CommonOrder" >
+     insert into ztorder.t_common_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderNoOrigin != null" >
+        order_no_origin,
+      </if>
+      <if test="orderIdOrigin != null" >
+        order_id_origin,
+      </if>
+      <if test="orderNoVice != null" >
+        order_no_vice,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="paySerialNum != null" >
+        pay_serial_num,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="stateChangeHistory != null" >
+        state_change_history,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNoOrigin != null" >
+        #{orderNoOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="orderIdOrigin != null" >
+        #{orderIdOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNoVice != null" >
+        #{orderNoVice,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=NUMERIC},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="paySerialNum != null" >
+        #{paySerialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stateChangeHistory != null" >
+      	#{stateChangeHistory,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+<update id="updateByMap" parameterType="map">
+	update ztorder.t_common_order
+	<set>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNoOrigin != null" >
+        order_no_origin = #{orderNoOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNoVice != null" >
+        order_no_vice = #{orderNoVice,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=NUMERIC},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=NUMERIC},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="paySerialNum != null" >
+        pay_serial_num = #{paySerialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stateChangeHistory != null" >
+        state_change_history = #{stateChangeHistory,jdbcType=VARCHAR},
+      </if>
+	</set>
+	<where>
+	  	<if test="wOrderId != null">
+			and order_id = #{wOrderId,jdbcType=VARCHAR}
+	    </if>
+	    <if test="wStatus != null">
+			and status = #{wStatus,jdbcType=VARCHAR}
+	    </if>
+	    <if test="wStatusNotIn != null">
+			and status not in
+			<foreach collection="wStatusNotIn" item="s_not_in" index="index" open="(" close=")" separator=",">
+				#{s_not_in}
+			</foreach>
+		</if>
+	    <if test="statusList != null">
+			and status in
+			<foreach collection="statusList" item="s" index="index" open="(" close=")" separator=",">
+				#{s}
+			</foreach>
+		</if>
+   </where>
+</update>
+
+
+
+<update id="update" parameterType="com.ztravel.order.po.CommonOrder">
+	update ztorder.t_common_order
+		<set>
+		      <if test="orderId != null" >
+		        order_id = #{orderId,jdbcType=VARCHAR},
+		      </if>
+		       <if test="orderNoOrigin != null" >
+		        order_no_origin = #{orderNoOrigin,jdbcType=VARCHAR},
+		      </if>
+		      <if test="status != null" >
+		        status = #{status,jdbcType=VARCHAR},
+		      </if>
+		         <if test="createDate != null" >
+		         create_date = #{createDate,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="updateDate != null" >
+		        update_date = #{updateDate,jdbcType=TIMESTAMP},
+		      </if>
+		         <if test="memberId != null" >
+		        member_id = #{memberId,jdbcType=VARCHAR},
+		      </if>
+		         <if test="remark != null" >
+		        remark = #{remark,jdbcType=VARCHAR},
+		      </if>
+		         <if test="paySerialNum != null" >
+		        pay_serial_num = #{paySerialNum,jdbcType=VARCHAR},
+		      </if>
+		         <if test="payType != null" >
+		        pay_type = #{payType,jdbcType=VARCHAR},
+		      </if>
+		         <if test="orderType != null" >
+		        order_type = #{orderType,jdbcType=VARCHAR},
+		      </if>
+		         <if test="orderNoVice != null" >
+		        order_no_vice = #{orderNoVice,jdbcType=VARCHAR},
+		      </if>
+		         <if test="price != null" >
+		        price = #{price,jdbcType=NUMERIC},
+		      </if>
+		         <if test="orderIdOrigin != null" >
+		        order_id_origin = #{orderIdOrigin,jdbcType=VARCHAR},
+		      </if>
+		      <if test="stateChangeHistory != null" >
+		        state_change_history = #{stateChangeHistory,jdbcType=VARCHAR},
+		      </if>
+		</set>
+		<where>
+		     <if test="orderId != null" >
+		      and  order_id = #{orderId,jdbcType=VARCHAR}
+		      </if>
+		       <if test="orderNoOrigin != null" >
+		        and order_no_origin = #{orderNoOrigin,jdbcType=VARCHAR}
+		      </if>
+		       <if test="orderNoVice != null" >
+		        and order_no_vice = #{orderNoVice,jdbcType=VARCHAR}
+		      </if>
+		     <!--  <if test="status != null" >
+		       and  status = #{status,jdbcType=VARCHAR}
+		      </if>
+		         <if test="createDate != null" >
+		        and  create_date = #{createDate,jdbcType=TIMESTAMP}
+		      </if>
+		      <if test="updateDate != null" >
+		        and update_date = #{updateDate,jdbcType=TIMESTAMP}
+		      </if>
+		         <if test="memberId != null" >
+		       and member_id = #{memberId,jdbcType=VARCHAR}
+		      </if>
+		         <if test="remark != null" >
+		        and remark = #{remark,jdbcType=VARCHAR}
+		      </if>
+		         <if test="paySerialNum != null" >
+		        and pay_serial_num = #{paySerialNum,jdbcType=VARCHAR}
+		      </if>
+		         <if test="payType != null" >
+		        and pay_type = #{payType,jdbcType=VARCHAR}
+		      </if>
+		         <if test="orderType != null" >
+		        and order_type = #{orderType,jdbcType=VARCHAR}
+		      </if>
+		         <if test="price != null" >
+		        and price = #{price,jdbcType=NUMERIC}
+		      </if>
+		         <if test="orderIdOrigin != null" >
+		        and order_id_origin = #{orderIdOrigin,jdbcType=VARCHAR}
+		      </if>
+		      -->
+	    </where>
+</update>
+
+<select id="selectByOriginOrderNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+	SELECT <include refid="Column_List" />
+    FROM ztorder.t_common_order co
+    <where>
+    co.order_no_origin = #{orderNo, jdbcType=VARCHAR}
+    </where>
+    ORDER BY co.create_date desc
+</select>
+
+<select id="select4UpdateByOriginOrderNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+	SELECT <include refid="Column_List" />
+    FROM ztorder.t_common_order co
+    <where>
+    co.order_no_origin = #{orderNo, jdbcType=VARCHAR} order by create_date desc for update
+    </where>
+</select>
+
+
+<select id="selectByOrderNoVice" resultMap="BaseResultMap" parameterType="java.lang.String">
+	SELECT <include refid="Column_List" />
+    FROM ztorder.t_common_order co
+    <where>
+    co.order_no_vice = #{orderNoVice, jdbcType=VARCHAR}
+    </where>
+</select>
+
+<select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.String">
+	SELECT <include refid="Column_List" />
+    FROM ztorder.t_common_order co
+    <where>
+    co.order_id = #{orderId, jdbcType=VARCHAR}
+    </where>
+</select>
+
+<select id="selectrRepairByOriginOrderId" resultMap="BaseResultMap" parameterType="java.lang.String">
+	SELECT <include refid="Column_List" />
+    FROM ztorder.t_common_order co
+    <where>
+    co.order_id_origin = #{orderIdOrigin, jdbcType=VARCHAR} and co.order_type='OP_CONFIRM_REPAIR'
+    </where>
+</select>
+
+<select id="selectcombineorder" resultMap="PoResultMap" parameterType="map">
+    SELECT <include refid="PoColumn_List" />
+    FROM ztorder.t_common_order co ,ztorder.t_order o, (select order_id, string_agg(name,',') as traveller_names from ztorder.t_order_passenger
+        where 1 = 1
+        <if test="travellerNames != null and travellerNames != ''">
+            AND name like #{travellerNames, jdbcType=VARCHAR}
+        </if>
+         group by order_id
+    ) pa
+    <where>
+       co.order_id_origin= o.order_id and o.order_id = pa.order_id
+        <if test="memberId != null and memberId != ''">
+            AND co.member_id = #{memberId, jdbcType=VARCHAR}
+        </if>
+        <if test="orderNo != null and orderNo != ''">
+            AND co.order_no_origin = #{orderNo, jdbcType=VARCHAR}
+        </if>
+         <if test="orderNoVice != null and orderNoVice != ''">
+            AND co.order_no_vice = #{orderNoVice, jdbcType=VARCHAR}
+        </if>
+        <if test="orderId != null and orderId != ''">
+            AND co.order_id = #{orderId, jdbcType=VARCHAR}
+         </if>
+          <if test="orderIdOrigin != null and orderIdOrigin != ''">
+            AND co.order_id_origin = #{orderIdOrigin, jdbcType=VARCHAR}
+        </if>
+         <if test="statuslist != null and statuslist !=''">
+				AND co.status in
+				<foreach collection="statuslist" item="s" index="index" open="(" close=")" separator =",">
+					 #{s}
+				</foreach>
+		</if>
+        <if test="createDateFrom != null and createDateFrom != ''">
+            AND <![CDATA[co.create_date >= #{createDateFrom}]]>
+        </if>
+        <if test="createDateTo != null and createDateTo !=''">
+            AND <![CDATA[co.create_date <= #{createDateTo}]]>
+        </if>
+        <if test="orderType != null and orderType !=''">
+            AND co.order_type = #{orderType, jdbcType=VARCHAR}
+        </if>
+    </where>
+    ORDER BY co.create_date desc
+    <if test="offset != null and offset != '0'">
+        OFFSET #{offset}
+    </if>
+    <if test="limit != null and limit != ''">
+        LIMIT #{limit}
+    </if>
+</select>
+
+<select id="count" resultType="Integer" parameterType="map">
+    SELECT count(co.order_id)
+    FROM ztorder.t_common_order co, ztorder.t_order o, (select order_id, string_agg(name,',') as traveller_names from ztorder.t_order_passenger
+        where 1 = 1
+        <if test="travellerNames != null and travellerNames != ''">
+            AND name like #{travellerNames, jdbcType=VARCHAR}
+        </if>
+         group by order_id
+    ) pa
+    <where>
+        co.order_id_origin= o.order_id and o.order_id = pa.order_id
+        <if test="memberId != null and memberId != ''">
+            AND co.member_id = #{memberId, jdbcType=VARCHAR}
+        </if>
+        <if test="orderNo != null and orderNo != ''">
+            AND co.order_no_origin = #{orderNo, jdbcType=VARCHAR}
+        </if>
+        <if test="orderId != null and orderId != ''">
+            AND co.order_id = #{orderId, jdbcType=VARCHAR}
+        </if>
+        <if test="orderIdOrigin != null and orderIdOrigin != ''">
+            AND co.order_id_origin = #{orderIdOrigin, jdbcType=VARCHAR}
+        </if>
+         <if test="statuslist != null and statuslist !=''">
+				AND co.status in
+				<foreach collection="statuslist" item="s" index="index" open="(" close=")" separator =",">
+					 #{s}
+				</foreach>
+		</if>
+        <if test="createDateFrom != null">
+            AND <![CDATA[co.create_date >= #{createDateFrom}]]>
+        </if>
+        <if test="createDateTo != null">
+            AND <![CDATA[co.create_date <= #{createDateTo}]]>
+        </if>
+        <if test="orderType != null and orderType !=''">
+            AND co.order_type = #{orderType, jdbcType=VARCHAR}
+        </if>
+    </where>
+</select>
+
+</mapper>

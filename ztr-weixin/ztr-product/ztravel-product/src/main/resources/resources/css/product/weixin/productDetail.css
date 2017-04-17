@@ -1,0 +1,14 @@
+.listDetails {
+    line-height: 28px;
+}
+.listDetails li{
+    color: #616161;
+    font-size: 15px;
+    line-height: 28px;
+    list-style-type: decimal;
+    margin-left: 22px;
+}
+.listDetails li * {
+    font-size: 15px!important;
+    line-height: 28px!important;
+}

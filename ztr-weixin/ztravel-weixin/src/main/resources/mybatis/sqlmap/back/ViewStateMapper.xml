@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.weixin.back.entity.ViewStateMapper" >
+	<resultMap id="BaseResultMap" type="com.ztravel.weixin.back.entity.ViewState">
+	    <id column="id" jdbcType="VARCHAR" property="id" />
+	    <result column="url" jdbcType="VARCHAR" property="url" />
+    </resultMap>
+
+   <select id="select" resultMap="BaseResultMap" parameterType="map">
+		SELECT * FROM weixin.view_state where 1=1
+	      <if test="id != null">
+	       and id =  #{id,jdbcType=VARCHAR}
+	      </if>
+   		<if test="url != null">
+	        and url = #{url,jdbcType=VARCHAR}
+	      </if>
+	</select>
+
+     <select id="selectAll" resultMap="BaseResultMap">
+		SELECT * FROM weixin.view_state
+	</select>
+
+	<insert id="insert" parameterType="com.ztravel.weixin.back.entity.ViewState">
+		insert into weixin.view_state
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        id,
+	      </if>
+	      <if test="url != null">
+	        url,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        #{id,jdbcType=VARCHAR},
+	      </if>
+	      <if test="url != null">
+	        #{url,jdbcType=VARCHAR},
+	      </if>
+	    </trim>
+	</insert>
+
+
+
+	<delete id="deleteById" parameterType="String">
+    	DELETE FROM weixin.view_state WHERE id = #{id,jdbcType=VARCHAR}
+	</delete>
+
+	<delete id="deleteAll">
+    	DELETE FROM weixin.view_state WHERE 1=1;
+	</delete>
+</mapper>

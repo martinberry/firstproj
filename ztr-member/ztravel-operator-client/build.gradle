@@ -1,0 +1,13 @@
+apply plugin : 'eclipse'
+
+
+dependencies {
+
+    compile project(":ztr-common:ztravel-common")
+    compile project(":ztr-common:ztravel-rbac")
+    compile libraries.poi
+    compile libraries.poi_ooxml
+    compile libraries.poi_scratchpad
+    compile libraries.commons_fileupload
+    
+}

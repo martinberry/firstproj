@@ -1,0 +1,18 @@
+group = 'com.ztravel'
+version = "${versions.ztravel}"
+
+
+
+jar {
+	baseName =  'framework-thrift'
+}
+dependencies {
+	compile project(':ztr-framework:framework')
+	compile project(":ztr-framework:framework-logger")
+	compile project(":ztr-framework:framework-logger-core")	
+	compile libraries.thrift
+	compile libraries.cat_client
+	compile libraries.conti_perf
+	compile libraries.commons_configuration
+//	compile libraries.hystrix
+}

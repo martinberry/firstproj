@@ -1,0 +1,27 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?> -->
+<!-- <configuration> -->
+
+<!--     使用该文件将日志输出至控制台，用jvm参数 -Dlogback.configurationFile=logback-console.xml 指定 -->
+
+<!--     <jmxConfigurator/> -->
+
+<!-- 	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender"> -->
+<!-- 		<layout class="ch.qos.logback.classic.PatternLayout"> -->
+<!-- 			<pattern>%d{HH:mm:ss} |%5le| %logger{50} => %X{rpid} %msg %n%ex</pattern> -->
+<!-- 		</layout> -->
+<!-- 	</appender> -->
+
+<!--     <logger name="com.travelzen" level="DEBUG"/> -->
+<!--     <logger name="com.ibatis" level="DEBUG"/> -->
+<!--     <logger name="java.sql.Connection" level="DEBUG"/> -->
+<!--     <logger name="java.sql.PreparedStatement" level="DEBUG"/> -->
+<!--     <logger name="com.travelzen" level="DEBUG"/> -->
+<!--     <logger name="java.sql.ResultSet" level="DEBUG"/> -->
+<!--     <logger name="org.perf4j.TimingLogger" level="DEBUG" additivity="false"/> -->
+<!-- 	<logger name="org.springframework.ui.freemarker" level="DEBUG" /> -->
+
+<!-- 	<root level="INFO"> -->
+<!-- 		<appender-ref ref="stdout" /> -->
+<!-- 	</root> -->
+
+<!-- </configuration> -->

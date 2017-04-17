@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- t_order与t_order_product关联查询 -->
+<mapper namespace="com.ztravel.order.po.OrderPOMapper" >
+
+<resultMap id="BaseResultMap" type="com.ztravel.order.po.OrderPO" >
+    <id column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <result column="back_state" property="backState" jdbcType="VARCHAR" />
+    <result column="total_price" property="totalPrice" jdbcType="NUMERIC" />
+    <result column="product_no" property="productNo" jdbcType="VARCHAR" />
+    <result column="product_title" property="productTitle" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="traveller_names" property="travellerNames" jdbcType="VARCHAR" />
+    <result column="common_order_status" property="commonOrderStatus" jdbcType="VARCHAR" />
+    <result column="order_from" property="orderFrom" jdbcType="VARCHAR" />
+    <result column="package_name" property="packageName" jdbcType="VARCHAR"/>
+    <result column="contactor_names" property="contactorName" jdbcType="VARCHAR"/>
+    <result column="updated" property="payTime" jdbcType="TIMESTAMP"/>
+    <result column="product_snapshot" property="productSnapshot" jdbcType="VARCHAR"/>
+    <result column="payment_status" property="payStatus" jdbcType="VARCHAR"/>
+</resultMap>
+
+<sql id="Column_List">
+    o.order_id, o.order_no, o.back_state, o.create_date, o.creator, o.order_from, o.total_price, o.operator, op.product_no, op.product_title,op.package_name,pa.traveller_names
+</sql>
+
+<select id="select" resultMap="BaseResultMap" parameterType="map">
+    SELECT s.order_id, s.order_no, s.back_state, s.create_date, s.creator, s.order_from, s.total_price, s.operator, s.product_no, s.product_title,s.package_name,s.traveller_names, cc.common_order_status
+    FROM(
+    SELECT <include refid="Column_List" />
+    FROM ztorder.t_order o, ztorder.t_order_product op, (select order_id, string_agg(name,',') as traveller_names from ztorder.t_order_passenger
+        where 1 = 1
+        <if test="travellerNames != null and travellerNames != ''">
+            AND name like #{travellerNames, jdbcType=VARCHAR}
+        </if>
+         group by order_id
+    ) pa
+    <where>
+        o.order_id = op.order_id and o.order_id = pa.order_id
+        <if test="orderNo != null and orderNo != ''">
+            AND o.order_no = #{orderNo, jdbcType=VARCHAR}
+        </if>
+        <if test="productNo != null and productNo != ''">
+            AND op.product_no = #{productNo, jdbcType=VARCHAR}
+        </if>
+        <if test="productTitle != null and productTitle != ''">
+            AND op.product_title like #{productTitle, jdbcType=VARCHAR}
+        </if>
+        <if test="backState != null and backState != ''">
+            AND o.back_state = #{backState, jdbcType=VARCHAR}
+        </if>
+        <if test="creator != null and creator != ''">
+            AND o.creator = #{creator, jdbcType=VARCHAR}
+        </if>
+        <if test="orderFrom != null and orderFrom != ''">
+            AND o.order_from = #{orderFrom, jdbcType=VARCHAR}
+        </if>
+        <if test="createDateFrom != null">
+            AND <![CDATA[o.create_date >= #{createDateFrom}]]>
+        </if>
+        <if test="createDateTo != null">
+            AND <![CDATA[o.create_date <= #{createDateTo}]]>
+        </if>
+        <if test="orderPriceLowerBound != null">
+            AND <![CDATA[o.total_price >= #{orderPriceLowerBound}]]>
+        </if>
+        <if test="orderPriceUpperBound != null">
+            AND <![CDATA[o.total_price <= #{orderPriceUpperBound}]]>
+        </if>        
+        AND(o.product_nature='PACKAGE'         
+        OR o.product_nature='COMBINATION'
+        OR o.product_nature IS NULL
+       )
+    </where>
+    ORDER BY o.create_date desc) s
+    LEFT JOIN
+    (select co.status as common_order_status, co.order_id_origin from ztorder.t_common_order co, (select order_id_origin, max(create_date) as create_date from ztorder.t_common_order group by order_id_origin) oo
+    where co.order_id_origin = oo.order_id_origin and co.create_date = oo.create_date) cc
+      on s.order_id = cc.order_id_origin
+    <if test="offset != null and offset != '0'">
+        OFFSET #{offset}
+    </if>
+    <if test="limit != null and limit != ''">
+        LIMIT #{limit}
+    </if>
+</select>
+
+<select id="count" resultType="Integer" parameterType="map">
+    SELECT count(o.order_id)
+    FROM ztorder.t_order o, ztorder.t_order_product op, (select order_id, string_agg(name,',') as traveller_names from ztorder.t_order_passenger
+        where 1 = 1
+        <if test="travellerNames != null and travellerNames != ''">
+            AND name like #{travellerNames, jdbcType=VARCHAR}
+        </if>
+         group by order_id
+    ) pa
+    <where>
+        o.order_id = op.order_id and o.order_id = pa.order_id
+        <if test="orderNo != null and orderNo != ''">
+            AND o.order_no = #{orderNo, jdbcType=VARCHAR}
+        </if>
+        <if test="productNo != null and productNo != ''">
+            AND op.product_no = #{productNo, jdbcType=VARCHAR}
+        </if>
+        <if test="productTitle != null and productTitle != ''">
+            AND op.product_title like #{productTitle, jdbcType=VARCHAR}
+        </if>
+        <if test="backState != null and backState != ''">
+            AND o.back_state = #{backState, jdbcType=VARCHAR}
+        </if>
+        <if test="creator != null and creator != ''">
+            AND o.creator = #{creator, jdbcType=VARCHAR}
+        </if>
+        <if test="orderFrom != null and orderFrom != ''">
+            AND o.order_from = #{orderFrom, jdbcType=VARCHAR}
+        </if>
+        <if test="createDateFrom != null">
+            AND <![CDATA[o.create_date >= #{createDateFrom}]]>
+        </if>
+        <if test="createDateTo != null">
+            AND <![CDATA[o.create_date <= #{createDateTo}]]>
+        </if>
+        <if test="orderPriceLowerBound != null">
+            AND <![CDATA[o.total_price >= #{orderPriceLowerBound}]]>
+        </if>
+        <if test="orderPriceUpperBound != null">
+            AND <![CDATA[o.total_price <= #{orderPriceUpperBound}]]>
+        </if>
+       AND(o.product_nature='PACKAGE'         
+        OR o.product_nature='COMBINATION'
+        OR o.product_nature IS NULL
+       )
+    </where>
+</select>
+
+
+<select id="selectByVisaorderId" resultMap="BaseResultMap" parameterType="map">
+    SELECT 
+		o.order_id, o.order_no,o.back_state, op.product_title,ca.contactor_names,op.product_snapshot,o.create_date
+    FROM 
+		ztorder.t_order o, ztorder.t_order_product op, (
+		SELECT
+	 		order_id, string_agg(contactor,',') as contactor_names 
+	 	FROM 
+	 		ztorder.t_order_contactor
+       	WHERE 
+			1 = 1
+	        <if test="contactor != null and contactor != ''">
+	            AND contactor like #{contactor, jdbcType=VARCHAR}
+	        </if>
+	         group by order_id
+    ) ca
+    WHERE
+        o.order_id = op.order_id and o.order_id = ca.order_id
+        <if test="orderNo != null and orderNo != ''">
+            AND o.order_no = #{orderNo, jdbcType=VARCHAR}
+        </if>
+        <if test="productTitle != null and productTitle != ''">
+            AND op.product_title like #{productTitle, jdbcType=VARCHAR}
+        </if>
+        <if test="backState != null and backState != ''">
+            AND o.back_state = #{backState, jdbcType=VARCHAR}
+        </if>
+        <if test="purchaseDateFrom != null">
+            AND <![CDATA[o.create_date >= #{purchaseDateFrom}]]>
+        </if>
+        <if test="purchaseDateTo != null">
+            AND <![CDATA[o.create_date <= #{purchaseDateTo}]]>
+        </if>
+        <if test="productNature != null and productNature != ''">
+            AND o.product_nature = #{productNature, jdbcType=VARCHAR}
+        </if>
+    ORDER BY o.create_date desc
+    <if test="offset != null and offset != '0'">
+        OFFSET #{offset}
+    </if>
+    <if test="limit != null and limit != ''">
+        LIMIT #{limit}
+    </if>
+</select>
+
+<select id="countVisaOrder" resultType="int" parameterType="map">
+    SELECT 
+		count(o.order_id)
+    FROM 
+		ztorder.t_order o, ztorder.t_order_product op, (
+		SELECT
+	 		order_id, string_agg(contactor,',') as contactor_names 
+	 	FROM 
+	 		ztorder.t_order_contactor
+       	WHERE 
+			1 = 1
+	        <if test="contactor != null and contactor != ''">
+	            AND contactor like #{contactor, jdbcType=VARCHAR}
+	        </if>
+	         group by order_id
+    ) ca
+    WHERE
+        o.order_id = op.order_id and o.order_id = ca.order_id
+        <if test="orderNo != null and orderNo != ''">
+            AND o.order_no = #{orderNo, jdbcType=VARCHAR}
+        </if>
+        <if test="productTitle != null and productTitle != ''">
+            AND op.product_title like #{productTitle, jdbcType=VARCHAR}
+        </if>
+        <if test="backState != null and backState != ''">
+            AND o.back_state = #{backState, jdbcType=VARCHAR}
+        </if>
+        <if test="purchaseDateFrom != null">
+            AND <![CDATA[o.create_date >= #{purchaseDateFrom}]]>
+        </if>
+        <if test="purchaseDateTo != null">
+            AND <![CDATA[o.create_date <= #{purchaseDateTo}]]>
+        </if>
+        <if test="productNature != null and productNature != ''">
+            AND o.product_nature = #{productNature, jdbcType=VARCHAR}
+        </if>
+        <if test="productNature == null or productNature != ''">
+            AND o.product_nature = #{productNature, jdbcType=VARCHAR}
+        </if>
+</select>
+
+
+<select id="selectByUnvisaorderId" resultMap="BaseResultMap" parameterType="map">
+    SELECT 
+		o.order_id, o.order_no,o.back_state, op.product_title,pa.traveller_names,op.product_snapshot,o.create_date
+    FROM 
+		ztorder.t_order o, ztorder.t_order_product op, (select order_id, string_agg(name,',') as traveller_names from ztorder.t_order_passenger
+        where 1 = 1
+        <if test="travellerNames != null and travellerNames != ''">
+            AND name like #{travellerNames, jdbcType=VARCHAR}
+        </if>
+         group by order_id
+    ) pa
+    WHERE
+        o.order_id = op.order_id and o.order_id = pa.order_id
+        <if test="orderNo != null and orderNo != ''">
+            AND o.order_no = #{orderNo, jdbcType=VARCHAR}
+        </if>
+        <if test="productTitle != null and productTitle != ''">
+            AND op.product_title like #{productTitle, jdbcType=VARCHAR}
+        </if>
+        <if test="backState != null and backState != ''">
+            AND o.back_state = #{backState, jdbcType=VARCHAR}
+        </if>
+        <if test="purchaseDateFrom != null">
+            AND <![CDATA[o.create_date >= #{purchaseDateFrom}]]>
+        </if>
+        <if test="purchaseDateTo != null">
+            AND <![CDATA[o.create_date <= #{purchaseDateTo}]]>
+        </if>
+        <if test="productNature != null and productNature != ''">
+            AND o.product_nature = #{productNature, jdbcType=VARCHAR}
+        </if>
+        <if test="productNature == null or productNature == ''">
+	        AND (o.product_nature ='TICKET' or o.product_nature ='LOCAL'  or o.product_nature ='TRAFFIC' or o.product_nature ='WIFI' or o.product_nature ='HOTELUP' or o.product_nature ='CHARTER' or o.product_nature = 'INTELTAXI')
+        </if>
+    ORDER BY o.create_date desc
+    <if test="offset != null and offset != '0'">
+        OFFSET #{offset}
+    </if>
+    <if test="limit != null and limit != ''">
+        LIMIT #{limit}
+    </if>
+</select>
+
+<select id="countUnvisaOrder" resultType="int" parameterType="map">
+    SELECT 
+		count(o.order_id)
+    FROM 
+		ztorder.t_order o, ztorder.t_order_product op, (select order_id, string_agg(name,',') as traveller_names from ztorder.t_order_passenger
+        where 1 = 1
+        <if test="travellerNames != null and travellerNames != ''">
+            AND name like #{travellerNames, jdbcType=VARCHAR}
+        </if>
+         group by order_id
+    ) pa
+    WHERE
+        o.order_id = op.order_id and o.order_id = pa.order_id
+        <if test="orderNo != null and orderNo != ''">
+            AND o.order_no = #{orderNo, jdbcType=VARCHAR}
+        </if>
+        <if test="productTitle != null and productTitle != ''">
+            AND op.product_title like #{productTitle, jdbcType=VARCHAR}
+        </if>
+        <if test="backState != null and backState != ''">
+            AND o.back_state = #{backState, jdbcType=VARCHAR}
+        </if>
+        <if test="purchaseDateFrom != null">
+            AND <![CDATA[o.create_date >= #{purchaseDateFrom}]]>
+        </if>
+        <if test="purchaseDateTo != null">
+            AND <![CDATA[o.create_date <= #{purchaseDateTo}]]>
+        </if>
+        <if test="productNature != null and productNature != ''">
+            AND o.product_nature = #{productNature, jdbcType=VARCHAR}
+        </if>
+        <if test="productNature == null or productNature == ''">
+	        AND (o.product_nature ='TICKET' or o.product_nature ='LOCAL'  or o.product_nature ='TRAFFIC' or o.product_nature ='WIFI' or o.product_nature ='HOTELUP' or o.product_nature ='CHARTER' or o.product_nature = 'INTELTAXI')
+        </if>
+</select>
+</mapper>

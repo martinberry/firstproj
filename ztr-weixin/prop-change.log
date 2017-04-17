@@ -1,0 +1,26 @@
+Example===>
+Author:haofan.wan
+Date:2015-10-12 14:51
+	
+	Env:prod
+	1.A(新增) U(修改) D(删除) /global/properties/web-env-default.properties
+		memberServer=AAAAAAAA
+
+Author:tian1.xu
+Date:2015-10-12 13:26
+
+	Env:prod
+	1.A(新增) /global/properties/wx-mp.properties
+
+Author:tian1.xu
+Date:2015-10-15 11:23
+
+	Env:prod
+	1.U(修改) /global/properties/wx-mp.properties
+	2.U(修改) /global/properties/wx-pay.properties
+
+Author:tian1.xu
+Date:2015-11-5 14:42
+
+	Env:prod
+	1.U(修改) /global/properties/auth.properties

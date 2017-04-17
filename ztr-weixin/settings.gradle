@@ -1,0 +1,14 @@
+
+apply from : 'settings.ztr-sso.gradle'
+apply from : 'settings.ztr-search.gradle'
+apply from : 'settings.ztr-product.gradle'
+apply from : 'settings.ztr-order.gradle'
+apply from : 'settings.ztr-front.gradle'
+apply from : 'settings.ztr-member.gradle'
+apply from : 'settings.ztr-common.gradle'
+apply from : 'settings.ztr-framework.gradle'
+apply from : 'settings.ztr-paygate.gradle'
+apply from : 'settings.ztr-payment.gradle'
+apply from : 'settings.ztr-tools.gradle'
+
+apply from : 'settings.ztr-weixin.gradle'

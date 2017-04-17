@@ -1,0 +1,24 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+
+group = 'com.ztravel'
+version = "${versions.ztravel}"
+
+jar {
+baseName =  'framework-mongo'
+}
+dependencies {
+	testCompile libraries.junit
+
+	compile libraries.joda_time
+	compile (libraries.morphia_validation) {
+		exclude group: 'com.github.jmkgreen.morphia', module:'morphia'
+	}
+	compile (libraries.morphia) {
+		exclude group: 'org.mongodb', module:'mongo-java-driver'
+	}
+	compile libraries.mongo_java_driver
+	
+	compile 'com.github.jmkgreen.morphia:morphia-logging-slf4j:1.2.3'
+}

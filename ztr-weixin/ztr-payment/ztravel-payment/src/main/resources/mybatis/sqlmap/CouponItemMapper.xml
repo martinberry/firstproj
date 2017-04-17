@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.payment.po.CouponItemMapper">
+	<resultMap id="BaseResultMap" type="com.ztravel.payment.po.CouponItem">
+		<id column="coupon_item_id" jdbcType="VARCHAR" property="couponItemId" />
+		<result column="member_id" jdbcType="VARCHAR" property="memberId" />
+		<result column="coupon_account_id" jdbcType="VARCHAR" property="couponAccountId" />
+		<result column="activity_id" jdbcType="VARCHAR" property="activityId" />
+		<result column="coupon_code" jdbcType="VARCHAR" property="couponCode" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="description" jdbcType="VARCHAR" property="description" />
+		<result column="amount" jdbcType="NUMERIC" property="amount" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="valid_date_from" jdbcType="TIMESTAMP" property="validDateFrom" />
+		<result column="valid_date_to" jdbcType="TIMESTAMP" property="validDateTo" />
+		<result column="grant_date" jdbcType="TIMESTAMP" property="grantDate" />
+		<result column="use_date" jdbcType="TIMESTAMP" property="useDate" />
+		<result column="createdby" jdbcType="VARCHAR" property="createdby" />
+		<result column="updatedby" jdbcType="VARCHAR" property="updatedby" />
+		<result column="created" jdbcType="TIMESTAMP" property="created" />
+		<result column="updated" jdbcType="TIMESTAMP" property="updated" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		coupon_item_id, member_id, coupon_account_id, activity_id, coupon_code, name, description, amount, status,
+		valid_date_from,
+		valid_date_to, grant_date, use_date, createdby, updatedby, created,
+		updated
+	</sql>
+
+	<sql id="Base_Column_List_New">
+		m.coupon_item_id, m.member_id,m.coupon_account_id, m.activity_id, m.coupon_code, m.name, m.description, m.amount, m.status,
+		m.valid_date_from,
+		m.valid_date_to, m.grant_date, m.use_date, m.createdby, m.updatedby, m.created,
+		m.updated , n.price, n.voucher_code, n.voucher_type
+	</sql>
+
+
+
+
+	<sql id="Order_By_Grant_Date_Clause">
+		order by updated desc
+	</sql>
+
+	<select id="selectById" resultMap="BaseResultMap" parameterType="string">
+		select
+		<include refid="Base_Column_List" />
+		from payment.t_coupon_item
+		where coupon_item_id=#{id,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectItem" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from payment.t_coupon_item
+		where member_id=#{memberId,jdbcType=VARCHAR} and coupon_code=#{couponCode,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectAvailableItems" resultMap="BaseResultMap" parameterType="string">
+		select
+		<include refid="Base_Column_List" />
+		from payment.t_coupon_item
+		where member_id=#{memberId,jdbcType=VARCHAR} and status='AVAILABLE'
+		<include refid="Order_By_Grant_Date_Clause" />
+	</select>
+
+	<select id="selectCouponItems" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from payment.t_coupon_item
+		<where>
+			<if test="memberId != null">
+				member_id=#{memberId,jdbcType=VARCHAR}
+			</if>
+			<if test="couponCode != null">
+				and coupon_code=#{couponCode,jdbcType=VARCHAR}
+			</if>
+			<if test="statusList != null and statusList.size() > 0 ">
+				and status in
+				<foreach collection="statusList" item="status" index="index" open="(" close=")" separator=",">
+					#{status}
+				</foreach>
+			</if>
+			<if test="conditionUseDateFrom != null">
+				and <![CDATA[use_date >= #{conditionUseDateFrom,jdbcType=TIMESTAMP}]]>
+			</if>
+			<if test="conditionUseDateTo != null">
+			   and <![CDATA[use_date <= #{conditionUseDateTo,jdbcType=TIMESTAMP}]]>
+			</if>
+		</where>
+		<include refid="Order_By_Grant_Date_Clause" />
+		<if test="offset != null">
+			offset #{offset}
+		</if>
+		<if test="limit != null">
+			limit #{limit}
+		</if>
+	</select>
+
+	<select id="sumGrantedAmount" parameterType="string" resultType="java.lang.Long">
+		select coalesce(sum(amount), 0)
+		from payment.t_coupon_item
+		where coupon_code=#{couponCode,jdbcType=VARCHAR} and status != 'SHARED'
+	</select>
+
+	<select id="sumUsedAmount" parameterType="string" resultType="java.lang.Long">
+		select coalesce(sum(amount), 0)
+		from payment.t_coupon_item
+		where
+		coupon_code=#{couponCode,jdbcType=VARCHAR} and status in ('FROZEN', 'USED')
+	</select>
+
+	<select id="countGranted" parameterType="string" resultType="java.lang.Integer">
+		select count(*)
+		from payment.t_coupon_item
+		where coupon_code=#{couponCode,jdbcType=VARCHAR} and status != 'SHARED'
+	</select>
+
+	<select id="countUsed" parameterType="string" resultType="java.lang.Integer">
+		select count(*)
+		from payment.t_coupon_item
+		where
+		coupon_code=#{couponCode,jdbcType=VARCHAR} and status in ('FROZEN', 'USED')
+	</select>
+
+	<select id="countCouponItems" parameterType="map" resultType="java.lang.Integer">
+		select count(*)
+		from payment.t_coupon_item
+		<where>
+			<if test="memberId != null">
+				member_id=#{memberId,jdbcType=VARCHAR}
+			</if>
+			<if test="couponCode != null">
+				and coupon_code=#{couponCode,jdbcType=VARCHAR}
+			</if>
+			<if test="statusList != null and statusList.size() > 0">
+				and status in
+				<foreach collection="statusList" item="status" index="index" open="(" close=")" separator=",">
+					#{status}
+				</foreach>
+			</if>
+			<if test="conditionUseDateFrom != null">
+				and <![CDATA[use_date >= #{conditionUseDateFrom,jdbcType=TIMESTAMP}]]>
+			</if>
+			<if test="conditionUseDateTo != null">
+			   and <![CDATA[use_date <= #{conditionUseDateTo,jdbcType=TIMESTAMP}]]>
+			</if>
+		</where>
+	</select>
+
+	<select id="selectItemsForExpire" resultType="String">
+		select coupon_item_id from payment.t_coupon_item
+		where status='AVAILABLE' and <![CDATA[valid_date_to < now()]]>
+	</select>
+
+	<insert id="insert" parameterType="com.ztravel.payment.po.CouponItem">
+		insert into payment.t_coupon_item
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="couponItemId != null">
+				coupon_item_id,
+			</if>
+			<if test="memberId != null">
+				member_id,
+			</if>
+			<if test="couponAccountId != null">
+				coupon_account_id,
+			</if>
+			<if test="activityId != null">
+				activity_id,
+			</if>
+			<if test="couponCode != null">
+				coupon_code,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="amount != null">
+				amount,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="validDateFrom != null">
+				valid_date_from,
+			</if>
+			<if test="validDateTo != null">
+				valid_date_to,
+			</if>
+			<if test="grantDate != null">
+				grant_date,
+			</if>
+			<if test="useDate != null">
+				use_date,
+			</if>
+			<if test="createdby != null">
+				createdby,
+			</if>
+			<if test="updatedby != null">
+				updatedby,
+			</if>
+			<if test="created != null">
+				created,
+			</if>
+			<if test="updated != null">
+				updated,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="couponItemId != null">
+				#{couponItemId,jdbcType=VARCHAR},
+			</if>
+			<if test="memberId != null">
+				#{memberId,jdbcType=VARCHAR},
+			</if>
+			<if test="couponAccountId != null">
+				#{couponAccountId,jdbcType=VARCHAR},
+			</if>
+			<if test="activityId != null">
+				#{activityId,jdbcType=VARCHAR},
+			</if>
+			<if test="couponCode != null">
+				#{couponCode,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=NUMERIC},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="validDateFrom != null">
+				#{validDateFrom,jdbcType=TIMESTAMP},
+			</if>
+			<if test="validDateTo != null">
+				#{validDateTo,jdbcType=TIMESTAMP},
+			</if>
+			<if test="grantDate != null">
+				#{grantDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="useDate != null">
+				#{useDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createdby != null">
+				#{createdby,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedby != null">
+				#{updatedby,jdbcType=VARCHAR},
+			</if>
+			<if test="created != null">
+				#{created,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updated != null">
+				#{updated,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="updateStatus" parameterType="map">
+		update payment.t_coupon_item
+		<set>
+			status = #{status,jdbcType=VARCHAR},
+			<if test="useDate != null">
+				use_date = #{useDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updated != null">
+				updated = #{updated,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where coupon_item_id = #{couponItemId,jdbcType=VARCHAR}
+	</update>
+
+	<select id="selectCouponItemsNew" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List_New" />
+		from payment.t_coupon_item m left join activity.t_voucher n
+		   on  m.coupon_item_id = n.coupon_item_id
+		   	<where>
+			<if test="memberId != null">
+				m.member_id=#{memberId,jdbcType=VARCHAR}
+			</if>
+			<if test="couponCode != null">
+				and m.coupon_code=#{couponCode,jdbcType=VARCHAR}
+			</if>
+			<if test="statusList != null and statusList.size() > 0">
+				and m.status in
+				<foreach collection="statusList" item="status" index="index" open="(" close=")" separator=",">
+					#{status}
+				</foreach>
+			</if>
+			<if test="conditionUseDateFrom != null">
+				and <![CDATA[m.use_date >= #{conditionUseDateFrom,jdbcType=TIMESTAMP}]]>
+			</if>
+			<if test="conditionUseDateTo != null">
+			   and <![CDATA[m.use_date <= #{conditionUseDateTo,jdbcType=TIMESTAMP}]]>
+			</if>
+		</where>
+
+		<include refid="Order_By_Grant_Date_Clause" />
+
+		<if test="offset != null">
+			offset #{offset}
+		</if>
+		<if test="limit != null">
+			limit #{limit}
+		</if>
+	</select>
+
+
+
+
+</mapper>

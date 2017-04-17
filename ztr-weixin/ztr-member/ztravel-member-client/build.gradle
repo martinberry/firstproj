@@ -1,0 +1,8 @@
+apply plugin : 'eclipse'
+
+
+dependencies {
+
+    compile project(":ztr-common:ztravel-reuse")
+
+}

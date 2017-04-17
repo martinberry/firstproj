@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.paygate.wx.client.entity.UnifieldOrderNotifyEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.ztravel.paygate.wx.client.entity.UnifieldOrderNotifyEntity" >
+    <id column="transaction_id" property="transaction_id" jdbcType="VARCHAR" />
+    <result column="return_code" property="return_code" jdbcType="VARCHAR" />
+    <result column="return_msg" property="return_msg" jdbcType="VARCHAR" />
+    <result column="app_id" property="appid" jdbcType="VARCHAR" />
+    <result column="mch_id" property="mch_id" jdbcType="VARCHAR" />
+    <result column="nonce_str" property="nonce_str" jdbcType="VARCHAR" />
+    <result column="sign" property="sign" jdbcType="VARCHAR" />
+    <result column="result_code" property="result_code" jdbcType="VARCHAR" />
+    <result column="err_code" property="err_code" jdbcType="VARCHAR" />
+    <result column="err_code_des" property="err_code_des" jdbcType="VARCHAR" />
+    <result column="open_id" property="openid" jdbcType="VARCHAR" />
+    <result column="trade_type" property="trade_type" jdbcType="VARCHAR" />
+    <result column="bank_type" property="bank_type" jdbcType="VARCHAR" />
+    <result column="total_fee" property="total_fee" jdbcType="BIGINT" />
+    <result column="out_trade_no" property="out_trade_no" jdbcType="VARCHAR" />
+    <result column="time_end" property="time_end" jdbcType="VARCHAR" />
+    <result column="cash_fee" property="cash_fee" jdbcType="VARCHAR" />
+    <result column="fee_type" property="fee_type" jdbcType="VARCHAR" />
+    <result column="is_subscribe" property="is_subscribe" jdbcType="VARCHAR" />
+    <result column="confirm_result" property="confirm_result" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <insert id="insert" parameterType="com.ztravel.paygate.wx.client.entity.UnifieldOrderNotifyEntity" >
+    insert into paygate.wx_pay_record (transaction_id, return_code, return_msg, 
+      app_id, mch_id, nonce_str, 
+      sign, result_code, err_code, 
+      err_code_des, open_id, trade_type, 
+      bank_type, total_fee, out_trade_no, 
+      time_end,cash_fee,fee_type,is_subscribe,confirm_result)
+    values (#{transaction_id,jdbcType=VARCHAR}, #{return_code,jdbcType=VARCHAR}, #{return_msg,jdbcType=VARCHAR}, 
+      #{appid,jdbcType=VARCHAR}, #{mch_id,jdbcType=VARCHAR}, #{nonce_str,jdbcType=VARCHAR}, 
+      #{sign,jdbcType=VARCHAR}, #{result_code,jdbcType=VARCHAR}, #{err_code,jdbcType=VARCHAR}, 
+      #{err_code_des,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{trade_type,jdbcType=VARCHAR}, 
+      #{bank_type,jdbcType=VARCHAR}, #{total_fee,jdbcType=BIGINT}, #{out_trade_no,jdbcType=VARCHAR}, 
+      #{time_end,jdbcType=VARCHAR},#{cash_fee,jdbcType=VARCHAR},#{fee_type,jdbcType=VARCHAR},#{is_subscribe,jdbcType=VARCHAR},#{confirm_result,jdbcType=VARCHAR})
+  </insert>
+  
+  <select id="lock" resultMap="BaseResultMap">
+  	select * from paygate.wx_pay_record where transaction_id=#{transaction_id,jdbcType=VARCHAR} and out_trade_no=#{out_trade_no,jdbcType=VARCHAR}
+  	for update
+  </select>
+  
+  <select id="count" resultType="Integer" parameterType="com.ztravel.paygate.wx.client.entity.UnifieldOrderNotifyEntity">
+  	select count(transaction_id) from paygate.wx_pay_record where transaction_id=#{transaction_id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="searchRecordByTidCfs" resultType="Integer" parameterType="com.ztravel.paygate.wx.client.entity.UnifieldOrderNotifyEntity">
+  	select count(transaction_id) from paygate.wx_pay_record where transaction_id=#{transaction_id,jdbcType=VARCHAR}
+  	and confirm_result=#{confirm_result,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="searchUnProceedRecords" resultMap="BaseResultMap">
+  	select
+        transaction_id, return_code, return_msg, 
+      app_id, mch_id, nonce_str, 
+      sign, result_code, err_code, 
+      err_code_des, open_id, trade_type, 
+      bank_type, total_fee, out_trade_no, 
+      time_end,cash_fee,fee_type,is_subscribe,confirm_result
+        from paygate.wx_pay_record where confirm_result!='T' and return_code='SUCCESS' and result_code='SUCCESS'
+  </select>
+  
+  <update id="updateConfirmResult" parameterType="com.ztravel.paygate.wx.client.entity.UnifieldOrderNotifyEntity" >
+    update paygate.wx_pay_record
+    <set >
+        <if test="confirm_result != null" >
+            confirm_result = #{confirm_result,jdbcType=VARCHAR},
+        </if>
+    </set>
+    where
+    transaction_id=#{transaction_id,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

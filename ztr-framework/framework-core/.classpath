@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.commons/commons-lang3/3.3.2/source/d2a489573c0ed2c4942b3660decad5d65087b406/commons-lang3-3.3.2-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.commons/commons-lang3/3.3.2/jar/90a3822c38ec8c996e84c16a3477ef632cbc87a3/commons-lang3-3.3.2.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/com.google.guava/guava/18.0/source/ad97fe8faaf01a3d3faacecd58e8fa6e78a973ca/guava-18.0-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/com.google.guava/guava/18.0/bundle/cce0823396aa693798f8882e64213b1772032b09/guava-18.0.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-core/3.2.9.RELEASE/source/9c7e72bfa1ab9d0fcf742064094ef51b2d4b4e2a/spring-core-3.2.9.RELEASE-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-core/3.2.9.RELEASE/jar/23566c793f7db5859dbceb98cd1a5789b489e0b5/spring-core-3.2.9.RELEASE.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/joda-time/joda-time/2.4/source/61d71500037f0ac004d56c446ef9277f16bcf62d/joda-time-2.4-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/joda-time/joda-time/2.4/jar/89e9725439adffbbd41c5f5c215c136082b34a7f/joda-time-2.4.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/com.alibaba/fastjson/1.1.29/source/88e6a7eef5af3befcbf7b24453169bee9479d3aa/fastjson-1.1.29-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/com.alibaba/fastjson/1.1.29/jar/6396d676899937291ccc6419b1852267e21faba2/fastjson-1.1.29.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.codehaus.jackson/jackson-core-asl/1.9.12/source/ed7928072c458d8576c969cc491af707151492fb/jackson-core-asl-1.9.12-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.codehaus.jackson/jackson-core-asl/1.9.12/jar/ecfc6f73a841c4c3c653b59651a3f9d5f1286469/jackson-core-asl-1.9.12.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.codehaus.jackson/jackson-mapper-asl/1.9.12/source/446f3d18401f02ac6741ff980d1a7566786936c/jackson-mapper-asl-1.9.12-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.codehaus.jackson/jackson-mapper-asl/1.9.12/jar/8b290aae44213e2f6da00c07af59b0d442068f4d/jackson-mapper-asl-1.9.12.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.slf4j/jcl-over-slf4j/1.7.7/source/b5a646b81b899e930f8600c5f45766dd82743d93/jcl-over-slf4j-1.7.7-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.slf4j/jcl-over-slf4j/1.7.7/jar/56003dcd0a31deea6391b9e2ef2f2dc90b205a92/jcl-over-slf4j-1.7.7.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/ch.qos.logback/logback-classic/1.1.2/source/decd76e2c461157804473468bbdc6b8eb6d6121b/logback-classic-1.1.2-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/ch.qos.logback/logback-classic/1.1.2/jar/b316e9737eea25e9ddd6d88eaeee76878045c6b2/logback-classic-1.1.2.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/com.google.code.gson/gson/2.3/source/21e31b9298ed677b17fcac6dd0eb0a82ec35adc2/gson-2.3-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/com.google.code.gson/gson/2.3/jar/5fc52c41ef0239d1093a1eb7c3697036183677ce/gson-2.3.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.javatuples/javatuples/1.2/source/a7495f5370bdfcf46c6f3c6ed0badf52877aa467/javatuples-1.2-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.javatuples/javatuples/1.2/jar/507312ac4b601204a72a83380badbca82683dd36/javatuples-1.2.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/commons-collections/commons-collections/3.2.1/source/fa095ef874374e5b2a11f8b06c26a5d68c7cb3a4/commons-collections-3.2.1-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/commons-collections/commons-collections/3.2.1/jar/761ea405b9b37ced573d2df0d1e3a4e0f9edc668/commons-collections-3.2.1.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/com.dianping.cat/cat-client/1.2.5/source/d15fb6fd76e5e56501b5f8da0e24589b4bfb7187/cat-client-1.2.5-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/com.dianping.cat/cat-client/1.2.5/jar/e51667d172b1abde88369ff64a30941fc3a91cbf/cat-client-1.2.5.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/commons-pool/commons-pool/1.6/source/9376f5559455b8fe1b15308d3ad9c545f6905b1a/commons-pool-1.6-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/commons-pool/commons-pool/1.6/jar/4572d589699f09d866a226a14b7f4323c6d8f040/commons-pool-1.6.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.op4j/op4j/1.2/source/5d9b3df6f4cee00e5463d6c040ec0a619bf355e7/op4j-1.2-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.op4j/op4j/1.2/jar/408aa6e58a64cfd184273144b702cc24118a5c80/op4j-1.2.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.zookeeper/zookeeper/3.4.6/source/10cb14f3893f8bdcaf4e2619a9a1f6b9cedec6b7/zookeeper-3.4.6-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.zookeeper/zookeeper/3.4.6/jar/1b2502e29da1ebaade2357cd1de35a855fa3755/zookeeper-3.4.6.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/junit/junit/4.11/source/28e0ad201304e4a4abf999ca0570b7cffc352c3c/junit-4.11-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/junit/junit/4.11/jar/4e031bb61df09069aeb2bffb4019e7a5034a4ee0/junit-4.11.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.slf4j/slf4j-api/1.7.7/source/acd62e31cc314266e73eebed0b6dd7ea974a0ed/slf4j-api-1.7.7-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.slf4j/slf4j-api/1.7.7/jar/2b8019b6249bb05d81d3a3094e468753e2b21311/slf4j-api-1.7.7.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/ch.qos.logback/logback-core/1.1.2/source/502e1c764542fe747896c1dc04f023acfe0e5cbc/logback-core-1.1.2-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/ch.qos.logback/logback-core/1.1.2/jar/2d23694879c2c12f125dac5076bdfd5d771cc4cb/logback-core-1.1.2.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-utils/3.0.8/source/3940d1ca998744cca98da76c3d01974c1c54149f/plexus-utils-3.0.8-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-utils/3.0.8/jar/faba5d28a07fcde50c8c26d3f002774acf11843e/plexus-utils-3.0.8.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-classworlds/2.2.2/source/b5e33106279bbc09be9078890478112ebe3623ef/plexus-classworlds-2.2.2-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-classworlds/2.2.2/jar/3a2bad2b58c1ca765d3f471cea8c1655d70fdfd9/plexus-classworlds-2.2.2.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/commons-logging/commons-logging-api/1.1/jar/7d4cf5231d46c8524f9b9ed75bb2d1c69ab93322/commons-logging-api-1.1.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.xbean/xbean-reflect/3.4/source/77c8a006107cb5520096d629aedd0ff733e11fe1/xbean-reflect-3.4-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.xbean/xbean-reflect/3.4/bundle/26fd55dceb037f4789b399b22874d74f4d2db66f/xbean-reflect-3.4.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.hamcrest/hamcrest-core/1.3/source/1dc37250fbc78e23a65a67fbbaf71d2e9cbc3c0b/hamcrest-core-1.3-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.hamcrest/hamcrest-core/1.3/jar/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-container-default/1.5.5/source/5a8d85ede02b1a32f79f8b17f0fe2077d952de2d/plexus-container-default-1.5.5-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.codehaus.plexus/plexus-container-default/1.5.5/jar/265fa2851d31c2e2177859a518987595efe146b/plexus-container-default-1.5.5.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.aspectj/aspectjrt/1.5.4/jar/9e5e9a84f9c6e3f3f4745ac833d30dbc08d6e114/aspectjrt-1.5.4.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.unidal.framework/foundation-service/2.1.0/jar/e049fcde48ef9f5805c5c55eb324b12d53613777/foundation-service-2.1.0.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.jboss.netty/netty/3.2.7.Final/source/ec99533fbd07fa246b2c8bb74e6ae39ce4ef9d18/netty-3.2.7.Final-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.jboss.netty/netty/3.2.7.Final/bundle/1a1c5dde827576f3730bf6f3d7b389e770b90aaa/netty-3.2.7.Final.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/commons-lang/commons-lang/2.4/source/2b8c4b3035e45520ef42033e823c7d33e4b4402c/commons-lang-2.4-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/commons-lang/commons-lang/2.4/jar/16313e02a793435009f1e458fa4af5d879f6fb11/commons-lang-2.4.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.javaruntype/javaruntype/1.2/source/269ea327288c46afdc4f771c9b4ad071b11ddf59/javaruntype-1.2-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.javaruntype/javaruntype/1.2/jar/d7595d6aa87b56ad207961157d15b2c59f0afb53/javaruntype-1.2.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+</classpath>

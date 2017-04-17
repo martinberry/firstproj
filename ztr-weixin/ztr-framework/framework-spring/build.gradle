@@ -1,0 +1,42 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+
+group = 'com.ztravel'
+version = "${versions.ztravel}"
+
+
+jar { baseName =  'framework-spring' }
+
+dependencies {
+	compile project(':ztr-framework:framework-core')
+
+
+	compile libraries.aspectj
+	compile libraries.aspectj_rt
+	compile libraries.perf4j
+
+
+	compile (libraries.spring_beans){
+		force = true
+	}
+	compile (libraries.spring_context ){
+		force = true
+	}
+
+	compile libraries.spring_test
+	compile (libraries.spring_batch_core) {
+		exclude group:'com.thoughtworks.xstream', module:'xstream'
+		exclude group:'org.springframework', module:'spring-tx'
+	}
+	compile libraries.spring_webmvc
+
+	compile libraries.ehcache
+	compile libraries.freemarker
+
+	compile libraries.servlet_api
+
+	compile libraries.mail
+
+	compile libraries.hibernate_validator
+}

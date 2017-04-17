@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ibatorConfiguration
+  PUBLIC "-//Apache Software Foundation//DTD Apache iBATIS Ibator Configuration 1.0//EN"
+  "http://ibatis.apache.org/dtd/ibator-config_1_0.dtd">
+
+<ibatorConfiguration>
+
+	<classPathEntry location="/tz/postgresql-9.1-901.jdbc4.jar" />
+
+	<ibatorContext id="FlatJava5" targetRuntime="Ibatis2Java5">
+
+		<ibatorPlugin type="org.apache.ibatis.ibator.plugins.SqlMapConfigPlugin">
+			<property name="targetPackage" value="ibatis.conf" />
+			<property name="targetProject" value="/home/zyc/travelzen/tz/tops-finance/tops-finance-report/src/main/resources" />
+		</ibatorPlugin>
+
+		<ibatorPlugin type="org.apache.ibatis.ibator.plugins.PaginationPlugin" />
+
+		<jdbcConnection driverClass="org.postgresql.Driver" connectionURL="jdbc:postgresql://192.168.161.28:5432" userId="dev" password="bavBauft2" />
+
+		<javaModelGenerator targetPackage="com.travelzen.tops.finance.report.dto" targetProject="/home/zyc/travelzen/tz/tops-finance/tops-finance-report/src/main/java" />
+		<sqlMapGenerator targetPackage="ibatis.postgres" targetProject="/home/zyc/travelzen/tz/tops-finance/tops-finance-report/src/main/resources" />
+		<daoGenerator targetPackage="com.travelzen.tops.finance.report.dao.gen" targetProject="/home/zyc/travelzen/tz/tops-finance/tops-finance-report/src/main/java" type="GENERIC-CI" />
+
+		<table tableName="report_upload_history" />
+
+	</ibatorContext>
+
+</ibatorConfiguration>

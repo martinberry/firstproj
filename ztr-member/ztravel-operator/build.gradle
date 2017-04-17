@@ -1,0 +1,10 @@
+apply plugin : 'eclipse'
+
+dependencies {
+    compile project(":ztr-product:ztravel-product-client")
+    compile project(":ztr-member:ztravel-member-client")
+    compile project(":ztr-payment:ztravel-payment-client")
+    compile project(":ztr-order:ztravel-order-client")
+    compile project(":ztr-member:ztravel-operator-client")
+    compile project(":ztr-common:ztravel-common-mediaclient")
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<bean id="paygate_batch_sequence_dao" class="com.travelzen.framework.dao.rdbms.BatchSequenceDaoImpl">
+		<property name="sqlMapClient" ref="paygate-sqlMapClient" />
+	</bean>
+
+	<bean id="paygate_sequence_generator" class="com.travelzen.framework.dao.rdbms.SequenceGenerator">
+		<property name="batchSequenceDao" ref="paygate_batch_sequence_dao" />
+	</bean>
+
+</beans>

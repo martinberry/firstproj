@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="2.0">
+	<wb-module deploy-name="ztravel-common-mediaserver">
+		<property name="context-root" value="ztravel-common-mediaserver"/>
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/resources"/>
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
+		<wb-resource deploy-path="/" source-path="src/main/webapp"/>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/framework-config/framework-config">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/framework-dao-base/framework-dao-base">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/framework-spring/framework-spring">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/framework-logger-core/framework-logger-core">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/framework-redis/framework-redis">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/framework/framework">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/ztravel-common-mediaserver-dao/ztravel-common-mediaserver-dao">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/framework-mongo/framework-mongo">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/framework-core/framework-core">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/framework-logger/framework-logger">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-aop/3.2.9.RELEASE/jar/5410c5cd31fdf591ddebe23e0f727b5ba1a626b9/spring-aop-3.2.9.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-core/3.2.9.RELEASE/jar/23566c793f7db5859dbceb98cd1a5789b489e0b5/spring-core-3.2.9.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-tx/3.2.9.RELEASE/jar/feff0e34fad1b371b16d59af1a649f4e879e1605/spring-tx-3.2.9.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-jdbc/3.2.9.RELEASE/jar/8c2bfa6d91de268c219e569348aeab006e4df4c1/spring-jdbc-3.2.9.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-expression/3.2.9.RELEASE/jar/3dc5a9e674d969c377d3d737a5ca59a401b097f3/spring-expression-3.2.9.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-orm/3.2.9.RELEASE/jar/24d1aa9860d3cc94454bfecd42a69a7bb33f1b4d/spring-orm-3.2.9.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-webmvc/3.2.9.RELEASE/jar/16864e48fdac6e13297d817167e55d8df9e4f74a/spring-webmvc-3.2.9.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-web/3.2.9.RELEASE/jar/2737a6a7b09543541df87dd750b995ce82a37ac7/spring-web-3.2.9.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/N/.gradle/caches/artifacts-26/filestore/commons-io/commons-io/2.4/jar/b1b6ea3b7e4aa4f492509a4952029cd8e48019ad/commons-io-2.4.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/N/.gradle/caches/artifacts-26/filestore/aopalliance/aopalliance/1.0/jar/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-context/3.2.9.RELEASE/jar/9de55b66bd227549b60b4b602f6d1a567a67dbba/spring-context-3.2.9.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-beans/3.2.9.RELEASE/jar/31dcffd88a80b610ccd57ee9618301a1d883b53d/spring-beans-3.2.9.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+	</wb-module>
+</project-modules>

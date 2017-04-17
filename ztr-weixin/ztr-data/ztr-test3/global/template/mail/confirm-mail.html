@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>订单确认书</title>
+    <meta http-equiv="x-ua-compatible" content="IE=Edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+        * { margin: 0px; padding: 0px; list-style: none;}
+        * { tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -ms-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        html {-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;}
+        table{border-collapse:collapse;border-spacing:0;}
+        h1,h2,h3,h4,h5,h6{font-weight: normal;}
+        ul,ol,li{list-style:none;}
+        a {background: transparent;}
+        a:focus {outline: thin dotted;}
+        a:active,a:hover {outline: 0;}
+        a:link,a:visited,ins {text-decoration: none;}
+        .clearFix{clear: both;}
+        .leftSet{float: left;}
+        .rightSet{float: right;}
+        .contain-box {
+            width:770px;
+            margin:0px auto;
+            font-size: 14px;
+            font-family: Microsoft YaHei, Arial;
+            color: #484848;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        .head-box{
+            width:100%;
+            padding:20px 20px 10px;
+            border-bottom: 1px solid #a4dfde;
+        }
+        .head-left{
+            width:121px;
+            height:44px;
+        }
+        .head-right{
+            padding-top:15px;
+            font-size: 18px;
+        }
+        .divide{
+            padding:0 10px;
+            color: #3fc0ae;
+        }
+        .head-right a{ font-size: 16px; line-height:18px; color:#484848; text-decoration: none;}
+        .head-right a:hover, .head-right a:focus{ color:#484848; text-decoration: underline;}
+        .mainContent{width:100%; background-color:#ffffff; min-height: 400px;margin-top:35px;}
+        .content-test{ padding:10px 15px;}
+        .content-test p{font-size: 16px;margin:3px 0px;}
+        .content-test p a{color:#11b9b7; text-decoration: none;}
+        .content-test p a:hover, .content-test p a:focus{text-decoration: underline;}
+        .order-col-th p{color:#9f9f9f;font-size: 12px;}
+
+        .content-news{ border-bottom: 1px #ececec dashed; padding:10px 15px;}
+        .content-news p{font-size: 16px;margin:3px 0px;}
+        .content-news p span{padding:0px 5px; color:#fe7800;}
+
+        .content-order{margin-top:10px;padding:10px 15px;}
+        .order-title{padding-bottom:5px; border-bottom: 1px #ececec solid;}
+        .order-title a{color:#11b9b7; padding-right:5px; text-decoration: none;}
+        .order-title a:hover, .order-title a:focus{text-decoration: underline;}
+        .order-box{padding:20px 0px;}
+        .order-col{width:110px;height:69px; float:left;border-right:1px #ececec solid; text-align: center;display: inline-block;
+            color:#9f9f9f;line-height: 18px;}
+        .order-col-th{padding-top:5px;}
+        .order-col-th p{color:#9f9f9f;font-size: 12px;}
+        .order-btn{float:left; padding-top:20px; padding-left:18px;}
+        .order-look{text-align: center; color:#ffffff;text-decoration: none;width:100px; height:50px; background-color: #11b9b7; padding:5px 8px;}
+
+        .foot-box{width:100%; padding:20px 30px; background-color:#1cafad;color:#fff;}
+        .foot-left-p{font-size:14px; line-height:18px;}
+        .foot-right{width:90px; height:90px;}
+    </style>
+</head>
+<body>
+    <div class="contain-box">
+        <header>
+            <div class="head-box">
+                <div class="leftSet"><a href="javascript:void(0);"><img class="head-left" src="http://static.zhenlx.com/images/client/logo-new.png"></a></div>
+                <div class="head-right rightSet">
+                    <a href="%HOMEPAGE%">首页</a><span class="divide">|</span><a href="%MEMBERINFO%">个人中心</a>
+                </div>
+                <div class="clearFix"></div>
+            </div>
+        </header>
+        <div class="mainContent">
+            <div class="content-news">
+                <h2 style="margin-bottom: 20px;">亲爱的%CONTACTORNAME%，您好：</h2>
+                <p>感谢您选择真旅行。</p>
+                <p>您的订单<span style="color:#fe7800;">%ORDERNO%</span>已确认成功！请下载查收“<a href="%PDFURL%" target="_blank">行程确认单</a>”。</p>
+                <p>%ATTACHMENT%</p>
+            </div>
+            <div class="content-order">
+                <div class="order-title"><a href="javascript:void(0);">订单号：%ORDERNO%</a>%PRODUCTNAME%</div>
+                <div class="order-box">
+                    <div class="order-col">
+                        <img style="width:110px; height:69px; vertical-align: middle;" src="%URL%" alt="订单"/>
+                    </div>
+                    <div class="order-col">
+                        <div class="order-col-th">下单日期</div>
+                        <div class="order-col-th" style="color:#484848; margin-top:10px;">%CREATETIME%</div>
+                    </div>
+                    <div class="order-col">
+                        <div class="order-col-th">出游日期</div>
+                        <div class="order-col-th" style="color:#484848; margin-top:10px;">%OFFTIME%</div>
+                    </div>
+                    <div class="order-col">
+                        <div class="order-col-th">订单金额</div>
+                        <div class="order-col-th" style="color:#fe7800; margin-top:10px;">￥%TOTALPRICE%</div>
+                    </div>
+                    <div class="order-col">
+                        <div class="order-col-th">应付金额</div>
+                        <div class="order-col-th" style="color:#fe7800; margin-top:10px;">￥%PAYMENT%<p>已优惠：￥%DISCOUNT%</p></div>
+                    </div>
+                    <div class="order-col">
+                        <div class="order-col-th">状态</div>
+                        <div class="order-col-th" style="color:#333; margin-top:10px;">已确认</div>
+                    </div>
+                    <div class="order-btn">
+                        <a class="order-look" href="%DETAILURL%">去查看</a>
+                    </div>
+                    <div class="clearFix"></div>
+                </div>
+                <p style="margin-top:15px;font-size: 16px;margin:5px 0px;">行程如有任何问题，请添加我们的微信客服：zhenlx2015。我们将以最用心的态度回馈您的信任。再次感谢您选择真旅行，祝您此行体验愉快美好！
+                </p>
+            </div>
+            <div style="color:#333;font-size: 14px;padding-left: 30px;margin-top:40px;">
+                <h3 style="font-size: 18px;margin-bottom: 20px;">重要声明:</h3>
+                <p style="margin-bottom: 20px;">此封邮件附件为本次行程确认单，收到此邮件表示我们和您之间的合同已经成立。</p>
+                <p style="margin-bottom: 20px;">出行可能会因战争，政治，天气等原因发生改变。真旅行会努力为您协调。</p>
+                <p style="margin-bottom: 20px;">行程一经确认不可取消,如有疑问,请及时与我们联系。</p>
+            </div>
+        </div>
+        <footer>
+            <div class="foot-box">
+                <div class="leftSet" style="border-right:1px solid #8efff5;padding-right:60px;">
+                    <p style="font-size: 16px; margin:5px 0px;">关注我们</p>
+                    <div style="color:#8efff5;line-height: 28px;margin-top: 15px;">
+                        <p>微信客服: zhenlx2015</p>
+                        <p>服务热线：400-620-6266 转6</p>
+                        <p>服务邮箱：service@zhenlx.com</p>
+                    </div>
+                </div>
+                <div class="leftSet" style="margin-top: 20px;">
+                    <div class="leftSet" style="width:300px;padding-left: 60px;margin-right: 40px;">扫描关注“真旅行”微信，可以在您出游途中24小时享受无缝的专属服务；参与真旅行故事分享，更有随时的微信促销优惠。
+                    </div>
+                    <img class="rightSet foot-right" src="http://static.zhenlx.com/images/client/wechat-qrcode.jpg">
+                </div>
+                <div class="clearFix"></div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

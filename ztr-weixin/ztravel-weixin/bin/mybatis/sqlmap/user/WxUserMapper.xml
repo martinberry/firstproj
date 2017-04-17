@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.weixin.entity.WxUserEntityMapper" >
+	<resultMap id="BaseResultMap" type="com.ztravel.weixin.entity.WxUserEntity">
+        <result column="id" jdbcType="VARCHAR" property="id" />
+        <result column="openid" jdbcType="VARCHAR" property="openid" />
+        <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+        <result column="sex" jdbcType="NUMERIC" property="sex" />
+        <result column="city" jdbcType="VARCHAR" property="city" />
+        <result column="country" jdbcType="VARCHAR" property="country" />
+        <result column="province" jdbcType="VARCHAR" property="province" />
+        <result column="language" jdbcType="VARCHAR" property="language" />
+        <result column="headimgurl" jdbcType="VARCHAR" property="headimgurl" />
+        <result column="subscribe" jdbcType="NUMERIC" property="subscribe" />
+        <result column="subscribe_time" jdbcType="VARCHAR" property="subscribe_time" />
+        <result column="unionid" jdbcType="VARCHAR" property="unionid" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="groupid" jdbcType="VARCHAR" property="groupid" />
+        <result column="last_modify_time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+        <result column="mp_id" jdbcType="VARCHAR" property="mpId" />
+    </resultMap>
+	
+   <select id="select" resultMap="BaseResultMap" parameterType="map">
+		SELECT * FROM member.t_wx_user where 1=1
+	      <if test="id != null">
+	       and id =  #{id,jdbcType=VARCHAR}
+	      </if>
+	      <if test="openid != null">
+	        and openid = #{openid,jdbcType=VARCHAR}
+	      </if>
+	      <if test="nickname != null">
+	       and  nickname = #{nickname,jdbcType=VARCHAR}
+	      </if>
+	       <if test="sex != null">
+	        and sex = #{sex,jdbcType=NUMERIC}
+	      </if>
+	      <if test="city != null">
+	        and city = #{city,jdbcType=VARCHAR}
+	      </if>
+	        <if test="country != null">
+	        and country = #{country,jdbcType=VARCHAR}
+	      </if>
+	        <if test="province != null">
+	        and province = #{province,jdbcType=VARCHAR}
+	      </if>
+	        <if test="language != null">
+	        and language = #{language,jdbcType=VARCHAR}
+	      </if>
+	        <if test="headimgurl != null">
+	        and headimgurl = #{headimgurl,jdbcType=VARCHAR}
+	      </if>
+	        <if test="subscribe != null">
+	       and subscribe = #{subscribe,jdbcType=NUMERIC}
+	      </if>
+   		<if test="subscribe_time != null">
+	        and subscribe_time = #{subscribe_time,jdbcType=VARCHAR}
+	      </if>
+        <if test="unionid != null">
+            and unionid = #{unionid,jdbcType=VARCHAR}
+          </if>
+        <if test="remark != null">
+            and remark = #{remark,jdbcType=VARCHAR}
+          </if>
+        <if test="groupid != null">
+            and groupid = #{groupid,jdbcType=VARCHAR}
+          </if>
+        <if test="lastModifyTime != null">
+            and last_modify_time = #{lastModifyTime,jdbcType=VARCHAR}
+          </if>
+        <if test="mpId != null">
+            and mp_id = #{mpId,jdbcType=VARCHAR}
+          </if>
+	</select>
+
+	<insert id="insert" parameterType="com.ztravel.weixin.entity.WxUserEntity">
+		insert into member.t_wx_user
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        id,
+	      </if>
+	      <if test="openid != null">
+	        openid,
+	      </if>
+	        <if test="nickname != null">
+	        nickname,
+	      </if>
+	      <if test="sex != null">
+	        sex,
+	      </if>
+	      <if test="city != null">
+	        city,
+	      </if>
+	        <if test="country != null">
+	        country,
+	      </if>
+	        <if test="province != null">
+	        province,
+	      </if>
+	         <if test="language != null">
+	        language,
+	      </if>
+	         <if test="headimgurl != null">
+	        headimgurl,
+	      </if>
+	         <if test="subscribe != null">
+	        subscribe,
+	      </if>
+	         <if test="subscribe_time != null">
+	        subscribe_time,
+	      </if>
+	        <if test="unionid != null">
+	        unionid,
+	      </if>
+            <if test="remark != null">
+            remark,
+          </if>
+            <if test="groupid != null">
+            groupid,
+          </if>
+            <if test="lastModifyTime != null">
+            last_modify_time,
+          </if>
+            <if test="mpId != null">
+            mp_id,
+          </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        #{id,jdbcType=VARCHAR},
+	      </if>
+	      <if test="openid != null">
+	        #{openid,jdbcType=VARCHAR},
+	      </if>
+	      <if test="nickname != null">
+	        #{nickname,jdbcType=VARCHAR},
+	      </if>
+	      <if test="sex != null">
+	        #{sex,jdbcType=NUMERIC},
+	      </if>
+	      <if test="city != null">
+	        #{city,jdbcType=VARCHAR},
+	      </if>
+	        <if test="country != null">
+	        #{country,jdbcType=VARCHAR},
+	      </if>
+	        <if test="province != null">
+	        #{province,jdbcType=VARCHAR},
+	      </if>
+	        <if test="language != null">
+	        #{language,jdbcType=VARCHAR},
+	      </if>
+	        <if test="headimgurl != null">
+	        #{headimgurl,jdbcType=NUMERIC},
+	      </if>
+	   		<if test="subscribe != null">
+		        #{subscribe,jdbcType=VARCHAR},
+		      </if>
+		      <if test="subscribe_time != null">
+		        #{subscribe_time,jdbcType=VARCHAR},
+		      </if>
+		        <if test="unionid != null">
+		        #{unionid,jdbcType=VARCHAR},
+		      </if>
+                <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+              </if>
+                <if test="groupid != null">
+                #{groupid,jdbcType=VARCHAR},
+              </if>
+                <if test="lastModifyTime != null">
+                #{lastModifyTime,jdbcType=TIMESTAMP},
+              </if>
+                <if test="mpId != null">
+                #{mpId,jdbcType=VARCHAR},
+              </if>
+	    </trim>
+	</insert>
+	
+	<select id="lock" resultMap="BaseResultMap" parameterType="string">
+		select *
+		from member.t_wx_user where openid=#{openId,jdbcType=VARCHAR} for update
+	</select>
+	
+	<update id="update" parameterType="com.ztravel.weixin.entity.WxUserEntity">
+            update member.t_wx_user
+            <set>
+                <if test="openid!= null">
+                    openid = #{openid,jdbcType=VARCHAR},
+                </if>
+                <if test="nickname != null">
+                    nickname = #{nickname,jdbcType=VARCHAR},
+                </if>
+                <if test="sex != null">
+                    sex = #{sex,jdbcType=NUMERIC},
+                </if>
+                <if test="city != null">
+                    city = #{city,jdbcType=VARCHAR},
+                </if>
+                <if test="country != null">
+                    country = #{country,jdbcType=VARCHAR},
+                </if>
+                <if test="province != null">
+                    province = #{province,jdbcType=VARCHAR},
+                </if>
+                <if test="language != null">
+                    language = #{language,jdbcType=VARCHAR},
+                </if>
+                <if test="headimgurl != null">
+                    headimgurl = #{headimgurl,jdbcType=VARCHAR},
+                </if>
+                <if test="subscribe != null">
+                    subscribe = #{subscribe,jdbcType=NUMERIC},
+                </if>
+                <if test="subscribe_time != null">
+                    subscribe_time = #{subscribe_time,jdbcType=VARCHAR},
+                </if>
+                <if test="unionid != null">
+                    unionid = #{unionid,jdbcType=VARCHAR},
+                </if>
+                <if test="remark != null">
+                    remark = #{remark,jdbcType=VARCHAR},
+                </if>
+                <if test="groupid != null">
+                    groupid = #{groupid,jdbcType=VARCHAR},
+                </if>
+                <if test="lastModifyTime != null">
+                    last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="mpId != null">
+                    mp_id = #{mpId,jdbcType=VARCHAR},
+                </if>
+            </set>
+            where openid = #{openid,jdbcType=VARCHAR}
+        </update>
+
+</mapper>

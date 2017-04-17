@@ -1,0 +1,12 @@
+dependencies {
+	testCompile libraries.junit
+
+	compile libraries.ant
+	compile libraries.ibatis
+	compile libraries.commons_lang3
+
+	compile libraries.log4j_over_slf4j
+
+	compile libraries.jcl_over_slf4j
+	compile libraries.logback
+}

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ztravel.weixin.po.WeixinTopicMapper">
+
+<resultMap id="BaseResultMap" type="com.ztravel.weixin.po.WeixinTopic" >
+    <id column="topic_id" property="topicId" jdbcType="VARCHAR" />
+    <result column="topic_title" property="topicTitle" jdbcType="VARCHAR" />
+    <result column="product_num" property="pid" jdbcType="VARCHAR" />
+    <result column="product_title" property="productTitle" jdbcType="VARCHAR" />
+    <result column="gift_title" property="giftTitle" jdbcType="VARCHAR" />
+    <result column="released_date" property="releasedTime" jdbcType="TIMESTAMP" />
+    <result column="discuss_num" property="discussNum" jdbcType="NUMERIC" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="create_date" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updatedate" jdbcType="TIMESTAMP" />   
+    <result column="topic_content" property="topicContent" jdbcType="VARCHAR" />
+    <result column="gift_image" property="giftImage" jdbcType="VARCHAR" />
+    <result column="gift_content" property="giftContent" jdbcType="VARCHAR" />
+</resultMap>
+
+<sql id="Column_List">
+    wt.topic_id,wt.topic_title,wt.product_num,wt.product_title,wt.gift_title,wt.released_date,wt.discuss_num,wt.status,wt.create_date,wt.update_date,
+    wt.topic_content,wt.gift_image,wt.gift_content
+
+</sql>
+
+<insert id="insert" parameterType="com.ztravel.weixin.po.WeixinTopic" >
+     insert into weixin.t_weixin_topic
+    <trim prefix="(" suffix=")" suffixOverrides="," >   
+      <if test="topicId != null and topicId !=''"  >
+        topic_id,
+      </if>
+      <if test="topicTitle != null and topicTitle !=''" >
+        topic_title,
+      </if>
+      <if test="pid != null and pid !=''" >
+        product_num,
+      </if>
+       <if test="productTitle != null and productTitle !=''" >
+        product_title,
+      </if>
+      <if test="giftTitle != null and giftTitle !=''" >
+        gift_title,
+      </if>
+      <if test="releasedTime != null and releasedTime !=''" >
+        released_date,
+      </if>
+      <if test="discussNum != null">
+        discuss_num,
+      </if>
+      <if test="status != null and status !=''" >
+        status,
+      </if>
+      <if test="createdate != null and createdate !=''" >
+        create_date,
+      </if>
+      <if test="updatedate != null and updatedate !=''" >
+        update_date,
+      </if>
+      <if test="topicContent != null and topicContent !=''" >
+        topic_content,
+      </if>
+      <if test="giftImage != null and giftImage !=''" >
+        gift_image,
+      </if>
+      <if test="giftContent != null and giftContent !=''" >
+        gift_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="topicId != null and topicId !=''" >
+        #{topicId,jdbcType=VARCHAR},
+      </if>
+      <if test="topicTitle != null and topicTitle !=''" >
+        #{topicTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null and pid !=''" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="productTitle != null and productTitle !=''" >
+        #{productTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="giftTitle != null and giftTitle !=''" >
+        #{giftTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="releasedTime != null and releasedTime !=''" >
+        #{releasedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discussNum != null" >
+        #{discussNum,jdbcType=NUMERIC},
+      </if>
+      <if test="status != null and status !=''" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null and createdate !=''" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null and updatedate !=''" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="topicContent != null and topicContent !=''" >
+        #{topicContent,jdbcType=VARCHAR},
+      </if>
+      <if test="giftImage != null and giftImage !=''" >
+        #{giftImage,jdbcType=VARCHAR},
+      </if>
+      <if test="giftContent != null and giftContent !=''" >
+        #{giftContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.String" >
+	  select
+	    <include refid="Column_List" />
+	    from weixin.t_weixin_topic wt
+	    where topic_id = #{topicId,jdbcType=VARCHAR}
+    </select>
+    
+    <update id="discussNumAddOne" parameterType="java.lang.String">
+    	update weixin.t_weixin_topic set discuss_num=discuss_num+1 where topic_id=#{topicId,jdbcType=VARCHAR}
+    
+    </update>
+
+
+<select id="select" resultMap="BaseResultMap" parameterType="map">
+    SELECT <include refid="Column_List" />
+    FROM weixin.t_weixin_topic wt
+    <where>
+      true      
+        <if test="topicId != null and topicId != ''">
+            AND wt.topic_id = #{topicId, jdbcType=VARCHAR}
+        </if>
+        <if test="topicTitle != null and topicTitle != ''">
+            AND wt.topic_title like #{topicTitle, jdbcType=VARCHAR}
+        </if>
+         <if test="productTitle != null and productTitle != ''">
+            AND wt.product_title like #{productTitle, jdbcType=VARCHAR}
+        </if> 
+         <if test="pid != null and pid != ''">
+            AND wt.product_num = #{pid, jdbcType=VARCHAR}
+        </if>     
+        <if test="status != null and status != ''">
+            AND wt.status = #{status, jdbcType=VARCHAR}
+        </if>    
+    </where>
+	    ORDER BY wt.update_date desc
+    <if test="offset != null and offset != '0'">
+        OFFSET #{offset}
+    </if>
+    <if test="limit != null and limit != ''">
+        LIMIT #{limit}
+    </if>
+</select>
+
+<select id="sortByNumAndDate" resultMap="BaseResultMap" parameterType="map">
+    SELECT <include refid="Column_List" />
+    FROM weixin.t_weixin_topic wt
+    <where>
+      true      
+        <if test="topicId != null and topicId != ''">
+            AND wt.topic_id = #{topicId, jdbcType=VARCHAR}
+        </if>
+        <if test="topicTitle != null and topicTitle != ''">
+            AND wt.topic_title like #{topicTitle, jdbcType=VARCHAR}
+        </if>
+         <if test="productTitle != null and productTitle != ''">
+            AND wt.product_title like #{productTitle, jdbcType=VARCHAR}
+        </if> 
+         <if test="pid != null and pid != ''">
+            AND wt.product_num = #{pid, jdbcType=VARCHAR}
+        </if>     
+        <if test="status != null and status != ''">
+            AND wt.status = #{status, jdbcType=VARCHAR}
+        </if>    
+    </where>
+	    ORDER BY wt.discuss_num desc,wt.create_date desc
+</select>
+
+<select id="selectBysort" resultMap="BaseResultMap" parameterType="map">
+    SELECT <include refid="Column_List" />
+    FROM weixin.t_weixin_topic wt
+    <where>
+      true      
+        <if test="topicId != null and topicId != ''">
+            AND wt.topic_id = #{topicId, jdbcType=VARCHAR}
+        </if>
+        <if test="topicTitle != null and topicTitle != ''">
+            AND wt.topic_title like #{topicTitle, jdbcType=VARCHAR}
+        </if>
+         <if test="productTitle != null and productTitle != ''">
+            AND wt.product_title like #{productTitle, jdbcType=VARCHAR}
+        </if> 
+         <if test="pid != null and pid != ''">
+            AND wt.product_num = #{pid, jdbcType=VARCHAR}
+        </if>     
+        <if test="status != null and status != ''">
+            AND wt.status = #{status, jdbcType=VARCHAR}
+        </if>    
+    </where>
+    ORDER BY wt.discuss_num desc
+    <if test="offset != null and offset != '0'">
+        OFFSET #{offset}
+    </if>
+    <if test="limit != null and limit != ''">
+        LIMIT #{limit}
+    </if>
+</select>
+
+<select id="count" resultType="Integer" parameterType="map">
+    SELECT count(wt.topic_id)
+    FROM weixin.t_weixin_topic wt
+    <where>
+      true      
+        <if test="topicTitle != null and topicTitle != ''">
+            AND wt.topic_title like #{topicTitle, jdbcType=VARCHAR}
+        </if> 
+        <if test="productTitle != null and productTitle != ''">
+            AND wt.product_title like #{productTitle, jdbcType=VARCHAR}
+        </if> 
+         <if test="pid != null and pid != ''">
+            AND wt.product_num = #{pid, jdbcType=VARCHAR}
+        </if>  
+          
+        <if test="status != null and status != ''">
+            AND wt.status = #{status, jdbcType=VARCHAR}
+        </if>    
+    </where>
+</select>
+
+<update id="update" parameterType="com.ztravel.weixin.po.WeixinTopic">
+	update weixin.t_weixin_topic
+		<set>
+		       <if test="topicTitle != null and topicTitle !=''" >
+		        topic_title = #{topicTitle,jdbcType=VARCHAR},
+		      </if>
+		     
+		        product_title = #{productTitle,jdbcType=VARCHAR},		       
+		        product_num = #{pid,jdbcType=VARCHAR},
+		            
+		      <if test="releasedTime != null and releasedTime !=''" >
+		        released_date = #{releasedTime,jdbcType=TIMESTAMP},
+		      </if>
+		       <if test="discussNum != null" >
+		        discuss_num = #{discussNum,jdbcType=NUMERIC},
+		      </if>
+		       <if test="status != null and status !=''" >
+		        status = #{status,jdbcType=VARCHAR},
+		      </if>
+		         <if test="createdate != null and createdate !=''" >
+		        create_date = #{createdate,jdbcType=TIMESTAMP},
+		      </if>
+		         <if test="updatedate != null and updatedate !=''" >
+		        update_date = #{updatedate,jdbcType=TIMESTAMP},
+		      </if>		      		      
+		        gift_title = #{giftTitle,jdbcType=VARCHAR},
+		        topic_content = #{topicContent,jdbcType=VARCHAR},
+		        gift_image = #{giftImage,jdbcType=VARCHAR},		      
+		        gift_content = #{giftContent,jdbcType=VARCHAR}		     
+		</set>
+		<where>
+		     <if test="topicId != null and topicId !=''" >
+		        topic_id = #{topicId,jdbcType=VARCHAR}
+		     </if>
+		
+	    </where>
+</update>
+
+
+	<delete id="deleteById" parameterType="String">
+    	DELETE FROM weixin.t_weixin_topic WHERE topic_id = #{topicId,jdbcType=VARCHAR}
+	</delete>
+
+</mapper>

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.payment.po.OrderPayMapper" >
+	<resultMap id="BaseResultMap" type="com.ztravel.payment.po.OrderPay">
+	    <id column="order_pay_id" jdbcType="VARCHAR" property="orderPayId" />
+	    <result column="member_id" jdbcType="VARCHAR" property="memberId" />
+	    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+	    <result column="trace_num" jdbcType="VARCHAR" property="traceNum" />
+	    <result column="product_type" jdbcType="VARCHAR" property="productType" />
+	    <result column="order_amount" jdbcType="NUMERIC" property="orderAmount" />
+	    <result column="pay_amount" jdbcType="NUMERIC" property="payAmount" />
+	    <result column="use_reward_point" jdbcType="NUMERIC" property="useRewardPoint" />
+	    <result column="use_coupon" jdbcType="NUMERIC" property="useCoupon" />
+	    <result column="coupon_item_id" jdbcType="VARCHAR" property="couponItemId" />
+	    <result column="is_mobile" jdbcType="BOOLEAN" property="isMobile" />
+	    <result column="fg_notify_url" jdbcType="VARCHAR" property="fgNotifyUrl" />
+	    <result column="comment" jdbcType="VARCHAR" property="comment" />
+	    <result column="paid_amount" jdbcType="NUMERIC" property="paidAmount" />
+	    <result column="refunded_amount" jdbcType="NUMERIC" property="refundedAmount" />
+	    <result column="order_pay_status" jdbcType="VARCHAR" property="orderPayStatus" />
+	    <result column="createdby" jdbcType="VARCHAR" property="createdby" />
+	    <result column="updatedby" jdbcType="VARCHAR" property="updatedby" />
+	    <result column="created" jdbcType="TIMESTAMP" property="created" />
+	    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
+    </resultMap>
+
+	<sql id="Base_Column_List">
+	    order_pay_id, member_id, order_id,trace_num, product_type, order_amount, pay_amount, use_reward_point, use_coupon, coupon_item_id, is_mobile, fg_notify_url, comment, paid_amount,refunded_amount, order_pay_status, createdby, updatedby, created,
+	    updated
+	</sql>
+
+	<select id="selectByOrderId" resultMap="BaseResultMap" parameterType="string">
+		select
+		<include refid="Base_Column_List" />
+		from payment.t_order_pay
+		where order_id=#{orderId,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="selectForUpdateByOrderId" resultMap="BaseResultMap" parameterType="string">
+		select
+		<include refid="Base_Column_List" />
+		from payment.t_order_pay
+		where order_id = #{orderId,jdbcType=VARCHAR} for update
+	</select>
+	
+	<select id="selectForUpdateByTraceNum" resultMap="BaseResultMap" parameterType="string">
+		select
+		<include refid="Base_Column_List" />
+		from payment.t_order_pay
+		where trace_num = #{traceNum,jdbcType=VARCHAR} for update
+	</select>
+	
+	<select id="selectByTraceNum" resultMap="BaseResultMap" parameterType="string">
+		select
+		<include refid="Base_Column_List" />
+		from payment.t_order_pay
+		where trace_num = #{traceNum,jdbcType=VARCHAR}
+	</select>
+	
+	<insert id="insert" parameterType="com.ztravel.payment.po.OrderPay">
+		insert into payment.t_order_pay
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="orderPayId != null">
+	        order_pay_id,
+	      </if>
+	      <if test="memberId != null">
+	        member_id,
+	      </if>
+	      <if test="orderId != null">
+	        order_id,
+	      </if>
+	      <if test="productType != null">
+	        product_type,
+	      </if>
+	       <if test="orderAmount != null">
+	        order_amount,
+	      </if>
+	      <if test="payAmount != null">
+	        pay_amount,
+	      </if>
+	      <if test="useRewardPoint != null">
+	        use_reward_point,
+	      </if>
+	      <if test="useCoupon != null">
+	        use_coupon,
+	      </if>
+	      <if test="couponItemId != null">
+	        coupon_item_id,
+	      </if>
+	      <if test="isMobile != null">
+	        is_mobile,
+	      </if>
+	      <if test="fgNotifyUrl != null">
+	        fg_notify_url,
+	      </if>
+	      <if test="comment != null">
+	        comment,
+	      </if>
+	      <if test="paidAmount != null">
+	        paid_amount,
+	      </if>
+	      <if test="orderPayStatus != null">
+	        order_pay_status,
+	      </if>
+	      <if test="createdby != null">
+	        createdby,
+	      </if>
+	      <if test="updatedby != null">
+	        updatedby,
+	      </if>
+	      <if test="created != null">
+	        created,
+	      </if>
+	      <if test="updated != null">
+	        updated,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="orderPayId != null">
+	        #{orderPayId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="memberId != null">
+	        #{memberId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="orderId != null">
+	        #{orderId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="productType != null">
+	        #{productType,jdbcType=VARCHAR},
+	      </if>
+	      <if test="orderAmount != null">
+	        #{orderAmount,jdbcType=NUMERIC},
+	      </if>
+	      <if test="payAmount != null">
+	        #{payAmount,jdbcType=NUMERIC},
+	      </if>
+	      <if test="useRewardPoint != null">
+	        #{useRewardPoint,jdbcType=NUMERIC},
+	      </if>
+	      <if test="useCoupon != null">
+	        #{useCoupon,jdbcType=NUMERIC},
+	      </if>
+	      <if test="couponItemId != null">
+	        #{couponItemId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="isMobile != null">
+	        #{isMobile,jdbcType=BOOLEAN},
+	      </if>
+	      <if test="fgNotifyUrl != null">
+	        #{fgNotifyUrl,jdbcType=VARCHAR},
+	      </if>
+	      <if test="comment != null">
+	        #{comment,jdbcType=VARCHAR},
+	      </if>
+	      <if test="paidAmount != null">
+	        #{paidAmount,jdbcType=NUMERIC},
+	      </if>
+	      <if test="orderPayStatus != null">
+	        #{orderPayStatus,jdbcType=VARCHAR},
+	      </if>
+	      <if test="createdby != null">
+	        #{createdby,jdbcType=VARCHAR},
+	      </if>
+	      <if test="updatedby != null">
+	        #{updatedby,jdbcType=VARCHAR},
+	      </if>
+	      <if test="created != null">
+	        #{created,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="updated != null">
+	        #{updated,jdbcType=TIMESTAMP},
+	      </if>
+	    </trim>
+	</insert>
+
+	<update id="update" parameterType="com.ztravel.payment.po.OrderPay">
+		update payment.t_order_pay
+		<set>
+			<if test="memberId != null">
+				member_id = #{memberId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderId != null">
+				order_id = #{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="traceNum != null">
+				trace_num = #{traceNum,jdbcType=VARCHAR},
+			</if>
+			<if test="productType != null">
+				product_type = #{productType,jdbcType=VARCHAR},
+			</if>
+			<if test="orderAmount != null">
+				order_amount = #{orderAmount,jdbcType=NUMERIC},
+			</if>
+			<if test="payAmount != null">
+				pay_amount = #{payAmount,jdbcType=NUMERIC},
+			</if>
+			<if test="useRewardPoint != null">
+				use_reward_point = #{useRewardPoint,jdbcType=NUMERIC},
+			</if>
+			<if test="useCoupon != null">
+				use_coupon = #{useCoupon,jdbcType=NUMERIC},
+			</if>
+			<if test="couponItemId != null">
+				coupon_item_id = #{couponItemId,jdbcType=VARCHAR},
+			</if>
+			<if test="isMobile != null">
+				is_mobile = #{isMobile,jdbcType=BOOLEAN},
+			</if>
+			<if test="fgNotifyUrl != null">
+				fg_notify_url = #{fgNotifyUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="comment != null">
+				comment = #{comment,jdbcType=VARCHAR},
+			</if>
+			<if test="paidAmount != null">
+				paid_amount = #{paidAmount,jdbcType=NUMERIC},
+			</if>
+			<if test="refundedAmount != null">
+				refunded_amount = #{refundedAmount,jdbcType=NUMERIC},
+			</if>
+			<if test="orderPayStatus != null">
+				order_pay_status = #{orderPayStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createdby != null">
+				createdby = #{createdby,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedby != null">
+				updatedby = #{updatedby,jdbcType=VARCHAR},
+			</if>
+			<if test="created != null">
+				created = #{created,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updated != null">
+				updated = #{updated,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where order_pay_id = #{orderPayId,jdbcType=VARCHAR}
+	</update>
+
+</mapper>

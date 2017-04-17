@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.member.po.MemberActivityEntityMapper" >
+	<resultMap id="BaseResultMap" type="com.ztravel.member.po.MemberActivityEntity">
+	    <id column="memberid" jdbcType="VARCHAR" property="memberId" />
+	    <result column="activityId" jdbcType="VARCHAR" property="activityId" />
+	    <result column="couponId" jdbcType="VARCHAR" property="couponId" />
+    </resultMap>
+
+    <select id="count" resultType="Integer" parameterType="map">
+		select count(1) from member.t_member_activity where memberid = #{memberId} and activityId = #{activityId}
+		and couponId = #{couponId}
+	</select>
+
+	<select id="insert" parameterType="com.ztravel.member.po.MemberActivityEntity">
+		insert into member.t_member_activity
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="memberId != null">
+	        memberId,
+	      </if>
+	      <if test="activityId != null">
+	        activityId,
+	      </if>
+	      <if test="couponId != null">
+	        couponId,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="memberId != null">
+	        #{memberId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="activityId != null">
+	        #{activityId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="couponId != null">
+	        #{couponId,jdbcType=VARCHAR},
+	      </if>
+	    </trim>
+	</select>
+
+</mapper>

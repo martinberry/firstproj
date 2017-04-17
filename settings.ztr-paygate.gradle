@@ -1,0 +1,9 @@
+
+include ':ztr-paygate:ztravel-paygate-wx-notify'
+include ':ztr-paygate:ztravel-paygate-wx-server'
+include ':ztr-paygate:ztravel-paygate-wx'
+include ':ztr-paygate:ztravel-paygate-wx-client'
+include ':ztr-paygate:ztravel-paygate-core'
+include ':ztr-paygate:ztravel-paygate-thrift'
+include ':ztr-paygate:ztravel-paygate-web'
+include ':ztr-paygate:ztravel-paygate-server-alipay'

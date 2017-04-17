@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.member.po.DhpoMapper" >
+
+<resultMap id="BaseResultMap" type="com.ztravel.member.po.Dhpo">
+    <id column="dh_id"  property="dhId"  jdbcType="VARCHAR" />
+    <result column="member_id" property="memberId" jdbcType="VARCHAR" />
+    <result column="pledh_time" property="pledhTime" jdbcType="TIMESTAMP" />
+    <result column="dh_status" property="dhStatus" jdbcType="VARCHAR" />
+    <result column="dh_money" property="dhMoney" jdbcType="NUMERIC" />
+    <result column="dh_content" property="dhContent" jdbcType="VARCHAR" />
+    <result column="last_operator" property="lastOperator" jdbcType="VARCHAR" />
+    <result column="dh_number" property="dhPhonenum" jdbcType="VARCHAR" />
+    <result column="condh_time" property="condhTime" jdbcType="TIMESTAMP" />
+    <result column="member_name" property="memberName" jdbcType="VARCHAR" />
+</resultMap>
+
+<sql id="Column_List">
+   dh.dh_id,dh.member_id,dh.pledh_time,dh.dh_status,dh.dh_money,dh.dh_content,dh.last_operator,dh.dh_number,dh.condh_time,dh.member_name
+</sql>
+
+
+<!--  添加兑换数据记录 -->
+<insert id="insert"  parameterType="com.ztravel.member.po.Dhpo">
+insert into member.t_order_dh(dh_id,member_id,pledh_time,dh_status,dh_money,dh_content,last_operator,dh_number,member_name)
+values(#{dhId},#{memberId},#{pledhTime},#{dhStatus},#{dhMoney},#{dhContent},#{lastOperator},#{dhPhonenum},#{memberName})
+</insert>
+
+<!-- 根据id查找兑换数据记录 -->
+<select id="selectById" parameterType="String" resultMap="BaseResultMap">
+select * from member.t_order_dh where dh_id=#{dhId}
+</select>
+
+<!-- 更新兑换数据记录 -->
+<update id="update" parameterType="com.ztravel.member.po.Dhpo">
+update member.t_order_dh set dh_status=#{dhStatus},condh_time=#{condhTime},last_operator=#{lastOperator} where dh_id=#{dhId}
+</update>
+
+<select id="select" resultMap="BaseResultMap" parameterType="map">
+    SELECT <include refid="Column_List" />
+    FROM member.t_order_dh dh
+   <where>
+    true
+        <if test="dhId != null and dhId != ''">
+           AND dh.dh_id  like #{dhId, jdbcType=VARCHAR}
+        </if>
+        <if test="memberId != null and memberId != ''">
+            AND dh.member_id like #{memberId, jdbcType=VARCHAR}
+        </if>
+        <if test="dhStatus!= null and  dhStatus!= ''">
+            AND dh.dh_status = #{dhStatus, jdbcType=VARCHAR}
+        </if>
+        <if test="pledhTimeFrom!= null">
+            AND <![CDATA[dh.pledh_time>= #{pledhTimeFrom}]]>
+        </if>
+        <if test="pledhTimeTo != null">
+            AND <![CDATA[dh.pledh_time <= #{pledhTimeTo}]]>
+        </if>
+        <if test="dhPriceLowerBound != null">
+            AND <![CDATA[dh.dh_money >= #{dhPriceLowerBound}]]>
+        </if>
+        <if test="dhPriceUpperBound != null">
+            AND <![CDATA[dh.dh_money <= #{dhPriceUpperBound}]]>
+        </if>
+  </where>
+    ORDER BY dh.pledh_time desc
+    <if test="offset != null and offset != '0'">
+        OFFSET #{offset}
+    </if>
+    <if test="limit != null and limit != ''">
+        LIMIT #{limit}
+    </if>
+</select>
+
+<select id="count" resultType="Integer" parameterType="map">
+    SELECT count(dh.dh_id)
+    FROM member.t_order_dh dh
+<where>
+    true
+        <if test="dhId != null and dhId != ''">
+             AND dh.dh_id like #{dhId, jdbcType=VARCHAR}
+        </if>
+        <if test="memberId != null and memberId != ''">
+            AND dh.member_id like #{memberId, jdbcType=VARCHAR}
+        </if>
+        <if test="dhStatus!= null and  dhStatus!= ''">
+            AND dh.dh_status = #{dhStatus, jdbcType=VARCHAR}
+        </if>
+         <if test="pledhTimeFrom!= null">
+            AND <![CDATA[dh.pledh_time>= #{pledhTimeFrom}]]>
+        </if>
+        <if test="pledhTimeTo != null">
+            AND <![CDATA[dh.pledh_time <=#{pledhTimeTo}]]>
+        </if>
+        <if test="dhPriceLowerBound!= null">
+            AND <![CDATA[dh.dh_money>= #{dhPriceLowerBound}]]>
+        </if>
+        <if test="dhPriceUpperBound != null">
+            AND <![CDATA[dh.dh_money <= #{dhPriceUpperBound }]]>
+        </if>
+     </where>
+</select>
+</mapper>

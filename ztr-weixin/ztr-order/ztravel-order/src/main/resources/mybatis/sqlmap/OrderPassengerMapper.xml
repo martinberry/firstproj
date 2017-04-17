@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.order.po.OrderPassengerMapper" >
+
+  <resultMap id="BaseResultMap" type="com.ztravel.order.po.OrderPassenger" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="first_name" property="firstName" jdbcType="VARCHAR" />
+    <result column="last_name" property="lastName" jdbcType="VARCHAR" />
+    <result column="first_en_name" property="firstEnName" jdbcType="VARCHAR" />
+    <result column="last_en_name" property="lastEnName" jdbcType="VARCHAR" />
+    <result column="en_name" property="enName" jdbcType="VARCHAR" />
+    <result column="passenger_type" property="passengerType" jdbcType="VARCHAR" />
+    <result column="credential_type" property="credentialType" jdbcType="VARCHAR" />
+    <result column="credential_num" property="credentialNum" jdbcType="VARCHAR" />
+    <result column="credential_dead_line" property="credentialDeadLine" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, order_id, name, first_name, last_name, first_en_name,last_en_name,en_name,passenger_type, credential_type, credential_num,
+    credential_dead_line, country, birthday, gender
+  </sql>
+
+  <insert id="insert" parameterType="com.ztravel.order.po.OrderPassenger" >
+    insert into ztorder.t_order_passenger
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="firstName != null" >
+        first_name,
+      </if>
+      <if test="lastName != null" >
+        last_name,
+      </if>
+        <if test="firstEnName != null" >
+        first_en_name,
+      </if>
+        <if test="lastenName != null" >
+        last_en_name,
+      </if>
+        <if test="enName != null" >
+        en_name,
+      </if>
+      <if test="passengerType != null" >
+        passenger_type,
+      </if>
+      <if test="credentialType != null" >
+        credential_type,
+      </if>
+      <if test="credentialNum != null" >
+        credential_num,
+      </if>
+      <if test="credentialDeadLine != null" >
+        credential_dead_line,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="firstName != null" >
+        #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null" >
+        #{lastName,jdbcType=VARCHAR},
+      </if>
+      
+      <if test="firstEnName != null" >
+        #{firstEnName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEnName != null" >
+        #{lastEnName,jdbcType=VARCHAR},
+      </if>
+      <if test="enName != null" >
+        #{enName,jdbcType=VARCHAR},
+      </if>
+      <if test="passengerType != null" >
+        #{passengerType,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialType != null" >
+        #{credentialType,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialNum != null" >
+        #{credentialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialDeadLine != null" >
+        #{credentialDeadLine,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+    <update id="update" parameterType="com.ztravel.order.po.OrderPassenger" >
+    update ztorder.t_order_passenger
+    <set>
+      <if test="id != null" >
+        id = #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="firstName != null" >
+        first_name = #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null" >
+        last_name = #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstEnName != null" >
+        first_en_name = #{firstEnName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEnName != null" >
+        last_en_name = #{lastEnName,jdbcType=VARCHAR},
+      </if>
+      <if test="enName != null" >
+        en_name = #{enName,jdbcType=VARCHAR},
+      </if>
+      <if test="passengerType != null" >
+        passenger_type = #{passengerType,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialType != null" >
+        credential_type = #{credentialType,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialNum != null" >
+        credential_num = #{credentialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialDeadLine != null" >
+        credential_dead_line = #{credentialDeadLine,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+   </set>
+   where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+	<insert id="batchInsert" parameterType="java.util.List">
+	  insert into ztorder.t_order_passenger(id, order_id, name, first_name, last_name,first_en_name,last_en_name,en_name,passenger_type, credential_type, credential_num,credential_dead_line, country, birthday, gender)values
+	   <foreach collection="list" item="item" index="index" separator="," >
+		   (#{item.id,jdbcType=VARCHAR},#{item.orderId,jdbcType=VARCHAR},#{item.name,jdbcType=VARCHAR},#{item.firstName,jdbcType=VARCHAR},#{item.lastName,jdbcType=VARCHAR},#{item.firstEnName,jdbcType=VARCHAR},#{item.lastEnName,jdbcType=VARCHAR},#{item.enName,jdbcType=VARCHAR},#{item.passengerType,jdbcType=VARCHAR},#{item.credentialType,jdbcType=VARCHAR},#{item.credentialNum,jdbcType=VARCHAR},#{item.credentialDeadLine,jdbcType=VARCHAR},#{item.country,jdbcType=VARCHAR},#{item.birthday,jdbcType=VARCHAR},#{item.gender,jdbcType=VARCHAR})
+	   </foreach>
+	</insert>
+
+  <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+	  select
+	    <include refid="Base_Column_List" />
+	    from ztorder.t_order_passenger
+	    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+
+
+</mapper>

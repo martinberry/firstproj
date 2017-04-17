@@ -1,0 +1,14 @@
+apply plugin : 'eclipse-wtp'
+apply plugin : 'war'
+
+dependencies {
+	compile project(":ztr-member:ztravel-member")
+	compile project(":ztr-common:ztravel-common-resource")
+	compile project(":ztr-common:ztravel-datasource")
+	compile project(":ztr-product:ztravel-product")
+	compile project(":ztr-order:ztravel-order")
+	compile project(":ztr-sso:ztravel-sso-server")
+	compile project(":ztr-weixin:ztravel-weixin")
+	compile project(":ztr-member:ztravel-operator")
+	compile libraries.commons_fileupload
+}

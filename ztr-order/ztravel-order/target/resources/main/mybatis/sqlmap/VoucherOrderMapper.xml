@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.order.po.VoucherOrderMapper" >
+
+<resultMap id="BaseResultMap" type="com.ztravel.order.po.VoucherOrder" >
+    <id column="voucher_order_id" property="voucherOrderId" jdbcType="VARCHAR" />
+    <result column="voucher_code" property="voucherCode" jdbcType="VARCHAR" />
+    <result column="coupon_id" property="couponId" jdbcType="VARCHAR" />
+    <result column="coupon_code" property="couponCode" jdbcType="VARCHAR" />
+    <result column="coupon_snapshot" property="couponSnapshot" jdbcType="VARCHAR" />
+    <result column="order_from" property="orderFrom" jdbcType="VARCHAR" />
+    <result column="total_price" property="totalPrice" jdbcType="NUMERIC" />
+    <result column="pay_amount" property="payAmount" jdbcType="NUMERIC" />
+    <result column="pay_type" property="payType" jdbcType="VARCHAR" />
+    <result column="combine_order_id" property="combineOrderId" jdbcType="VARCHAR" />
+    <result column="pay_serial_num" property="paySerialNum" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="apply_refund_time" property="applyRefundTime" jdbcType="TIMESTAMP" />
+    <result column="refunded_time" property="refundedTime" jdbcType="TIMESTAMP" />
+    <result column="createdby" property="createdBy" jdbcType="VARCHAR" />
+    <result column="updatedby" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <resultMap id="CombineBaseResultMap" type="com.ztravel.order.po.VoucherCombineOrder" >
+    <id column="combine_order_id" property="combineOrderId" jdbcType="VARCHAR" />
+    <result column="pay_amount" property="payAmount" jdbcType="NUMERIC" />
+    <result column="pay_type" property="payType" jdbcType="VARCHAR" />
+    <result column="pay_serial_num" property="paySerialNum" jdbcType="VARCHAR" />
+    <result column="refunded_amount" property="refundedAmount" jdbcType="NUMERIC" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="createdby" property="createdBy" jdbcType="VARCHAR" />
+    <result column="updatedby" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <resultMap id="VoucherCombineOrderResultMap" type="com.ztravel.order.po.VoucherCombineOrder" >
+    <id column="combine_order_id" property="combineOrderId" jdbcType="VARCHAR" />
+    <result column="pay_amount" property="payAmount" jdbcType="NUMERIC" />
+    <result column="pay_type" property="payType" jdbcType="VARCHAR" />
+    <result column="pay_serial_num" property="paySerialNum" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="createdby" property="createdBy" jdbcType="VARCHAR" />
+    <result column="updatedby" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+    <result column="item_price" property="itemPrice" jdbcType="NUMERIC" />
+    <result column="num" property="num" jdbcType="NUMERIC" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <update id="applyRefundByCouoponItemId" parameterType="string">
+  	update ztorder.t_voucher_order as t1 set status='AUDITING',apply_refund_time=now()
+  	where exists (select 1 from activity.t_voucher t2 where t1.voucher_code=t2.voucher_code and t2.coupon_item_id = #{couponItemId,jdbcType=VARCHAR})
+  	and t1.status='PAYED'
+  </update>
+
+  <select id="select" resultMap="BaseResultMap" parameterType="map" >
+	  select
+	  	<include refid="Base_Column_List" />
+	  	from ztorder.t_voucher_order
+   		<where>
+		    <if test="statusList != null">
+				and status in
+				<foreach collection="statusList" item="status" index="index" open="(" close=")" separator=",">
+					#{status}
+				</foreach>
+			</if>
+			<if test ="voucherCode != null">
+				and voucher_code = #{voucherCode,jdbcType=VARCHAR}
+			</if>
+		    <if test="createdBy != null">
+				and createdby= #{createdBy,jdbcType=VARCHAR}
+		    </if>
+		        <if test="updatedBy != null">
+				and updatedby= #{updatedBy,jdbcType=VARCHAR}
+		    </if>
+		      <if test="createdFrom != null">
+				and <![CDATA[created >= #{createdFrom,jdbcType=TIMESTAMP}]]>
+			</if>
+			<if test="createdTo != null">
+			 	and <![CDATA[created <= #{createdTo,jdbcType=TIMESTAMP}]]>
+			</if>
+		    <if test="updatedFrom != null">
+				and <![CDATA[updated >= #{updatedFrom,jdbcType=TIMESTAMP}]]>
+			</if>
+			<if test="updatedTo != null">
+			 	and <![CDATA[updated <= #{updatedTo,jdbcType=TIMESTAMP}]]>
+			</if>
+		</where>
+    </select>
+
+    <select id="selectVoucherCombineOrders" resultMap="CombineBaseResultMap" parameterType="map" >
+	  SELECT combine_order_id, pay_amount,refunded_amount,
+       pay_type, pay_serial_num, status, createdby, updatedby, created,
+       updated, item_price, num
+  		FROM ztorder.t_voucher_combine_order
+   		<where>
+		    <if test="statusList != null">
+				and status in
+				<foreach collection="statusList" item="status" index="index" open="(" close=")" separator=",">
+					#{status}
+				</foreach>
+			</if>
+			<if test="combineOrderId != null">
+				and combine_order_id = #{combineOrderId,jdbcType=VARCHAR}
+			</if>
+		    <if test="createdFrom != null">
+				and <![CDATA[created >= #{createdFrom,jdbcType=TIMESTAMP}]]>
+			</if>
+			<if test="createdTo != null">
+			 	and <![CDATA[created <= #{createdTo,jdbcType=TIMESTAMP}]]>
+			</if>
+		    <if test="updatedFrom != null">
+				and <![CDATA[updated >= #{updatedFrom,jdbcType=TIMESTAMP}]]>
+			</if>
+			<if test="updatedTo != null">
+			 	and <![CDATA[updated <= #{updatedTo,jdbcType=TIMESTAMP}]]>
+			</if>
+		</where>
+    </select>
+
+	<insert id="insert" parameterType="com.ztravel.order.po.VoucherOrder" >
+     insert into ztorder.t_voucher_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="voucherOrderId != null" >
+        voucher_order_id,
+      </if>
+      <if test="voucherCode != null" >
+        voucher_code,
+      </if>
+      <if test="couponId != null" >
+        coupon_id,
+      </if>
+      <if test="couponCode != null" >
+        coupon_code,
+      </if>
+      <if test="couponSnapshot != null" >
+        coupon_snapshot,
+      </if>
+      <if test="orderFrom != null" >
+        order_from,
+      </if>
+      <if test="totalPrice != null" >
+        total_price,
+      </if>
+      <if test="payAmount != null" >
+        pay_amount,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="combineOrderId != null" >
+        combine_order_id,
+      </if>
+      <if test="paySerialNum != null" >
+        pay_serial_num,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="applyRefundTime != null" >
+        apply_refund_time,
+      </if>
+      <if test="refundedTime != null" >
+        refunded_time,
+      </if>
+      <if test="createdBy != null" >
+        createdby,
+      </if>
+      <if test="updatedBy != null" >
+        updatedby,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="voucherOrderId != null" >
+        #{voucherOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherCode != null" >
+        #{voucherCode,jdbcType=VARCHAR},
+      </if>
+      <if test="couponId != null" >
+        #{couponId,jdbcType=VARCHAR},
+      </if>
+      <if test="couponCode != null" >
+        #{couponCode,jdbcType=VARCHAR},
+      </if>
+      <if test="couponSnapshot != null" >
+        #{couponSnapshot,jdbcType=VARCHAR},
+      </if>
+      <if test="orderFrom != null" >
+        #{orderFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="payAmount != null" >
+        #{payAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="combineOrderId != null" >
+        #{combineOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="paySerialNum != null" >
+        #{paySerialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyRefundTime != null" >
+        #{applyRefundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundedTime != null" >
+        #{refundedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <sql id="Base_Column_List" >
+    voucher_order_id, voucher_code, coupon_id, coupon_code, coupon_snapshot,combine_order_id,
+       order_from, total_price, pay_amount,pay_type, pay_serial_num,pay_time,apply_refund_time,refunded_time,
+       status, createdby, updatedby, created, updated
+  </sql>
+
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.String" >
+	  select
+	    <include refid="Base_Column_List" />
+	    from ztorder.t_voucher_order
+	    where voucher_order_id = #{voucherOrderId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectForUpdate" resultMap="BaseResultMap" parameterType="java.lang.String" >
+	  select
+	    <include refid="Base_Column_List" />
+	    from ztorder.t_voucher_order
+	    where voucher_order_id = #{voucherOrderId,jdbcType=VARCHAR} for update
+  </select>
+
+    <sql id="CombineOrder_Base_Column_List" >
+        combine_order_id, pay_amount, pay_type, pay_serial_num,status, createdby, updatedby, created, updated, item_price, num,mobile
+    </sql>
+
+    <select id="selectVoucherCombineOrderByCombineOrderId" resultMap="VoucherCombineOrderResultMap" parameterType="java.lang.String" >
+      select
+        <include refid="CombineOrder_Base_Column_List" />
+        from ztorder.t_voucher_combine_order
+        where combine_order_id = #{combineOrderId,jdbcType=VARCHAR}
+    </select>
+
+  <select id="selectByCombineOrderId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+	  select
+	    <include refid="Base_Column_List" />
+	    from ztorder.t_voucher_order
+	    where combine_order_id = #{combineOrderId,jdbcType=VARCHAR}
+  </select>
+
+  <update id="updateByMap" parameterType="map">
+		update ztorder.t_voucher_order
+		<set>
+		      <if test="voucherCode != null" >
+		        voucher_code = #{voucherCode,jdbcType=VARCHAR},
+		      </if>
+		      <if test="couponId != null" >
+		        coupon_id = #{couponId,jdbcType=VARCHAR},
+		      </if>
+		      <if test="couponCode != null" >
+		        coupon_code = #{couponCode,jdbcType=VARCHAR},
+		      </if>
+		      <if test="couponSnapshot != null" >
+		        coupon_snapshot = #{couponSnapshot,jdbcType=VARCHAR},
+		      </if>
+		      <if test="orderFrom != null" >
+		        order_from = #{orderFrom,jdbcType=VARCHAR},
+		      </if>
+		      <if test="totalPrice != null" >
+		        total_price = #{totalPrice,jdbcType=NUMERIC},
+		      </if>
+		      <if test="payAmount != null" >
+		        pay_amount = #{payAmount,jdbcType=NUMERIC},
+		      </if>
+		      <if test="payType != null" >
+		        pay_type = #{payType,jdbcType=VARCHAR},
+		      </if>
+		      <if test="combineOrderId != null" >
+		        combine_order_id = #{combineOrderId,jdbcType=VARCHAR},
+		      </if>
+		      <if test="paySerialNum != null" >
+		        pay_serial_num = #{paySerialNum,jdbcType=VARCHAR},
+		      </if>
+		      <if test="status != null" >
+		        status = #{status,jdbcType=VARCHAR},
+		      </if>
+		      <if test="payTime != null" >
+		        pay_time = #{payTime,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="applyRefundTime != null" >
+		        apply_refund_time = #{applyRefundTime,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="refundedTime != null" >
+		        refunded_time = #{refundedTime,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="createdBy != null" >
+		        createdby = #{createdBy,jdbcType=VARCHAR},
+		      </if>
+		      <if test="updatedBy != null" >
+		        updatedby = #{updatedBy,jdbcType=VARCHAR},
+		      </if>
+		      <if test="created != null" >
+		        created = #{created,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="updated != null" >
+		        updated = #{updated,jdbcType=TIMESTAMP},
+		      </if>
+		</set>
+		<where>
+		  	<if test="voucherOrderId != null">
+				and voucher_order_id = #{voucherOrderId,jdbcType=VARCHAR}
+		    </if>
+		    <if test="oldStatus != null">
+				and status = #{oldStatus,jdbcType=VARCHAR}
+		    </if>
+		    <if test="oldCombineOrderId != null">
+				and combine_order_id = #{oldCombineOrderId,jdbcType=VARCHAR}
+		    </if>
+		    <if test="statusList != null">
+				and status in
+				<foreach collection="statusList" item="s" index="index" open="(" close=")" separator=",">
+					#{s}
+				</foreach>
+			</if>
+	   </where>
+	</update>
+
+	<insert id="insertVoucherCombineOrder" parameterType="com.ztravel.order.po.VoucherCombineOrder" >
+     insert into ztorder.t_voucher_combine_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="combineOrderId != null" >
+        combine_order_id,
+      </if>
+      <if test="payAmount != null" >
+        pay_amount,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="paySerialNum != null" >
+        pay_serial_num,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createdBy != null" >
+        createdby,
+      </if>
+      <if test="updatedBy != null" >
+        updatedby,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+      <if test="itemPrice != null" >
+        item_price,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="combineOrderId != null" >
+        #{combineOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmount != null" >
+        #{payAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="paySerialNum != null" >
+        #{paySerialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemPrice != null" >
+        #{itemPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=NUMERIC},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+	<update id="updateCombineByMap" parameterType="map">
+		update ztorder.t_voucher_combine_order
+		<set>
+		      <if test="combineOrderId != null" >
+		        combine_order_id = #{combineOrderId,jdbcType=VARCHAR},
+		      </if>
+		      <if test="payAmount != null" >
+		        pay_amount = #{payAmount,jdbcType=NUMERIC},
+		      </if>
+		      <if test="refundedAmount != null" >
+		        refunded_amount = #{refundedAmount,jdbcType=NUMERIC},
+		      </if>
+		      <if test="payType != null" >
+		        pay_type = #{payType,jdbcType=VARCHAR},
+		      </if>
+		      <if test="paySerialNum != null" >
+		        pay_serial_num = #{paySerialNum,jdbcType=VARCHAR},
+		      </if>
+		      <if test="status != null" >
+		        status = #{status,jdbcType=VARCHAR},
+		      </if>
+		      <if test="createdBy != null" >
+		        createdby = #{createdBy,jdbcType=VARCHAR},
+		      </if>
+		      <if test="updatedBy != null" >
+		        updatedby = #{updatedBy,jdbcType=VARCHAR},
+		      </if>
+		      <if test="created != null" >
+		        created = #{created,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="updated != null" >
+		        updated = #{updated,jdbcType=TIMESTAMP},
+		      </if>
+		</set>
+		<where>
+		  	<if test="oldCombineOrderId != null">
+				and combine_order_id = #{oldCombineOrderId,jdbcType=VARCHAR}
+		    </if>
+		    <if test="oldStatus != null">
+				and status = #{oldStatus,jdbcType=VARCHAR}
+		    </if>
+		    <if test="statusList != null">
+				and status in
+				<foreach collection="statusList" item="s" index="index" open="(" close=")" separator=",">
+					#{s}
+				</foreach>
+			</if>
+		  </where>
+	</update>
+
+</mapper>

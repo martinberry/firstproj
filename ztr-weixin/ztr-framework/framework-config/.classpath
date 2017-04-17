@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/test/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
+	<classpathentry kind="src" path="/framework-core" exported="true"/>
+	<classpathentry kind="src" path="/framework-logger-core" exported="true"/>
+	<classpathentry kind="src" path="/framework-spring" exported="true"/>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/commons-io/commons-io/2.4/source/f2d8698c46d1167ff24b06a840a87d91a02db891/commons-io-2.4-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/commons-io/commons-io/2.4/jar/b1b6ea3b7e4aa4f492509a4952029cd8e48019ad/commons-io-2.4.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.curator/curator-client/2.7.0/source/7a65e9e0150d74096c67a46c42ed71ac8a9a98cc/curator-client-2.7.0-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.curator/curator-client/2.7.0/bundle/c3232ff89e991501b98e21dc29303cbb227ad57b/curator-client-2.7.0.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.curator/curator-framework/2.7.0/source/834822a18b489dcc47afac97f2e8c05b168ad689/curator-framework-2.7.0-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.curator/curator-framework/2.7.0/bundle/c586c41d21278779d7c14ac3c95cba7cf553c7d2/curator-framework-2.7.0.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.curator/curator-recipes/2.7.0/source/91e9d9d35417fd4b8024d4db3e98aca30c27c901/curator-recipes-2.7.0-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.curator/curator-recipes/2.7.0/bundle/b8f8980c40ebe86f1eb693f282faa27a65a95379/curator-recipes-2.7.0.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.curator/curator-x-discovery/2.7.0/source/d0b9f449beca8d7e5c025968d1b93ee5e9c82cac/curator-x-discovery-2.7.0-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.curator/curator-x-discovery/2.7.0/bundle/b73905510f3bbaaded82bee06e39c060d3e7d9ba/curator-x-discovery-2.7.0.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/com.github.adyliu/zkclient/2.1.1/source/2c14fd8d5921f411e31cf4009d113c73beb56eef/zkclient-2.1.1-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/com.github.adyliu/zkclient/2.1.1/jar/4d01c94aed2c1ec1b1f0b42fc9809efa4f55719c/zkclient-2.1.1.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/com.typesafe/config/1.2.1/source/bdacf4f82ce9b29cd474bfde2e91eeb0ca623d28/config-1.2.1-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/com.typesafe/config/1.2.1/bundle/f771f71fdae3df231bcd54d5ca2d57f0bf93f467/config-1.2.1.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.yaml/snakeyaml/1.14/source/4c6bcedc3efa772a5ae1c2fd01efee8e4d15edac/snakeyaml-1.14-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.yaml/snakeyaml/1.14/bundle/c2df91929ed06a25001939929bff5120e0ea3fd4/snakeyaml-1.14.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-beans/3.2.9.RELEASE/source/e44a3cdcc20be53daad2a055cb40474d3e830bf2/spring-beans-3.2.9.RELEASE-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-beans/3.2.9.RELEASE/jar/31dcffd88a80b610ccd57ee9618301a1d883b53d/spring-beans-3.2.9.RELEASE.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-context/3.2.9.RELEASE/source/11aec1d2d54350958e9098f5ed335680a40333b4/spring-context-3.2.9.RELEASE-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-context/3.2.9.RELEASE/jar/9de55b66bd227549b60b4b602f6d1a567a67dbba/spring-context-3.2.9.RELEASE.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/javax.servlet/javax.servlet-api/3.1.0/source/ab3976d4574c48d22dc1abf6a9e8bd0fdf928223/javax.servlet-api-3.1.0-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/javax.servlet/javax.servlet-api/3.1.0/jar/3cd63d075497751784b2fa84be59432f4905bf7c/javax.servlet-api-3.1.0.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-core/3.2.9.RELEASE/source/9c7e72bfa1ab9d0fcf742064094ef51b2d4b4e2a/spring-core-3.2.9.RELEASE-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-core/3.2.9.RELEASE/jar/23566c793f7db5859dbceb98cd1a5789b489e0b5/spring-core-3.2.9.RELEASE.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/junit/junit/4.11/source/28e0ad201304e4a4abf999ca0570b7cffc352c3c/junit-4.11-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/junit/junit/4.11/jar/4e031bb61df09069aeb2bffb4019e7a5034a4ee0/junit-4.11.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.hamcrest/hamcrest-core/1.3/source/1dc37250fbc78e23a65a67fbbaf71d2e9cbc3c0b/hamcrest-core-1.3-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.hamcrest/hamcrest-core/1.3/jar/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/jline/jline/0.9.94/source/7ac7b49164e4f9d250309c70caee645151b87e46/jline-0.9.94-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/jline/jline/0.9.94/jar/99a18e9a44834afdebc467294e1138364c207402/jline-0.9.94.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/io.netty/netty/3.7.0.Final/source/92d6795b502e5194f84c5d1fd05c39800413fe53/netty-3.7.0.Final-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/io.netty/netty/3.7.0.Final/bundle/7a8c35599c68c0bf383df74469aa3e03d9aca87/netty-3.7.0.Final.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.slf4j/slf4j-api/1.7.7/source/acd62e31cc314266e73eebed0b6dd7ea974a0ed/slf4j-api-1.7.7-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.slf4j/slf4j-api/1.7.7/jar/2b8019b6249bb05d81d3a3094e468753e2b21311/slf4j-api-1.7.7.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.zookeeper/zookeeper/3.4.6/source/10cb14f3893f8bdcaf4e2619a9a1f6b9cedec6b7/zookeeper-3.4.6-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.zookeeper/zookeeper/3.4.6/jar/1b2502e29da1ebaade2357cd1de35a855fa3755/zookeeper-3.4.6.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/com.google.guava/guava/18.0/source/ad97fe8faaf01a3d3faacecd58e8fa6e78a973ca/guava-18.0-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/com.google.guava/guava/18.0/bundle/cce0823396aa693798f8882e64213b1772032b09/guava-18.0.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.codehaus.jackson/jackson-core-asl/1.9.13/source/6ed53c5ce78344e14296aa47769d67b10e1c7b2c/jackson-core-asl-1.9.13-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.codehaus.jackson/jackson-core-asl/1.9.13/jar/3c304d70f42f832e0a86d45bd437f692129299a4/jackson-core-asl-1.9.13.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.codehaus.jackson/jackson-mapper-asl/1.9.13/source/83113901bc2a377d698ccea35ad842786f37c6ad/jackson-mapper-asl-1.9.13-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.codehaus.jackson/jackson-mapper-asl/1.9.13/jar/1ee2f2bed0e5dd29d1cb155a166e6f8d50bbddb7/jackson-mapper-asl-1.9.13.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/aopalliance/aopalliance/1.0/source/4a4b6d692e17846a9f3da036438a7ac491d3c814/aopalliance-1.0-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/aopalliance/aopalliance/1.0/jar/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-aop/3.2.9.RELEASE/source/1930e91a57602851902742629e7471a9a06f0ea0/spring-aop-3.2.9.RELEASE-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-aop/3.2.9.RELEASE/jar/5410c5cd31fdf591ddebe23e0f727b5ba1a626b9/spring-aop-3.2.9.RELEASE.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-expression/3.2.9.RELEASE/source/33a064badc1fce6f3feb530c1957ac5887c82bc5/spring-expression-3.2.9.RELEASE-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-expression/3.2.9.RELEASE/jar/3dc5a9e674d969c377d3d737a5ca59a401b097f3/spring-expression-3.2.9.RELEASE.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+</classpath>

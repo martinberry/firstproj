@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Implementation-Title: framework-thrift
+Implementation-Version: unspecified
+Built-By: N
+Built-JDK: 1.7.0_79
+Implementation-Timestamp: 2016-04-25T15:24:42+0800
+

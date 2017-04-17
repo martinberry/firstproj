@@ -1,0 +1,11 @@
+apply plugin : 'eclipse'
+
+dependencies {
+
+	compile project(":ztr-framework:framework")
+	compile project(":ztr-framework:framework-core")
+	compile project(":ztr-framework:framework-logger")
+	compile project(":ztr-framework:framework-config")
+	compile project(":ztr-framework:framework-mongo")
+    compile project(":ztr-framework:framework-redis")
+}

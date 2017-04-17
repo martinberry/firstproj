@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+  <sqlMap namespace="paygate_paygate_client" >
+    <resultMap id="BaseResultMap" class="com.ztravel.paygate.core.po.gen.PaygateClient" >
+      <result column="paygate_client_id" property="paygateClientId" jdbcType="VARCHAR" />
+      <result column="client_id" property="clientId" jdbcType="VARCHAR" />
+      <result column="sign_key" property="signKey" jdbcType="VARCHAR" />
+      <result column="supports_encrypt" property="supportsEncrypt" jdbcType="BIT" />
+      <result column="describe" property="describe" jdbcType="VARCHAR" />
+      <result column="supports_payment" property="supportsPayment" jdbcType="BIT" />
+      <result column="supports_refund" property="supportsRefund" jdbcType="BIT" />
+      <result column="supports_query" property="supportsQuery" jdbcType="BIT" />
+      <result column="supports_gatetype" property="supportsGatetype" jdbcType="VARCHAR" />
+      <result column="payment_notify_url" property="paymentNotifyUrl" jdbcType="VARCHAR" />
+      <result column="refund_notify_url" property="refundNotifyUrl" jdbcType="VARCHAR" />
+      <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+      <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="paygate_paygate_client.Base_Column_List" >
+      paygate_client_id, client_id, sign_key, supports_encrypt, describe, supports_payment, 
+      supports_refund, supports_query, supports_gatetype, payment_notify_url, refund_notify_url, 
+      create_time, update_time
+    </sql>
+    <select id="paygate_paygate_client.selectByExample" resultMap="BaseResultMap" parameterClass="com.ztravel.paygate.core.po.gen.PaygateClientExample" >
+      select
+      <isParameterPresent >
+        <isEqual property="distinct" compareValue="true" >
+          distinct
+        </isEqual>
+      </isParameterPresent>
+      <include refid="paygate_paygate_client.Base_Column_List" />
+      from paygate.paygate_client
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+        <isNotNull property="orderByClause" >
+          <![CDATA[ order by $orderByClause$ ]]>
+        </isNotNull>
+      </isParameterPresent>
+      <include refid="common.Postgres_Pagination_Limit" />
+    </select>
+    <select id="paygate_paygate_client.selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.ztravel.paygate.core.po.gen.PaygateClient" >
+      select 
+      <include refid="paygate_paygate_client.Base_Column_List" />
+      <![CDATA[
+      from paygate.paygate_client
+      where paygate_client_id = #paygateClientId#
+      ]]>
+    </select>
+    <delete id="paygate_paygate_client.deleteByPrimaryKey" parameterClass="com.ztravel.paygate.core.po.gen.PaygateClient" >
+      <![CDATA[
+      delete from paygate.paygate_client
+      where paygate_client_id = #paygateClientId#
+      ]]>
+    </delete>
+    <delete id="paygate_paygate_client.deleteByExample" parameterClass="com.ztravel.paygate.core.po.gen.PaygateClientExample" >
+      delete from paygate.paygate_client
+      <include refid="common.Example_Where_Clause" />
+    </delete>
+    <insert id="paygate_paygate_client.insert" parameterClass="com.ztravel.paygate.core.po.gen.PaygateClient" >
+      <![CDATA[
+      insert into paygate.paygate_client (paygate_client_id, client_id, sign_key, supports_encrypt, describe, 
+        supports_payment, supports_refund, supports_query, supports_gatetype, payment_notify_url, 
+        refund_notify_url, create_time, update_time)
+      values (#paygateClientId#, #clientId#, #signKey#, #supportsEncrypt#, #describe#, 
+        #supportsPayment#, #supportsRefund#, #supportsQuery#, #supportsGatetype#, #paymentNotifyUrl#, 
+        #refundNotifyUrl#, #createTime#, #updateTime#)
+      ]]>
+    </insert>
+    <insert id="paygate_paygate_client.insertSelective" parameterClass="com.ztravel.paygate.core.po.gen.PaygateClient" >
+      insert into paygate.paygate_client
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="paygateClientId" >
+          paygate_client_id
+        </isNotNull>
+        <isNotNull prepend="," property="clientId" >
+          client_id
+        </isNotNull>
+        <isNotNull prepend="," property="signKey" >
+          sign_key
+        </isNotNull>
+        <isNotNull prepend="," property="supportsEncrypt" >
+          supports_encrypt
+        </isNotNull>
+        <isNotNull prepend="," property="describe" >
+          describe
+        </isNotNull>
+        <isNotNull prepend="," property="supportsPayment" >
+          supports_payment
+        </isNotNull>
+        <isNotNull prepend="," property="supportsRefund" >
+          supports_refund
+        </isNotNull>
+        <isNotNull prepend="," property="supportsQuery" >
+          supports_query
+        </isNotNull>
+        <isNotNull prepend="," property="supportsGatetype" >
+          supports_gatetype
+        </isNotNull>
+        <isNotNull prepend="," property="paymentNotifyUrl" >
+          payment_notify_url
+        </isNotNull>
+        <isNotNull prepend="," property="refundNotifyUrl" >
+          refund_notify_url
+        </isNotNull>
+        <isNotNull prepend="," property="createTime" >
+          create_time
+        </isNotNull>
+        <isNotNull prepend="," property="updateTime" >
+          update_time
+        </isNotNull>
+        )
+      </dynamic>
+      values
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="paygateClientId" >
+          <![CDATA[ #paygateClientId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="clientId" >
+          <![CDATA[ #clientId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="signKey" >
+          <![CDATA[ #signKey# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="supportsEncrypt" >
+          <![CDATA[ #supportsEncrypt# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="describe" >
+          <![CDATA[ #describe# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="supportsPayment" >
+          <![CDATA[ #supportsPayment# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="supportsRefund" >
+          <![CDATA[ #supportsRefund# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="supportsQuery" >
+          <![CDATA[ #supportsQuery# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="supportsGatetype" >
+          <![CDATA[ #supportsGatetype# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="paymentNotifyUrl" >
+          <![CDATA[ #paymentNotifyUrl# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="refundNotifyUrl" >
+          <![CDATA[ #refundNotifyUrl# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="createTime" >
+          <![CDATA[ #createTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="updateTime" >
+          <![CDATA[ #updateTime# ]]>
+        </isNotNull>
+        )
+      </dynamic>
+    </insert>
+    <select id="paygate_paygate_client.countByExample" parameterClass="com.ztravel.paygate.core.po.gen.PaygateClientExample" resultClass="java.lang.Integer" >
+      select count(*) from paygate.paygate_client
+      <include refid="common.Example_Where_Clause" />
+    </select>
+    <update id="paygate_paygate_client.updateByExampleSelective" >
+      update paygate.paygate_client
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="record.paygateClientId" >
+          <![CDATA[ paygate_client_id = #record.paygateClientId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.clientId" >
+          <![CDATA[ client_id = #record.clientId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.signKey" >
+          <![CDATA[ sign_key = #record.signKey# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.supportsEncrypt" >
+          <![CDATA[ supports_encrypt = #record.supportsEncrypt# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.describe" >
+          <![CDATA[ describe = #record.describe# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.supportsPayment" >
+          <![CDATA[ supports_payment = #record.supportsPayment# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.supportsRefund" >
+          <![CDATA[ supports_refund = #record.supportsRefund# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.supportsQuery" >
+          <![CDATA[ supports_query = #record.supportsQuery# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.supportsGatetype" >
+          <![CDATA[ supports_gatetype = #record.supportsGatetype# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.paymentNotifyUrl" >
+          <![CDATA[ payment_notify_url = #record.paymentNotifyUrl# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.refundNotifyUrl" >
+          <![CDATA[ refund_notify_url = #record.refundNotifyUrl# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.createTime" >
+          <![CDATA[ create_time = #record.createTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.updateTime" >
+          <![CDATA[ update_time = #record.updateTime# ]]>
+        </isNotNull>
+      </dynamic>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="paygate_paygate_client.updateByExample" >
+      <![CDATA[
+      update paygate.paygate_client
+      set paygate_client_id = #record.paygateClientId#,
+        client_id = #record.clientId#,
+        sign_key = #record.signKey#,
+        supports_encrypt = #record.supportsEncrypt#,
+        describe = #record.describe#,
+        supports_payment = #record.supportsPayment#,
+        supports_refund = #record.supportsRefund#,
+        supports_query = #record.supportsQuery#,
+        supports_gatetype = #record.supportsGatetype#,
+        payment_notify_url = #record.paymentNotifyUrl#,
+        refund_notify_url = #record.refundNotifyUrl#,
+        create_time = #record.createTime#,
+        update_time = #record.updateTime#
+      ]]>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="paygate_paygate_client.updateByPrimaryKeySelective" parameterClass="com.ztravel.paygate.core.po.gen.PaygateClient" >
+      update paygate.paygate_client
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="clientId" >
+          <![CDATA[ client_id = #clientId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="signKey" >
+          <![CDATA[ sign_key = #signKey# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="supportsEncrypt" >
+          <![CDATA[ supports_encrypt = #supportsEncrypt# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="describe" >
+          <![CDATA[ describe = #describe# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="supportsPayment" >
+          <![CDATA[ supports_payment = #supportsPayment# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="supportsRefund" >
+          <![CDATA[ supports_refund = #supportsRefund# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="supportsQuery" >
+          <![CDATA[ supports_query = #supportsQuery# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="supportsGatetype" >
+          <![CDATA[ supports_gatetype = #supportsGatetype# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="paymentNotifyUrl" >
+          <![CDATA[ payment_notify_url = #paymentNotifyUrl# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="refundNotifyUrl" >
+          <![CDATA[ refund_notify_url = #refundNotifyUrl# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="createTime" >
+          <![CDATA[ create_time = #createTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="updateTime" >
+          <![CDATA[ update_time = #updateTime# ]]>
+        </isNotNull>
+      </dynamic>
+      <![CDATA[
+      where paygate_client_id = #paygateClientId#
+      ]]>
+    </update>
+    <update id="paygate_paygate_client.updateByPrimaryKey" parameterClass="com.ztravel.paygate.core.po.gen.PaygateClient" >
+      <![CDATA[
+      update paygate.paygate_client
+      set client_id = #clientId#,
+        sign_key = #signKey#,
+        supports_encrypt = #supportsEncrypt#,
+        describe = #describe#,
+        supports_payment = #supportsPayment#,
+        supports_refund = #supportsRefund#,
+        supports_query = #supportsQuery#,
+        supports_gatetype = #supportsGatetype#,
+        payment_notify_url = #paymentNotifyUrl#,
+        refund_notify_url = #refundNotifyUrl#,
+        create_time = #createTime#,
+        update_time = #updateTime#
+      where paygate_client_id = #paygateClientId#
+      ]]>
+    </update>
+  </sqlMap>

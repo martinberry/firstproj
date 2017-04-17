@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+<!--     使用该文件将日志输出至控制台，用jvm参数 -Dlogback.configurationFile=logback-console.xml 指定 -->
+
+    <jmxConfigurator/>
+
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{HH:mm:ss} |%5le| %logger{50} => %X{rpid} %msg %n%ex</pattern>
+		</layout>
+	</appender>
+
+    <logger name="org.apache.ibatis" level="DEBUG"/>
+    <logger name="org.mybatis.spring" level="DEBUG"/>
+    <logger name="java.sql" level="DEBUG"/>
+    <logger name="org.springframework.jdbc" level="debug"/>
+
+	<root level="INFO">
+		<appender-ref ref="stdout" />
+	</root>
+
+</configuration>

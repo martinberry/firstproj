@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.member.po.BalanceDetailEntityMapper" >
+	<resultMap id="BaseResultMap" type="com.ztravel.member.po.BalanceDetailEntity">
+	    <id column="memberid" jdbcType="VARCHAR" property="memberId" />
+	    <result column="friend" jdbcType="VARCHAR" property="friend" />
+	    <result column="f_mobile" jdbcType="VARCHAR" property="fMobile" />
+	    <result column="f_status" jdbcType="VARCHAR" property="fStatus" />
+	    <result column="b_status" jdbcType="VARCHAR" property="bStatus" />
+	    <result column="bonus" jdbcType="DOUBLE" property="bonus" />
+	    <result column="updated" jdbcType="TIMESTAMP" property="updateTime" />
+	    <result column="created" jdbcType="TIMESTAMP" property="createTime" />
+    </resultMap>
+
+    <select id="select" resultMap="BaseResultMap" parameterType="map">
+			select * from member.t_balance_detail
+		<where>
+			<if test="memberId != null and memberId != ''">
+				memberid = #{memberId,jdbcType=VARCHAR}
+			</if>
+			<if test="friend != null and friend != ''">
+				and friend = #{friend,jdbcType=VARCHAR}
+			</if>
+			<if test="fMobile != null and fMobile != ''">
+				f_mobile = #{fMobile,jdbcType=VARCHAR}
+			</if>
+			<if test="fStatus != null and fStatus != ''">
+				f_status = #{fStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="bStatus != null and bStatus != ''">
+				b_status = #{bStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="bonus != null and bonus != ''">
+				bonus = #{bonus,jdbcType=DOUBLE}
+			</if>
+			 <if test="offset != null" >
+				offset #{offset}
+			</if>
+			<if test="limit != null" >
+				limit #{limit}
+			</if>
+		</where>
+
+	</select>
+
+	<select id="count" resultType="Integer" parameterType="map">
+			select count(1) from member.t_balance_detail
+			<where>
+			<if test="memberId != null and memberId != ''">
+				<![CDATA[memberid = #{memberId}]]>
+			</if>
+			<if test="friend != null and friend != ''">
+				<![CDATA[friend = #{friend}]]>
+			</if>
+			<if test="fMobile != null and fMobile != ''">
+				<![CDATA[f_mobile = #{fMobile}]]>
+			</if>
+			<if test="fStatus != null and fStatus != ''">
+				<![CDATA[f_status = #{fStatus}]]>
+			</if>
+			<if test="bStatus != null and bStatus != ''">
+				<![CDATA[b_status = #{bStatus}]]>
+			</if>
+			<if test="bonus != null and bonus != ''">
+				<![CDATA[bonus = #{bonus}]]>
+			</if>
+		</where>
+		</select>
+
+
+	<insert id="insert" parameterType="com.ztravel.member.po.BalanceDetailEntity">
+		insert into member.t_balance_detail
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="memberId != null">
+	        memberid,
+	      </if>
+	      <if test="friend != null">
+	        friend,
+	      </if>
+	      <if test="fMobile != null">
+	        f_mobile,
+	      </if>
+	      <if test="fStatus != null">
+	        f_status,
+	      </if>
+	      <if test="bStatus != null">
+	        b_status,
+	      </if>
+	      <if test="bonus != null">
+	        bonus,
+	      </if>
+	      <if test="updateTime != null">
+	        updated,
+	      </if>
+	      <if test="createTime != null">
+	        created,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="memberId != null">
+	        #{memberId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="friend != null">
+	        #{friend,jdbcType=VARCHAR},
+	      </if>
+	      <if test="fMobile != null">
+	        #{fMobile,jdbcType=VARCHAR},
+	      </if>
+	      <if test="fStatus != null">
+	        #{fStatus,jdbcType=VARCHAR},
+	      </if>
+	      <if test="bStatus != null">
+	        #{bStatus,jdbcType=VARCHAR},
+	      </if>
+	      <if test="bonus != null">
+	        #{bonus,jdbcType=DOUBLE},
+	      </if>
+	      <if test="updateTime != null">
+	        #{updateTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="createTime != null">
+	        #{createTime,jdbcType=TIMESTAMP},
+	      </if>
+	    </trim>
+	</insert>
+
+	<update id="update" parameterType="com.ztravel.member.po.BalanceDetailEntity">
+		update member.t_balance_detail
+		<set>
+			<if test="memberId != null">
+					memberid = #{memberId,jdbcType=VARCHAR},
+			</if>
+			<if test="friend != null">
+				friend = #{friend,jdbcType=VARCHAR},
+			</if>
+			<if test="fMobile != null">
+				f_mobile = #{fMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="fStatus != null">
+				f_status = #{fStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="bonus != null">
+				bonus = #{bonus,jdbcType=NUMERIC},
+			</if>
+			<if test="bStatus != null">
+				b_status = #{bStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				updated = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where memberId = #{memberId,jdbcType=VARCHAR} and friend = #{friend,jdbcType=VARCHAR}
+	</update>
+
+</mapper>

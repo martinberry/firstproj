@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+  <sqlMap namespace="paygate_alipay" >
+    <resultMap id="BaseResultMap" class="com.ztravel.paygate.core.po.gen.Alipay" >
+      <result column="alipay_id" property="alipayId" jdbcType="VARCHAR" />
+      <result column="client_id" property="clientId" jdbcType="VARCHAR" />
+      <result column="order_num" property="orderNum" jdbcType="VARCHAR" />
+      <result column="pay_type" property="payType" jdbcType="VARCHAR" />
+      <result column="trans_amount" property="transAmount" jdbcType="NUMERIC" />
+      <result column="trans_comment" property="transComment" jdbcType="VARCHAR" />
+      <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+      <result column="fg_notify_url" property="fgNotifyUrl" jdbcType="VARCHAR" />
+      <result column="partner" property="partner" jdbcType="VARCHAR" />
+      <result column="seller_email" property="sellerEmail" jdbcType="VARCHAR" />
+      <result column="seller_id" property="sellerId" jdbcType="VARCHAR" />
+      <result column="trans_date" property="transDate" jdbcType="VARCHAR" />
+      <result column="trans_time" property="transTime" jdbcType="VARCHAR" />
+      <result column="sign_ret_code" property="signRetCode" jdbcType="VARCHAR" />
+      <result column="sign_ret_msg" property="signRetMsg" jdbcType="VARCHAR" />
+      <result column="trace_num" property="traceNum" jdbcType="VARCHAR" />
+      <result column="buyer_email" property="buyerEmail" jdbcType="VARCHAR" />
+      <result column="buyer_id" property="buyerId" jdbcType="VARCHAR" />
+      <result column="trade_status" property="tradeStatus" jdbcType="VARCHAR" />
+      <result column="gmt_create" property="gmtCreate" jdbcType="VARCHAR" />
+      <result column="gmt_payment" property="gmtPayment" jdbcType="VARCHAR" />
+      <result column="notify_time" property="notifyTime" jdbcType="VARCHAR" />
+      <result column="extra_infos" property="extraInfos" jdbcType="VARCHAR" />
+      <result column="valsign_ret_code" property="valsignRetCode" jdbcType="VARCHAR" />
+      <result column="valsign_ret_msg" property="valsignRetMsg" jdbcType="VARCHAR" />
+      <result column="pay_state" property="payState" jdbcType="VARCHAR" />
+      <result column="ack_content" property="ackContent" jdbcType="VARCHAR" />
+      <result column="confirm_result" property="confirmResult" jdbcType="VARCHAR" />
+      <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+      <result column="resp_time" property="respTime" jdbcType="TIMESTAMP" />
+      <result column="complete_time" property="completeTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="paygate_alipay.Base_Column_List" >
+      alipay_id, client_id, order_num, pay_type, trans_amount, trans_comment, mobile, fg_notify_url, 
+      partner, seller_email, seller_id, trans_date, trans_time, sign_ret_code, sign_ret_msg, 
+      trace_num, buyer_email, buyer_id, trade_status, gmt_create, gmt_payment, notify_time, 
+      extra_infos, valsign_ret_code, valsign_ret_msg, pay_state, ack_content, confirm_result, 
+      create_time, resp_time, complete_time
+    </sql>
+    <select id="paygate_alipay.selectByExample" resultMap="BaseResultMap" parameterClass="com.ztravel.paygate.core.po.gen.AlipayExample" >
+      select
+      <isParameterPresent >
+        <isEqual property="distinct" compareValue="true" >
+          distinct
+        </isEqual>
+      </isParameterPresent>
+      <include refid="paygate_alipay.Base_Column_List" />
+      from paygate.alipay
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+        <isNotNull property="orderByClause" >
+          <![CDATA[ order by $orderByClause$ ]]>
+        </isNotNull>
+      </isParameterPresent>
+      <include refid="common.Postgres_Pagination_Limit" />
+    </select>
+    <select id="paygate_alipay.selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.ztravel.paygate.core.po.gen.Alipay" >
+      select 
+      <include refid="paygate_alipay.Base_Column_List" />
+      <![CDATA[
+      from paygate.alipay
+      where alipay_id = #alipayId#
+      ]]>
+    </select>
+    <delete id="paygate_alipay.deleteByPrimaryKey" parameterClass="com.ztravel.paygate.core.po.gen.Alipay" >
+      <![CDATA[
+      delete from paygate.alipay
+      where alipay_id = #alipayId#
+      ]]>
+    </delete>
+    <delete id="paygate_alipay.deleteByExample" parameterClass="com.ztravel.paygate.core.po.gen.AlipayExample" >
+      delete from paygate.alipay
+      <include refid="common.Example_Where_Clause" />
+    </delete>
+    <insert id="paygate_alipay.insert" parameterClass="com.ztravel.paygate.core.po.gen.Alipay" >
+      <![CDATA[
+      insert into paygate.alipay (alipay_id, client_id, order_num, pay_type, trans_amount, trans_comment, 
+        mobile, fg_notify_url, partner, seller_email, seller_id, trans_date, trans_time, 
+        sign_ret_code, sign_ret_msg, trace_num, buyer_email, buyer_id, trade_status, 
+        gmt_create, gmt_payment, notify_time, extra_infos, valsign_ret_code, valsign_ret_msg, 
+        pay_state, ack_content, confirm_result, create_time, resp_time, complete_time
+        )
+      values (#alipayId#, #clientId#, #orderNum#, #payType#, #transAmount#, #transComment#, 
+        #mobile#, #fgNotifyUrl#, #partner#, #sellerEmail#, #sellerId#, #transDate#, #transTime#, 
+        #signRetCode#, #signRetMsg#, #traceNum#, #buyerEmail#, #buyerId#, #tradeStatus#, 
+        #gmtCreate#, #gmtPayment#, #notifyTime#, #extraInfos#, #valsignRetCode#, #valsignRetMsg#, 
+        #payState#, #ackContent#, #confirmResult#, #createTime#, #respTime#, #completeTime#
+        )
+      ]]>
+    </insert>
+    <insert id="paygate_alipay.insertSelective" parameterClass="com.ztravel.paygate.core.po.gen.Alipay" >
+      insert into paygate.alipay
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="alipayId" >
+          alipay_id
+        </isNotNull>
+        <isNotNull prepend="," property="clientId" >
+          client_id
+        </isNotNull>
+        <isNotNull prepend="," property="orderNum" >
+          order_num
+        </isNotNull>
+        <isNotNull prepend="," property="payType" >
+          pay_type
+        </isNotNull>
+        <isNotNull prepend="," property="transAmount" >
+          trans_amount
+        </isNotNull>
+        <isNotNull prepend="," property="transComment" >
+          trans_comment
+        </isNotNull>
+        <isNotNull prepend="," property="mobile" >
+          mobile
+        </isNotNull>
+        <isNotNull prepend="," property="fgNotifyUrl" >
+          fg_notify_url
+        </isNotNull>
+        <isNotNull prepend="," property="partner" >
+          partner
+        </isNotNull>
+        <isNotNull prepend="," property="sellerEmail" >
+          seller_email
+        </isNotNull>
+        <isNotNull prepend="," property="sellerId" >
+          seller_id
+        </isNotNull>
+        <isNotNull prepend="," property="transDate" >
+          trans_date
+        </isNotNull>
+        <isNotNull prepend="," property="transTime" >
+          trans_time
+        </isNotNull>
+        <isNotNull prepend="," property="signRetCode" >
+          sign_ret_code
+        </isNotNull>
+        <isNotNull prepend="," property="signRetMsg" >
+          sign_ret_msg
+        </isNotNull>
+        <isNotNull prepend="," property="traceNum" >
+          trace_num
+        </isNotNull>
+        <isNotNull prepend="," property="buyerEmail" >
+          buyer_email
+        </isNotNull>
+        <isNotNull prepend="," property="buyerId" >
+          buyer_id
+        </isNotNull>
+        <isNotNull prepend="," property="tradeStatus" >
+          trade_status
+        </isNotNull>
+        <isNotNull prepend="," property="gmtCreate" >
+          gmt_create
+        </isNotNull>
+        <isNotNull prepend="," property="gmtPayment" >
+          gmt_payment
+        </isNotNull>
+        <isNotNull prepend="," property="notifyTime" >
+          notify_time
+        </isNotNull>
+        <isNotNull prepend="," property="extraInfos" >
+          extra_infos
+        </isNotNull>
+        <isNotNull prepend="," property="valsignRetCode" >
+          valsign_ret_code
+        </isNotNull>
+        <isNotNull prepend="," property="valsignRetMsg" >
+          valsign_ret_msg
+        </isNotNull>
+        <isNotNull prepend="," property="payState" >
+          pay_state
+        </isNotNull>
+        <isNotNull prepend="," property="ackContent" >
+          ack_content
+        </isNotNull>
+        <isNotNull prepend="," property="confirmResult" >
+          confirm_result
+        </isNotNull>
+        <isNotNull prepend="," property="createTime" >
+          create_time
+        </isNotNull>
+        <isNotNull prepend="," property="respTime" >
+          resp_time
+        </isNotNull>
+        <isNotNull prepend="," property="completeTime" >
+          complete_time
+        </isNotNull>
+        )
+      </dynamic>
+      values
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="alipayId" >
+          <![CDATA[ #alipayId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="clientId" >
+          <![CDATA[ #clientId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="orderNum" >
+          <![CDATA[ #orderNum# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="payType" >
+          <![CDATA[ #payType# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="transAmount" >
+          <![CDATA[ #transAmount# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="transComment" >
+          <![CDATA[ #transComment# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="mobile" >
+          <![CDATA[ #mobile# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="fgNotifyUrl" >
+          <![CDATA[ #fgNotifyUrl# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="partner" >
+          <![CDATA[ #partner# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="sellerEmail" >
+          <![CDATA[ #sellerEmail# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="sellerId" >
+          <![CDATA[ #sellerId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="transDate" >
+          <![CDATA[ #transDate# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="transTime" >
+          <![CDATA[ #transTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="signRetCode" >
+          <![CDATA[ #signRetCode# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="signRetMsg" >
+          <![CDATA[ #signRetMsg# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="traceNum" >
+          <![CDATA[ #traceNum# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="buyerEmail" >
+          <![CDATA[ #buyerEmail# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="buyerId" >
+          <![CDATA[ #buyerId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="tradeStatus" >
+          <![CDATA[ #tradeStatus# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="gmtCreate" >
+          <![CDATA[ #gmtCreate# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="gmtPayment" >
+          <![CDATA[ #gmtPayment# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="notifyTime" >
+          <![CDATA[ #notifyTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="extraInfos" >
+          <![CDATA[ #extraInfos# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="valsignRetCode" >
+          <![CDATA[ #valsignRetCode# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="valsignRetMsg" >
+          <![CDATA[ #valsignRetMsg# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="payState" >
+          <![CDATA[ #payState# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="ackContent" >
+          <![CDATA[ #ackContent# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="confirmResult" >
+          <![CDATA[ #confirmResult# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="createTime" >
+          <![CDATA[ #createTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="respTime" >
+          <![CDATA[ #respTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="completeTime" >
+          <![CDATA[ #completeTime# ]]>
+        </isNotNull>
+        )
+      </dynamic>
+    </insert>
+    <select id="paygate_alipay.countByExample" parameterClass="com.ztravel.paygate.core.po.gen.AlipayExample" resultClass="java.lang.Integer" >
+      select count(*) from paygate.alipay
+      <include refid="common.Example_Where_Clause" />
+    </select>
+    <update id="paygate_alipay.updateByExampleSelective" >
+      update paygate.alipay
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="record.alipayId" >
+          <![CDATA[ alipay_id = #record.alipayId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.clientId" >
+          <![CDATA[ client_id = #record.clientId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.orderNum" >
+          <![CDATA[ order_num = #record.orderNum# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.payType" >
+          <![CDATA[ pay_type = #record.payType# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.transAmount" >
+          <![CDATA[ trans_amount = #record.transAmount# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.transComment" >
+          <![CDATA[ trans_comment = #record.transComment# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.mobile" >
+          <![CDATA[ mobile = #record.mobile# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.fgNotifyUrl" >
+          <![CDATA[ fg_notify_url = #record.fgNotifyUrl# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.partner" >
+          <![CDATA[ partner = #record.partner# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.sellerEmail" >
+          <![CDATA[ seller_email = #record.sellerEmail# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.sellerId" >
+          <![CDATA[ seller_id = #record.sellerId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.transDate" >
+          <![CDATA[ trans_date = #record.transDate# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.transTime" >
+          <![CDATA[ trans_time = #record.transTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.signRetCode" >
+          <![CDATA[ sign_ret_code = #record.signRetCode# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.signRetMsg" >
+          <![CDATA[ sign_ret_msg = #record.signRetMsg# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.traceNum" >
+          <![CDATA[ trace_num = #record.traceNum# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.buyerEmail" >
+          <![CDATA[ buyer_email = #record.buyerEmail# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.buyerId" >
+          <![CDATA[ buyer_id = #record.buyerId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.tradeStatus" >
+          <![CDATA[ trade_status = #record.tradeStatus# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.gmtCreate" >
+          <![CDATA[ gmt_create = #record.gmtCreate# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.gmtPayment" >
+          <![CDATA[ gmt_payment = #record.gmtPayment# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.notifyTime" >
+          <![CDATA[ notify_time = #record.notifyTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.extraInfos" >
+          <![CDATA[ extra_infos = #record.extraInfos# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.valsignRetCode" >
+          <![CDATA[ valsign_ret_code = #record.valsignRetCode# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.valsignRetMsg" >
+          <![CDATA[ valsign_ret_msg = #record.valsignRetMsg# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.payState" >
+          <![CDATA[ pay_state = #record.payState# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.ackContent" >
+          <![CDATA[ ack_content = #record.ackContent# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.confirmResult" >
+          <![CDATA[ confirm_result = #record.confirmResult# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.createTime" >
+          <![CDATA[ create_time = #record.createTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.respTime" >
+          <![CDATA[ resp_time = #record.respTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.completeTime" >
+          <![CDATA[ complete_time = #record.completeTime# ]]>
+        </isNotNull>
+      </dynamic>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="paygate_alipay.updateByExample" >
+      <![CDATA[
+      update paygate.alipay
+      set alipay_id = #record.alipayId#,
+        client_id = #record.clientId#,
+        order_num = #record.orderNum#,
+        pay_type = #record.payType#,
+        trans_amount = #record.transAmount#,
+        trans_comment = #record.transComment#,
+        mobile = #record.mobile#,
+        fg_notify_url = #record.fgNotifyUrl#,
+        partner = #record.partner#,
+        seller_email = #record.sellerEmail#,
+        seller_id = #record.sellerId#,
+        trans_date = #record.transDate#,
+        trans_time = #record.transTime#,
+        sign_ret_code = #record.signRetCode#,
+        sign_ret_msg = #record.signRetMsg#,
+        trace_num = #record.traceNum#,
+        buyer_email = #record.buyerEmail#,
+        buyer_id = #record.buyerId#,
+        trade_status = #record.tradeStatus#,
+        gmt_create = #record.gmtCreate#,
+        gmt_payment = #record.gmtPayment#,
+        notify_time = #record.notifyTime#,
+        extra_infos = #record.extraInfos#,
+        valsign_ret_code = #record.valsignRetCode#,
+        valsign_ret_msg = #record.valsignRetMsg#,
+        pay_state = #record.payState#,
+        ack_content = #record.ackContent#,
+        confirm_result = #record.confirmResult#,
+        create_time = #record.createTime#,
+        resp_time = #record.respTime#,
+        complete_time = #record.completeTime#
+      ]]>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="paygate_alipay.updateByPrimaryKeySelective" parameterClass="com.ztravel.paygate.core.po.gen.Alipay" >
+      update paygate.alipay
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="clientId" >
+          <![CDATA[ client_id = #clientId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="orderNum" >
+          <![CDATA[ order_num = #orderNum# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="payType" >
+          <![CDATA[ pay_type = #payType# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="transAmount" >
+          <![CDATA[ trans_amount = #transAmount# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="transComment" >
+          <![CDATA[ trans_comment = #transComment# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="mobile" >
+          <![CDATA[ mobile = #mobile# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="fgNotifyUrl" >
+          <![CDATA[ fg_notify_url = #fgNotifyUrl# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="partner" >
+          <![CDATA[ partner = #partner# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="sellerEmail" >
+          <![CDATA[ seller_email = #sellerEmail# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="sellerId" >
+          <![CDATA[ seller_id = #sellerId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="transDate" >
+          <![CDATA[ trans_date = #transDate# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="transTime" >
+          <![CDATA[ trans_time = #transTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="signRetCode" >
+          <![CDATA[ sign_ret_code = #signRetCode# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="signRetMsg" >
+          <![CDATA[ sign_ret_msg = #signRetMsg# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="traceNum" >
+          <![CDATA[ trace_num = #traceNum# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="buyerEmail" >
+          <![CDATA[ buyer_email = #buyerEmail# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="buyerId" >
+          <![CDATA[ buyer_id = #buyerId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="tradeStatus" >
+          <![CDATA[ trade_status = #tradeStatus# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="gmtCreate" >
+          <![CDATA[ gmt_create = #gmtCreate# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="gmtPayment" >
+          <![CDATA[ gmt_payment = #gmtPayment# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="notifyTime" >
+          <![CDATA[ notify_time = #notifyTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="extraInfos" >
+          <![CDATA[ extra_infos = #extraInfos# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="valsignRetCode" >
+          <![CDATA[ valsign_ret_code = #valsignRetCode# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="valsignRetMsg" >
+          <![CDATA[ valsign_ret_msg = #valsignRetMsg# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="payState" >
+          <![CDATA[ pay_state = #payState# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="ackContent" >
+          <![CDATA[ ack_content = #ackContent# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="confirmResult" >
+          <![CDATA[ confirm_result = #confirmResult# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="createTime" >
+          <![CDATA[ create_time = #createTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="respTime" >
+          <![CDATA[ resp_time = #respTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="completeTime" >
+          <![CDATA[ complete_time = #completeTime# ]]>
+        </isNotNull>
+      </dynamic>
+      <![CDATA[
+      where alipay_id = #alipayId#
+      ]]>
+    </update>
+    <update id="paygate_alipay.updateByPrimaryKey" parameterClass="com.ztravel.paygate.core.po.gen.Alipay" >
+      <![CDATA[
+      update paygate.alipay
+      set client_id = #clientId#,
+        order_num = #orderNum#,
+        pay_type = #payType#,
+        trans_amount = #transAmount#,
+        trans_comment = #transComment#,
+        mobile = #mobile#,
+        fg_notify_url = #fgNotifyUrl#,
+        partner = #partner#,
+        seller_email = #sellerEmail#,
+        seller_id = #sellerId#,
+        trans_date = #transDate#,
+        trans_time = #transTime#,
+        sign_ret_code = #signRetCode#,
+        sign_ret_msg = #signRetMsg#,
+        trace_num = #traceNum#,
+        buyer_email = #buyerEmail#,
+        buyer_id = #buyerId#,
+        trade_status = #tradeStatus#,
+        gmt_create = #gmtCreate#,
+        gmt_payment = #gmtPayment#,
+        notify_time = #notifyTime#,
+        extra_infos = #extraInfos#,
+        valsign_ret_code = #valsignRetCode#,
+        valsign_ret_msg = #valsignRetMsg#,
+        pay_state = #payState#,
+        ack_content = #ackContent#,
+        confirm_result = #confirmResult#,
+        create_time = #createTime#,
+        resp_time = #respTime#,
+        complete_time = #completeTime#
+      where alipay_id = #alipayId#
+      ]]>
+    </update>
+  </sqlMap>

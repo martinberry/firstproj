@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+  <sqlMap namespace="paygate_alipay_refund" >
+    <resultMap id="BaseResultMap" class="com.ztravel.paygate.core.po.gen.AlipayRefund" >
+      <result column="alipay_refund_id" property="alipayRefundId" jdbcType="VARCHAR" />
+      <result column="alipay_id" property="alipayId" jdbcType="VARCHAR" />
+      <result column="client_id" property="clientId" jdbcType="VARCHAR" />
+      <result column="refund_num" property="refundNum" jdbcType="VARCHAR" />
+      <result column="order_num" property="orderNum" jdbcType="VARCHAR" />
+      <result column="trace_num" property="traceNum" jdbcType="VARCHAR" />
+      <result column="trans_amount" property="transAmount" jdbcType="NUMERIC" />
+      <result column="refund_amount" property="refundAmount" jdbcType="NUMERIC" />
+      <result column="refund_comment" property="refundComment" jdbcType="VARCHAR" />
+      <result column="partner" property="partner" jdbcType="VARCHAR" />
+      <result column="seller_email" property="sellerEmail" jdbcType="VARCHAR" />
+      <result column="seller_id" property="sellerId" jdbcType="VARCHAR" />
+      <result column="refund_date" property="refundDate" jdbcType="VARCHAR" />
+      <result column="detail_data" property="detailData" jdbcType="VARCHAR" />
+      <result column="req_ret_code" property="reqRetCode" jdbcType="VARCHAR" />
+      <result column="req_ret_msg" property="reqRetMsg" jdbcType="VARCHAR" />
+      <result column="success_num" property="successNum" jdbcType="NUMERIC" />
+      <result column="result_details" property="resultDetails" jdbcType="VARCHAR" />
+      <result column="trans_ret_msg" property="transRetMsg" jdbcType="VARCHAR" />
+      <result column="refund_ret_msg" property="refundRetMsg" jdbcType="VARCHAR" />
+      <result column="valsign_ret_code" property="valsignRetCode" jdbcType="VARCHAR" />
+      <result column="valsign_ret_msg" property="valsignRetMsg" jdbcType="VARCHAR" />
+      <result column="refund_state" property="refundState" jdbcType="VARCHAR" />
+      <result column="ack_content" property="ackContent" jdbcType="VARCHAR" />
+      <result column="confirm_result" property="confirmResult" jdbcType="VARCHAR" />
+      <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+      <result column="resp_time" property="respTime" jdbcType="TIMESTAMP" />
+      <result column="complete_time" property="completeTime" jdbcType="TIMESTAMP" />
+      <result column="refund_profit_details" property="refundProfitDetails" jdbcType="VARCHAR" />
+      <result column="unfreeze_details" property="unfreezeDetails" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="paygate_alipay_refund.Base_Column_List" >
+      alipay_refund_id, alipay_id, client_id, refund_num, order_num, trace_num, trans_amount, 
+      refund_amount, refund_comment, partner, seller_email, seller_id, refund_date, detail_data, 
+      req_ret_code, req_ret_msg, success_num, result_details, trans_ret_msg, refund_ret_msg, 
+      valsign_ret_code, valsign_ret_msg, refund_state, ack_content, confirm_result, create_time, 
+      resp_time, complete_time, refund_profit_details, unfreeze_details
+    </sql>
+    <select id="paygate_alipay_refund.selectByExample" resultMap="BaseResultMap" parameterClass="com.ztravel.paygate.core.po.gen.AlipayRefundExample" >
+      select
+      <isParameterPresent >
+        <isEqual property="distinct" compareValue="true" >
+          distinct
+        </isEqual>
+      </isParameterPresent>
+      <include refid="paygate_alipay_refund.Base_Column_List" />
+      from paygate.alipay_refund
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+        <isNotNull property="orderByClause" >
+          <![CDATA[ order by $orderByClause$ ]]>
+        </isNotNull>
+      </isParameterPresent>
+      <include refid="common.Postgres_Pagination_Limit" />
+    </select>
+    <select id="paygate_alipay_refund.selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.ztravel.paygate.core.po.gen.AlipayRefund" >
+      select 
+      <include refid="paygate_alipay_refund.Base_Column_List" />
+      <![CDATA[
+      from paygate.alipay_refund
+      where alipay_refund_id = #alipayRefundId#
+      ]]>
+    </select>
+    <delete id="paygate_alipay_refund.deleteByPrimaryKey" parameterClass="com.ztravel.paygate.core.po.gen.AlipayRefund" >
+      <![CDATA[
+      delete from paygate.alipay_refund
+      where alipay_refund_id = #alipayRefundId#
+      ]]>
+    </delete>
+    <delete id="paygate_alipay_refund.deleteByExample" parameterClass="com.ztravel.paygate.core.po.gen.AlipayRefundExample" >
+      delete from paygate.alipay_refund
+      <include refid="common.Example_Where_Clause" />
+    </delete>
+    <insert id="paygate_alipay_refund.insert" parameterClass="com.ztravel.paygate.core.po.gen.AlipayRefund" >
+      <![CDATA[
+      insert into paygate.alipay_refund (alipay_refund_id, alipay_id, client_id, refund_num, order_num, trace_num, 
+        trans_amount, refund_amount, refund_comment, partner, seller_email, seller_id, 
+        refund_date, detail_data, req_ret_code, req_ret_msg, success_num, result_details, 
+        trans_ret_msg, refund_ret_msg, valsign_ret_code, valsign_ret_msg, refund_state, 
+        ack_content, confirm_result, create_time, resp_time, complete_time, refund_profit_details, 
+        unfreeze_details)
+      values (#alipayRefundId#, #alipayId#, #clientId#, #refundNum#, #orderNum#, #traceNum#, 
+        #transAmount#, #refundAmount#, #refundComment#, #partner#, #sellerEmail#, #sellerId#, 
+        #refundDate#, #detailData#, #reqRetCode#, #reqRetMsg#, #successNum#, #resultDetails#, 
+        #transRetMsg#, #refundRetMsg#, #valsignRetCode#, #valsignRetMsg#, #refundState#, 
+        #ackContent#, #confirmResult#, #createTime#, #respTime#, #completeTime#, #refundProfitDetails#, 
+        #unfreezeDetails#)
+      ]]>
+    </insert>
+    <insert id="paygate_alipay_refund.insertSelective" parameterClass="com.ztravel.paygate.core.po.gen.AlipayRefund" >
+      insert into paygate.alipay_refund
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="alipayRefundId" >
+          alipay_refund_id
+        </isNotNull>
+        <isNotNull prepend="," property="alipayId" >
+          alipay_id
+        </isNotNull>
+        <isNotNull prepend="," property="clientId" >
+          client_id
+        </isNotNull>
+        <isNotNull prepend="," property="refundNum" >
+          refund_num
+        </isNotNull>
+        <isNotNull prepend="," property="orderNum" >
+          order_num
+        </isNotNull>
+        <isNotNull prepend="," property="traceNum" >
+          trace_num
+        </isNotNull>
+        <isNotNull prepend="," property="transAmount" >
+          trans_amount
+        </isNotNull>
+        <isNotNull prepend="," property="refundAmount" >
+          refund_amount
+        </isNotNull>
+        <isNotNull prepend="," property="refundComment" >
+          refund_comment
+        </isNotNull>
+        <isNotNull prepend="," property="partner" >
+          partner
+        </isNotNull>
+        <isNotNull prepend="," property="sellerEmail" >
+          seller_email
+        </isNotNull>
+        <isNotNull prepend="," property="sellerId" >
+          seller_id
+        </isNotNull>
+        <isNotNull prepend="," property="refundDate" >
+          refund_date
+        </isNotNull>
+        <isNotNull prepend="," property="detailData" >
+          detail_data
+        </isNotNull>
+        <isNotNull prepend="," property="reqRetCode" >
+          req_ret_code
+        </isNotNull>
+        <isNotNull prepend="," property="reqRetMsg" >
+          req_ret_msg
+        </isNotNull>
+        <isNotNull prepend="," property="successNum" >
+          success_num
+        </isNotNull>
+        <isNotNull prepend="," property="resultDetails" >
+          result_details
+        </isNotNull>
+        <isNotNull prepend="," property="transRetMsg" >
+          trans_ret_msg
+        </isNotNull>
+        <isNotNull prepend="," property="refundRetMsg" >
+          refund_ret_msg
+        </isNotNull>
+        <isNotNull prepend="," property="valsignRetCode" >
+          valsign_ret_code
+        </isNotNull>
+        <isNotNull prepend="," property="valsignRetMsg" >
+          valsign_ret_msg
+        </isNotNull>
+        <isNotNull prepend="," property="refundState" >
+          refund_state
+        </isNotNull>
+        <isNotNull prepend="," property="ackContent" >
+          ack_content
+        </isNotNull>
+        <isNotNull prepend="," property="confirmResult" >
+          confirm_result
+        </isNotNull>
+        <isNotNull prepend="," property="createTime" >
+          create_time
+        </isNotNull>
+        <isNotNull prepend="," property="respTime" >
+          resp_time
+        </isNotNull>
+        <isNotNull prepend="," property="completeTime" >
+          complete_time
+        </isNotNull>
+        <isNotNull prepend="," property="refundProfitDetails" >
+          refund_profit_details
+        </isNotNull>
+        <isNotNull prepend="," property="unfreezeDetails" >
+          unfreeze_details
+        </isNotNull>
+        )
+      </dynamic>
+      values
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="alipayRefundId" >
+          <![CDATA[ #alipayRefundId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="alipayId" >
+          <![CDATA[ #alipayId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="clientId" >
+          <![CDATA[ #clientId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="refundNum" >
+          <![CDATA[ #refundNum# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="orderNum" >
+          <![CDATA[ #orderNum# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="traceNum" >
+          <![CDATA[ #traceNum# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="transAmount" >
+          <![CDATA[ #transAmount# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="refundAmount" >
+          <![CDATA[ #refundAmount# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="refundComment" >
+          <![CDATA[ #refundComment# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="partner" >
+          <![CDATA[ #partner# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="sellerEmail" >
+          <![CDATA[ #sellerEmail# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="sellerId" >
+          <![CDATA[ #sellerId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="refundDate" >
+          <![CDATA[ #refundDate# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="detailData" >
+          <![CDATA[ #detailData# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="reqRetCode" >
+          <![CDATA[ #reqRetCode# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="reqRetMsg" >
+          <![CDATA[ #reqRetMsg# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="successNum" >
+          <![CDATA[ #successNum# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="resultDetails" >
+          <![CDATA[ #resultDetails# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="transRetMsg" >
+          <![CDATA[ #transRetMsg# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="refundRetMsg" >
+          <![CDATA[ #refundRetMsg# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="valsignRetCode" >
+          <![CDATA[ #valsignRetCode# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="valsignRetMsg" >
+          <![CDATA[ #valsignRetMsg# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="refundState" >
+          <![CDATA[ #refundState# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="ackContent" >
+          <![CDATA[ #ackContent# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="confirmResult" >
+          <![CDATA[ #confirmResult# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="createTime" >
+          <![CDATA[ #createTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="respTime" >
+          <![CDATA[ #respTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="completeTime" >
+          <![CDATA[ #completeTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="refundProfitDetails" >
+          <![CDATA[ #refundProfitDetails# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="unfreezeDetails" >
+          <![CDATA[ #unfreezeDetails# ]]>
+        </isNotNull>
+        )
+      </dynamic>
+    </insert>
+    <select id="paygate_alipay_refund.countByExample" parameterClass="com.ztravel.paygate.core.po.gen.AlipayRefundExample" resultClass="java.lang.Integer" >
+      select count(*) from paygate.alipay_refund
+      <include refid="common.Example_Where_Clause" />
+    </select>
+    <update id="paygate_alipay_refund.updateByExampleSelective" >
+      update paygate.alipay_refund
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="record.alipayRefundId" >
+          <![CDATA[ alipay_refund_id = #record.alipayRefundId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.alipayId" >
+          <![CDATA[ alipay_id = #record.alipayId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.clientId" >
+          <![CDATA[ client_id = #record.clientId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.refundNum" >
+          <![CDATA[ refund_num = #record.refundNum# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.orderNum" >
+          <![CDATA[ order_num = #record.orderNum# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.traceNum" >
+          <![CDATA[ trace_num = #record.traceNum# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.transAmount" >
+          <![CDATA[ trans_amount = #record.transAmount# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.refundAmount" >
+          <![CDATA[ refund_amount = #record.refundAmount# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.refundComment" >
+          <![CDATA[ refund_comment = #record.refundComment# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.partner" >
+          <![CDATA[ partner = #record.partner# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.sellerEmail" >
+          <![CDATA[ seller_email = #record.sellerEmail# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.sellerId" >
+          <![CDATA[ seller_id = #record.sellerId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.refundDate" >
+          <![CDATA[ refund_date = #record.refundDate# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.detailData" >
+          <![CDATA[ detail_data = #record.detailData# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.reqRetCode" >
+          <![CDATA[ req_ret_code = #record.reqRetCode# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.reqRetMsg" >
+          <![CDATA[ req_ret_msg = #record.reqRetMsg# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.successNum" >
+          <![CDATA[ success_num = #record.successNum# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.resultDetails" >
+          <![CDATA[ result_details = #record.resultDetails# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.transRetMsg" >
+          <![CDATA[ trans_ret_msg = #record.transRetMsg# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.refundRetMsg" >
+          <![CDATA[ refund_ret_msg = #record.refundRetMsg# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.valsignRetCode" >
+          <![CDATA[ valsign_ret_code = #record.valsignRetCode# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.valsignRetMsg" >
+          <![CDATA[ valsign_ret_msg = #record.valsignRetMsg# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.refundState" >
+          <![CDATA[ refund_state = #record.refundState# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.ackContent" >
+          <![CDATA[ ack_content = #record.ackContent# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.confirmResult" >
+          <![CDATA[ confirm_result = #record.confirmResult# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.createTime" >
+          <![CDATA[ create_time = #record.createTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.respTime" >
+          <![CDATA[ resp_time = #record.respTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.completeTime" >
+          <![CDATA[ complete_time = #record.completeTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.refundProfitDetails" >
+          <![CDATA[ refund_profit_details = #record.refundProfitDetails# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.unfreezeDetails" >
+          <![CDATA[ unfreeze_details = #record.unfreezeDetails# ]]>
+        </isNotNull>
+      </dynamic>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="paygate_alipay_refund.updateByExample" >
+      <![CDATA[
+      update paygate.alipay_refund
+      set alipay_refund_id = #record.alipayRefundId#,
+        alipay_id = #record.alipayId#,
+        client_id = #record.clientId#,
+        refund_num = #record.refundNum#,
+        order_num = #record.orderNum#,
+        trace_num = #record.traceNum#,
+        trans_amount = #record.transAmount#,
+        refund_amount = #record.refundAmount#,
+        refund_comment = #record.refundComment#,
+        partner = #record.partner#,
+        seller_email = #record.sellerEmail#,
+        seller_id = #record.sellerId#,
+        refund_date = #record.refundDate#,
+        detail_data = #record.detailData#,
+        req_ret_code = #record.reqRetCode#,
+        req_ret_msg = #record.reqRetMsg#,
+        success_num = #record.successNum#,
+        result_details = #record.resultDetails#,
+        trans_ret_msg = #record.transRetMsg#,
+        refund_ret_msg = #record.refundRetMsg#,
+        valsign_ret_code = #record.valsignRetCode#,
+        valsign_ret_msg = #record.valsignRetMsg#,
+        refund_state = #record.refundState#,
+        ack_content = #record.ackContent#,
+        confirm_result = #record.confirmResult#,
+        create_time = #record.createTime#,
+        resp_time = #record.respTime#,
+        complete_time = #record.completeTime#,
+        refund_profit_details = #record.refundProfitDetails#,
+        unfreeze_details = #record.unfreezeDetails#
+      ]]>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="paygate_alipay_refund.updateByPrimaryKeySelective" parameterClass="com.ztravel.paygate.core.po.gen.AlipayRefund" >
+      update paygate.alipay_refund
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="alipayId" >
+          <![CDATA[ alipay_id = #alipayId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="clientId" >
+          <![CDATA[ client_id = #clientId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="refundNum" >
+          <![CDATA[ refund_num = #refundNum# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="orderNum" >
+          <![CDATA[ order_num = #orderNum# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="traceNum" >
+          <![CDATA[ trace_num = #traceNum# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="transAmount" >
+          <![CDATA[ trans_amount = #transAmount# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="refundAmount" >
+          <![CDATA[ refund_amount = #refundAmount# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="refundComment" >
+          <![CDATA[ refund_comment = #refundComment# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="partner" >
+          <![CDATA[ partner = #partner# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="sellerEmail" >
+          <![CDATA[ seller_email = #sellerEmail# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="sellerId" >
+          <![CDATA[ seller_id = #sellerId# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="refundDate" >
+          <![CDATA[ refund_date = #refundDate# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="detailData" >
+          <![CDATA[ detail_data = #detailData# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="reqRetCode" >
+          <![CDATA[ req_ret_code = #reqRetCode# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="reqRetMsg" >
+          <![CDATA[ req_ret_msg = #reqRetMsg# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="successNum" >
+          <![CDATA[ success_num = #successNum# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="resultDetails" >
+          <![CDATA[ result_details = #resultDetails# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="transRetMsg" >
+          <![CDATA[ trans_ret_msg = #transRetMsg# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="refundRetMsg" >
+          <![CDATA[ refund_ret_msg = #refundRetMsg# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="valsignRetCode" >
+          <![CDATA[ valsign_ret_code = #valsignRetCode# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="valsignRetMsg" >
+          <![CDATA[ valsign_ret_msg = #valsignRetMsg# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="refundState" >
+          <![CDATA[ refund_state = #refundState# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="ackContent" >
+          <![CDATA[ ack_content = #ackContent# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="confirmResult" >
+          <![CDATA[ confirm_result = #confirmResult# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="createTime" >
+          <![CDATA[ create_time = #createTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="respTime" >
+          <![CDATA[ resp_time = #respTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="completeTime" >
+          <![CDATA[ complete_time = #completeTime# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="refundProfitDetails" >
+          <![CDATA[ refund_profit_details = #refundProfitDetails# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="unfreezeDetails" >
+          <![CDATA[ unfreeze_details = #unfreezeDetails# ]]>
+        </isNotNull>
+      </dynamic>
+      <![CDATA[
+      where alipay_refund_id = #alipayRefundId#
+      ]]>
+    </update>
+    <update id="paygate_alipay_refund.updateByPrimaryKey" parameterClass="com.ztravel.paygate.core.po.gen.AlipayRefund" >
+      <![CDATA[
+      update paygate.alipay_refund
+      set alipay_id = #alipayId#,
+        client_id = #clientId#,
+        refund_num = #refundNum#,
+        order_num = #orderNum#,
+        trace_num = #traceNum#,
+        trans_amount = #transAmount#,
+        refund_amount = #refundAmount#,
+        refund_comment = #refundComment#,
+        partner = #partner#,
+        seller_email = #sellerEmail#,
+        seller_id = #sellerId#,
+        refund_date = #refundDate#,
+        detail_data = #detailData#,
+        req_ret_code = #reqRetCode#,
+        req_ret_msg = #reqRetMsg#,
+        success_num = #successNum#,
+        result_details = #resultDetails#,
+        trans_ret_msg = #transRetMsg#,
+        refund_ret_msg = #refundRetMsg#,
+        valsign_ret_code = #valsignRetCode#,
+        valsign_ret_msg = #valsignRetMsg#,
+        refund_state = #refundState#,
+        ack_content = #ackContent#,
+        confirm_result = #confirmResult#,
+        create_time = #createTime#,
+        resp_time = #respTime#,
+        complete_time = #completeTime#,
+        refund_profit_details = #refundProfitDetails#,
+        unfreeze_details = #unfreezeDetails#
+      where alipay_refund_id = #alipayRefundId#
+      ]]>
+    </update>
+  </sqlMap>

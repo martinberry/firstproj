@@ -1,0 +1,6 @@
+apply plugin:"war"
+apply plugin: 'groovy'
+
+dependencies {
+    compile project(':ztr-paygate:ztravel-paygate-core')
+}

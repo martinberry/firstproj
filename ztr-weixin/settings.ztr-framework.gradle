@@ -1,0 +1,13 @@
+
+include ':ztr-framework:framework-thrift'
+include ':ztr-framework:framework-mybatis'
+include ':ztr-framework:framework-dao-base'
+include ':ztr-framework:framework-mongo'
+include ':ztr-framework:framework-redis'
+include ':ztr-framework:framework-spring'
+include ':ztr-framework:framework-config'
+include ':ztr-framework:framework-core'
+include ':ztr-framework:framework-logger'
+include ':ztr-framework:framework-logger-core'
+include ':ztr-framework:framework'
+

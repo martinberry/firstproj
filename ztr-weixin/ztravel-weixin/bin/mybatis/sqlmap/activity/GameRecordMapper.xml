@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.weixin.activity.entity.GameRecordEntityMapper" >
+	<resultMap id="BaseResultMap" type="com.ztravel.weixin.activity.entity.GameRecordEntity">
+	    <id column="id" jdbcType="VARCHAR" property="id" />
+	    <result column="game_id" jdbcType="VARCHAR" property="gameId" />
+	    <result column="game_result" jdbcType="VARCHAR" property="gameResult" />
+	    <result column="game_score" jdbcType="NUMERIC" property="gameScore" />
+	    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    </resultMap>
+
+	<insert id="insert" parameterType="com.ztravel.weixin.activity.entity.GameRecordEntity">
+		insert into activity.game_record
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        id,
+	      </if>
+	      <if test="gameId != null">
+	        game_id,
+	      </if>
+	      <if test="gameResult != null">
+	        game_result,
+	      </if>
+	      <if test="gameScore != null">
+	        game_score,
+	      </if>
+	      <if test="createTime != null">
+	        create_time,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        #{id,jdbcType=VARCHAR},
+	      </if>
+	      <if test="gameId != null">
+	        #{gameId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="gameResult != null">
+	        #{gameResult,jdbcType=VARCHAR},
+	      </if>
+	      <if test="gameScore != null">
+	        #{gameScore,jdbcType=NUMERIC},
+	      </if>
+	      <if test="createTime != null">
+	        #{createTime,jdbcType=TIMESTAMP},
+	      </if>
+	    </trim>
+	</insert>
+
+</mapper>

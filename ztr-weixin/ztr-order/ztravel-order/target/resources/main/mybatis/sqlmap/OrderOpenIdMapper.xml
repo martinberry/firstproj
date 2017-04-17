@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ztravel.order.po.OrderOpenIdMapper">
+
+  <resultMap id="BaseResultMap" type="com.ztravel.order.po.OrderOpenId" >
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="openid" property="openId" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="selectOpenIdByOrderId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    	order_id,openid
+    from
+    	ztorder.t_order_openid
+    where
+    	order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectOrderOpenIdByOpenId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    	order_id,openid
+    from
+    	ztorder.t_order_openid
+    where
+    	openid = #{openId,jdbcType=VARCHAR}
+  </select>
+
+  <insert id="insert" parameterType="com.ztravel.order.po.OrderOpenId" >
+    	insert into ztorder.t_order_openid (order_id,openid)
+    	values (#{orderId,jdbcType=VARCHAR},#{openId,jdbcType=VARCHAR})
+  </insert>
+
+</mapper>

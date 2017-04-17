@@ -1,0 +1,7 @@
+dependencies {
+	compile project(":ztr-common:ztravel-dao")
+	
+	compile project(":ztr-common:ztravel-common-adapter")
+	
+	compile project(":ztr-common:ztravel-common-mediaclient")
+}

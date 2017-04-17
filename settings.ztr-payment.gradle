@@ -1,0 +1,4 @@
+include ':ztr-payment:ztravel-payment'
+include ':ztr-payment:ztravel-payment-client'
+include ':ztr-payment:ztravel-payment-server'
+

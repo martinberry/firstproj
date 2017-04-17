@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+
+	<settings cacheModelsEnabled="true" enhancementEnabled="true"
+		lazyLoadingEnabled="true" errorTracingEnabled="true" maxRequests="100"
+		maxSessions="200" maxTransactions="5" useStatementNamespaces="true" />
+
+	<sqlMap resource="ibatis/sqlmap/gen/common_SqlMap.xml"/>
+	<sqlMap resource="ibatis/sqlmap/batch_sequence_SqlMap.xml" />
+	<sqlMap resource="ibatis/sqlmap/gen/paygate_alipay_SqlMap.xml" />
+	<sqlMap resource="ibatis/sqlmap/gen/paygate_alipay_refund_SqlMap.xml" />
+	<sqlMap resource="ibatis/sqlmap/gen/paygate_paygate_client_SqlMap.xml" />
+</sqlMapConfig>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.payment.po.AccountMapper" >
+	<resultMap id="BaseResultMap" type="com.ztravel.payment.po.Account">
+	    <id column="account_id" jdbcType="VARCHAR" property="accountId" />
+	    <result column="member_id" jdbcType="VARCHAR" property="memberId" />
+	    <result column="amount" jdbcType="NUMERIC" property="amount" />
+	    <result column="available_amount" jdbcType="NUMERIC" property="availableAmount" />
+	    <result column="frozen_amount" jdbcType="NUMERIC" property="frozenAmount" />
+	    <result column="is_active" jdbcType="BOOLEAN" property="isActive" />
+	    <result column="createdby" jdbcType="VARCHAR" property="createdby" />
+	    <result column="updatedby" jdbcType="VARCHAR" property="updatedby" />
+	    <result column="created" jdbcType="TIMESTAMP" property="created" />
+	    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
+    </resultMap>
+
+	<sql id="Base_Column_List">
+	    account_id, member_id, amount, available_amount, frozen_amount, is_active, createdby, updatedby, created,
+	    updated
+	</sql>
+
+	<select id="selectByMemberId" resultMap="BaseResultMap" parameterType="string">
+		select
+		<include refid="Base_Column_List" />
+		from payment.t_account
+		where member_id=#{memberId,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="selectForUpdate" resultMap="BaseResultMap" parameterType="string">
+		select
+		<include refid="Base_Column_List" />
+		from payment.t_account
+		where member_id=#{memberId,jdbcType=VARCHAR} and is_active='true' for update
+	</select>
+
+	<insert id="insert" parameterType="com.ztravel.payment.po.Account">
+		insert into payment.t_account
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="accountId != null">
+	        account_id,
+	      </if>
+	      <if test="memberId != null">
+	        member_id,
+	      </if>
+	      <if test="amount != null">
+	        amount,
+	      </if>
+	      <if test="availableAmount != null">
+	        available_amount,
+	      </if>
+	       <if test="frozenAmount != null">
+	        frozen_amount,
+	      </if>
+	      <if test="isActive != null">
+	        is_active,
+	      </if>
+	      <if test="createdby != null">
+	        createdby,
+	      </if>
+	      <if test="updatedby != null">
+	        updatedby,
+	      </if>
+	      <if test="created != null">
+	        created,
+	      </if>
+	      <if test="updated != null">
+	        updated,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="accountId != null">
+	        #{accountId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="memberId != null">
+	        #{memberId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="amount != null">
+	        #{amount,jdbcType=NUMERIC},
+	      </if>
+	      <if test="availableAmount != null">
+	        #{availableAmount,jdbcType=NUMERIC},
+	      </if>
+	      <if test="frozenAmount != null">
+	        #{frozenAmount,jdbcType=NUMERIC},
+	      </if>
+	      <if test="isActive != null">
+	        #{isActive,jdbcType=BOOLEAN},
+	      </if>
+	      <if test="createdby != null">
+	        #{createdby,jdbcType=VARCHAR},
+	      </if>
+	      <if test="updatedby != null">
+	        #{updatedby,jdbcType=VARCHAR},
+	      </if>
+	      <if test="created != null">
+	        #{created,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="updated != null">
+	        #{updated,jdbcType=TIMESTAMP},
+	      </if>
+	    </trim>
+	</insert>
+	
+	<update id="update" parameterType="com.ztravel.payment.po.Account">
+		update payment.t_account
+		<set>
+			<if test="memberId != null">
+				member_id = #{memberId,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				amount = #{amount,jdbcType=NUMERIC},
+			</if>
+			<if test="availableAmount != null">
+				available_amount = #{availableAmount,jdbcType=NUMERIC},
+			</if>
+			<if test="frozenAmount != null">
+				frozen_amount = #{frozenAmount,jdbcType=NUMERIC},
+			</if>
+			<if test="isActive != null">
+				is_active = #{isActive,jdbcType=BOOLEAN},
+			</if>
+			<if test="createdby != null">
+				createdby = #{createdby,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedby != null">
+				updatedby = #{updatedby,jdbcType=VARCHAR},
+			</if>
+			<if test="created != null">
+				created = #{created,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updated != null">
+				updated = #{updated,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where account_id = #{accountId,jdbcType=VARCHAR}
+	</update>
+
+</mapper>

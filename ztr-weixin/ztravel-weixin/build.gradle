@@ -1,0 +1,7 @@
+dependencies {
+    compile project(":ztr-common:ztravel-common")
+    compile project(":ztr-sso:ztravel-sso-client")
+    compile project(":ztr-product:ztravel-product-client")
+    compile project(":ztr-common:ztravel-common-mediaclient")
+    compile project(":ztr-weixin:ztravel-weixin-client")
+}

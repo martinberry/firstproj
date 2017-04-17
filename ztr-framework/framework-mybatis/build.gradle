@@ -1,0 +1,28 @@
+group = 'com.ztravel'
+version = "${versions.ztravel}"
+
+dependencies {
+    compile libraries.cglib_nodep
+//    compile 'org.javassist:javassist:3.17.1-GA'
+//    compile 'org.apache.logging.log4j:log4j-core:2.0-rc1'
+//    compile 'ognl:ognl:2.6.9'
+//    compile 'org.slf4j:slf4j-api:1.7.5'
+//    compile 'log4j:log4j:1.2.17'
+//    compile 'commons-logging:commons-logging:1.1.1'
+//	compile 'org.slf4j:jcl-over-slf4j:1.7.7'
+//	compile 'org.slf4j:log4j-over-slf4j:1.7.7'
+//	compile libraries.log4j
+	compile libraries.javassist
+	compile libraries.ognl
+	compile libraries.slf4j_api
+	compile libraries.jcl_over_slf4j
+	compile libraries.log4j_over_slf4j
+	compile libraries.mybatis_spring
+	compile libraries.mybatis_generator
+	compile libraries.mybatis_generator_plugins
+	compile libraries.ant
+	compile libraries.joda_time
+//	compile 'org.springframework:spring-core:3.1.4.RELEASE'
+	compile libraries.spring_core
+}
+

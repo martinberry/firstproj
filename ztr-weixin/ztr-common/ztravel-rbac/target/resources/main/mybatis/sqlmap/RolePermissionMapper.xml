@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.rbac.entity.RolePermissionMapper" >
+<resultMap id="BaseResultMap" type="com.ztravel.rbac.entity.RolePermission" >
+    <result column="role_id" property="roleId" jdbcType="VARCHAR" />
+    <result column="permission_id" property="permissionId" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+	    role_id, permission_id
+	</sql>
+
+	<select id="countByRoleId" resultType="Integer" parameterType="map">
+        select count(permission_id) from rbac.t_role_permission
+        <where>
+            <if test="roleId != null">
+                role_id = #{roleId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectByRoleId" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List" />
+        from rbac.t_role_permission
+        <where>
+            <if test="roleId != null">
+                role_id = #{roleId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteByRoleId" parameterType="string">
+    DELETE FROM rbac.t_role_permission WHERE role_id = #{roleId,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insertBatch" parameterType="java.util.List">
+    insert into rbac.t_role_permission (role_id,permission_id)
+    values
+    <foreach collection="list" item="item" index="index" separator="," >
+        (#{item.roleId,jdbcType=VARCHAR},#{item.permissionId,jdbcType=VARCHAR})
+    </foreach>
+</insert>
+
+    <insert id="insert" parameterType="com.ztravel.rbac.entity.RolePermission">
+		insert into rbac.t_role_permission
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="roleId != null">
+	        role_id,
+	      </if>
+	      <if test="permissionId != null">
+	        permission_id,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="roleId != null">
+	        #{roleId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="permissionId != null">
+	        #{permissionId,jdbcType=VARCHAR},
+	      </if>
+	    </trim>
+	</insert>
+
+</mapper>

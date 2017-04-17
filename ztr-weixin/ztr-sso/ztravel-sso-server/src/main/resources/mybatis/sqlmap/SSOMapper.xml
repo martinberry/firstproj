@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.sso.po.SSOBasicEntityMapper" >
+
+    <resultMap id="BasicResultMap" type="com.ztravel.sso.po.SSOBasicEntity">
+	    <id column="id" jdbcType="VARCHAR" property="id" />
+	    <result column="mid" jdbcType="VARCHAR" property="mid" />
+	    <result column="email" jdbcType="VARCHAR" property="email" />
+	    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+	    <result column="head_image_id" jdbcType="VARCHAR" property="headImageId" />
+	    <result column="last_login_date" jdbcType="TIMESTAMP" property="lastLoginDate" />
+	    <result column="is_active" jdbcType="BOOLEAN" property="isActive" />
+	    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+        <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    </resultMap>
+
+	<select id="selectByMobilePassword" resultMap="BasicResultMap" parameterType="map">
+		<![CDATA[select id, mid, email, mobile, last_login_date, head_image_id, is_active, nick_name,open_id from member.t_member
+		where password=#{password,jdbcType=VARCHAR} and mobile=#{account,jdbcType=VARCHAR}]]>
+	</select>
+
+	<select id="selectByEmailPassword" resultMap="BasicResultMap" parameterType="map">
+		<![CDATA[select id, mid, email, mobile, last_login_date, head_image_id, is_active, nick_name,open_id from member.t_member
+		where password=#{password,jdbcType=VARCHAR} and email=#{account,jdbcType=VARCHAR}]]>
+	</select>
+
+    <select id="selectById" resultMap="BasicResultMap" parameterType="string">
+        <![CDATA[select id, mid, email, mobile, last_login_date, head_image_id, is_active, nick_name,open_id from member.t_member
+        where id=#{id,jdbcType=VARCHAR}]]>
+    </select>
+
+    <select id="selectByOpenId" resultMap="BasicResultMap" parameterType="string">
+        <![CDATA[select id, mid, email, mobile, last_login_date, head_image_id, is_active, nick_name,open_id from member.t_member
+        where open_id =#{openId,jdbcType=VARCHAR}]]>
+    </select>
+
+	<update id="updateMemberLastLoginDate" parameterType="map">
+		update member.t_member set last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP}
+	    where id=#{id,jdbcType=VARCHAR}
+	</update>
+
+    <update id="updateMemberOpenId" parameterType="map">
+        update member.t_member set open_id = #{openId,jdbcType=VARCHAR}
+        where id=#{id,jdbcType=VARCHAR} and is_active = 't'
+          <if test="openId != null">
+           and  open_id is null
+          </if>
+          <if test="openId == null">
+           and  open_id is not null
+          </if>
+    </update>
+
+	<insert id="insert" parameterType="com.ztravel.sso.po.SSOBasicEntity">
+		insert into member.t_member
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        id,
+	      </if>
+	      <if test="mid != null">
+	        mid,
+	      </if>
+	      <if test="nickName != null">
+	        nick_name,
+	      </if>
+	      <if test="realName != null">
+	        real_name,
+	      </if>
+	      <if test="password != null">
+	        password,
+	      </if>
+	      <if test="email != null">
+	        email,
+	      </if>
+	      <if test="area != null">
+	        area,
+	      </if>
+	      <if test="detailAddress != null">
+	        detail_address,
+	      </if>
+	      <if test="mobile != null">
+	        mobile,
+	      </if>
+	      <if test="province != null">
+	        province,
+	      </if>
+	      <if test="city != null">
+	        city,
+	      </if>
+	      <if test="lastLoginDate != null">
+	        last_login_date,
+	      </if>
+	      <if test="isActive != null">
+	        is_active,
+	      </if>
+	      <if test="updateTime != null">
+	        updatetime,
+	      </if>
+	      <if test="createTime != null">
+	        createtime,
+	      </if>
+	      <if test="headImageId != null">
+	        head_image_id,
+	      </if>
+          <if test="openId != null">
+            open_id,
+          </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        #{id,jdbcType=VARCHAR},
+	      </if>
+	      <if test="mid != null">
+	        #{mid,jdbcType=VARCHAR},
+	      </if>
+	      <if test="nickName != null">
+	        #{nickName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="realName != null">
+	        #{realName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="password != null">
+	        #{password,jdbcType=VARCHAR},
+	      </if>
+	      <if test="email != null">
+	        #{email,jdbcType=VARCHAR},
+	      </if>
+	      <if test="area != null">
+	        #{area,jdbcType=VARCHAR},
+	      </if>
+	      <if test="detailAddress != null">
+	        #{detailAddress,jdbcType=VARCHAR},
+	      </if>
+	      <if test="mobile != null">
+	        #{mobile,jdbcType=VARCHAR},
+	      </if>
+	      <if test="province != null">
+	        #{province,jdbcType=VARCHAR},
+	      </if>
+	      <if test="city != null">
+	        #{city,jdbcType=VARCHAR},
+	      </if>
+	      <if test="lastLoginDate != null">
+	        #{lastLoginDate,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="isActive != null">
+	        #{isActive,jdbcType=BOOLEAN},
+	      </if>
+	      <if test="updateTime != null">
+	        #{updateTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="createTime != null">
+	        #{createTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="headImageId != null">
+	        #{headImageId,jdbcType=VARCHAR},
+	      </if>
+          <if test="openId != null">
+            #{openId,jdbcType=VARCHAR},
+          </if>
+	    </trim>
+	</insert>
+
+</mapper>

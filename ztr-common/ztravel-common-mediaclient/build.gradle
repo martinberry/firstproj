@@ -1,0 +1,11 @@
+
+group = 'com.ztravel'
+version = "${versions.ztravel}"
+
+jar { baseName =  "ztravel-common-mediaclient" }
+
+dependencies {
+	compile project(":ztr-framework:framework")
+    compile project(":ztr-common:ztravel-mq")	
+	compile libraries.httpclient
+}

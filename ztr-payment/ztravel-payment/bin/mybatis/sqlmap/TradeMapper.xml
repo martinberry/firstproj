@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.payment.po.TradeMapper">
+	<resultMap id="BaseResultMap" type="com.ztravel.payment.po.Trade">
+		<id column="trade_id" jdbcType="VARCHAR" property="tradeId" />
+		<result column="member_id" jdbcType="VARCHAR" property="memberId" />
+		<result column="order_id" jdbcType="VARCHAR" property="orderId" />
+		<result column="order_type" jdbcType="VARCHAR" property="orderType" />
+		<result column="trade_type" jdbcType="VARCHAR" property="tradeType" />
+		<result column="product_type" jdbcType="VARCHAR" property="productType" />
+		<result column="order_amount" jdbcType="NUMERIC" property="orderAmount" />
+		<result column="trade_amount" jdbcType="NUMERIC" property="tradeAmount" />
+		<result column="payment_type" jdbcType="VARCHAR" property="paymentType" />
+		<result column="comment" jdbcType="VARCHAR" property="comment" />
+		<result column="trade_date" jdbcType="TIMESTAMP" property="tradeDate" />
+		<result column="trade_status" jdbcType="VARCHAR" property="tradeStatus" />
+		<result column="trace_num" jdbcType="VARCHAR" property="traceNum" />
+		<result column="bank_payment_time" jdbcType="VARCHAR" property="bankPaymentTime" />
+		<result column="coupon_item_id" jdbcType="VARCHAR" property="couponItemId" />
+		<result column="createdby" jdbcType="VARCHAR" property="createdby" />
+		<result column="updatedby" jdbcType="VARCHAR" property="updatedby" />
+		<result column="created" jdbcType="TIMESTAMP" property="created" />
+		<result column="updated" jdbcType="TIMESTAMP" property="updated" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		trade_id, member_id, order_id, order_type, trade_type, product_type, order_amount, trade_amount,
+		payment_type, comment,
+		trade_date, trade_status, trace_num, bank_payment_time, coupon_item_id, createdby, updatedby,
+		created,
+		updated
+	</sql>
+
+	<sql id="Order_By_Trade_Date_Clause">
+		order by trade_date desc
+	</sql>
+
+	<select id="selectByOrderId" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from payment.t_trade
+		where order_id=#{orderId,jdbcType=VARCHAR} and payment_type=#{paymentType,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectByOrderId2" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from payment.t_trade
+		where order_id=#{orderId,jdbcType=VARCHAR} and payment_type=#{paymentType,jdbcType=VARCHAR} and trade_type=#{tradeType,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectTrades" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from payment.t_trade
+		<where>
+			<if test="memberId != null">
+				member_id=#{memberId,jdbcType=VARCHAR}
+			</if>
+			<if test="orderId != null">
+				and order_id=#{orderId,jdbcType=VARCHAR}
+			</if>
+			<if test="traceNum != null">
+				and trace_num=#{traceNum,jdbcType=VARCHAR}
+			</if>
+			<if test="orderType != null">
+				and order_type=#{orderType,jdbcType=VARCHAR}
+			</if>
+			<if test="tradeType != null">
+				and trade_type=#{tradeType,jdbcType=VARCHAR}
+			</if>
+			<if test="productType != null">
+				and product_type=#{productType,jdbcType=VARCHAR}
+			</if>
+			<if test="paymentType != null">
+				and payment_type=#{paymentType,jdbcType=VARCHAR}
+			</if>
+			<if test="tradeStatus != null">
+				and trade_status=#{tradeStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="conditionTradeFrom != null">
+				and <![CDATA[trade_date >= #{conditionTradeFrom,jdbcType=TIMESTAMP}]]>
+			</if>
+			<if test="conditionTradeTo != null">
+			 	and <![CDATA[trade_date <= #{conditionTradeTo,jdbcType=TIMESTAMP}]]>
+			</if>
+		</where>
+		<include refid="Order_By_Trade_Date_Clause" />
+		<if test="offset != null">
+			offset #{offset}
+		</if>
+		<if test="limit != null">
+			limit #{limit}
+		</if>
+	</select>
+
+	<select id="countTrades" parameterType="map" resultType="java.lang.Integer">
+		select count(*)
+		from payment.t_trade
+		<where>
+			<if test="memberId != null">
+				member_id=#{memberId,jdbcType=VARCHAR}
+			</if>
+			<if test="orderId != null">
+				and order_id=#{orderId,jdbcType=VARCHAR}
+			</if>
+			<if test="traceNum != null">
+				and trace_num=#{traceNum,jdbcType=VARCHAR}
+			</if>
+			<if test="orderType != null">
+				and order_type=#{orderType,jdbcType=VARCHAR}
+			</if>
+			<if test="tradeType != null">
+				and trade_type=#{tradeType,jdbcType=VARCHAR}
+			</if>
+			<if test="productType != null">
+				and product_type=#{productType,jdbcType=VARCHAR}
+			</if>
+			<if test="paymentType != null">
+				and payment_type=#{paymentType,jdbcType=VARCHAR}
+			</if>
+			<if test="tradeStatus != null">
+				and trade_status=#{tradeStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="conditionTradeFrom != null">
+				and <![CDATA[trade_date >= #{conditionTradeFrom,jdbcType=TIMESTAMP}]]>
+			</if>
+			<if test="conditionTradeTo != null">
+			 	and <![CDATA[trade_date <= #{conditionTradeTo,jdbcType=TIMESTAMP}]]>
+			</if>
+		</where>
+	</select>
+
+	<insert id="insert" parameterType="com.ztravel.payment.po.Trade">
+		insert into payment.t_trade
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="tradeId != null">
+				trade_id,
+			</if>
+			<if test="memberId != null">
+				member_id,
+			</if>
+			<if test="orderId != null">
+				order_id,
+			</if>
+			<if test="orderType != null">
+				order_type,
+			</if>
+			<if test="tradeType != null">
+				trade_type,
+			</if>
+			<if test="productType != null">
+				product_type,
+			</if>
+			<if test="orderAmount != null">
+				order_amount,
+			</if>
+			<if test="tradeAmount != null">
+				trade_amount,
+			</if>
+			<if test="paymentType != null">
+				payment_type,
+			</if>
+			<if test="comment != null">
+				comment,
+			</if>
+			<if test="tradeDate != null">
+				trade_date,
+			</if>
+			<if test="tradeStatus != null">
+				trade_status,
+			</if>
+			<if test="traceNum != null">
+				trace_num,
+			</if>
+			<if test="bankPaymentTime != null">
+				bank_payment_time,
+			</if>
+			<if test="couponItemId != null">
+				coupon_item_id,
+			</if>
+			<if test="createdby != null">
+				createdby,
+			</if>
+			<if test="updatedby != null">
+				updatedby,
+			</if>
+			<if test="created != null">
+				created,
+			</if>
+			<if test="updated != null">
+				updated,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="tradeId != null">
+				#{tradeId,jdbcType=VARCHAR},
+			</if>
+			<if test="memberId != null">
+				#{memberId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderId != null">
+				#{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderType != null">
+				#{orderType,jdbcType=VARCHAR},
+			</if>
+			<if test="tradeType != null">
+				#{tradeType,jdbcType=VARCHAR},
+			</if>
+			<if test="productType != null">
+				#{productType,jdbcType=VARCHAR},
+			</if>
+			<if test="orderAmount != null">
+				#{orderAmount,jdbcType=NUMERIC},
+			</if>
+			<if test="tradeAmount != null">
+				#{tradeAmount,jdbcType=NUMERIC},
+			</if>
+			<if test="paymentType != null">
+				#{paymentType,jdbcType=VARCHAR},
+			</if>
+			<if test="comment != null">
+				#{comment,jdbcType=VARCHAR},
+			</if>
+			<if test="tradeDate != null">
+				#{tradeDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="tradeStatus != null">
+				#{tradeStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="traceNum != null">
+				#{traceNum,jdbcType=VARCHAR},
+			</if>
+			<if test="bankPaymentTime != null">
+				#{bankPaymentTime,jdbcType=VARCHAR},
+			</if>
+			<if test="couponItemId != null">
+				#{couponItemId,jdbcType=VARCHAR},
+			</if>
+			<if test="createdby != null">
+				#{createdby,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedby != null">
+				#{updatedby,jdbcType=VARCHAR},
+			</if>
+			<if test="created != null">
+				#{created,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updated != null">
+				#{updated,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.ztravel.payment.po.Trade">
+		update payment.t_trade
+		<set>
+			<if test="memberId != null">
+				member_id = #{memberId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderId != null">
+				order_id = #{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderType != null">
+				order_type = #{orderType,jdbcType=VARCHAR},
+			</if>
+			<if test="tradeType != null">
+				trade_type = #{tradeType,jdbcType=VARCHAR},
+			</if>
+			<if test="productType != null">
+				product_type = #{productType,jdbcType=VARCHAR},
+			</if>
+			<if test="orderAmount != null">
+				order_amount = #{orderAmount,jdbcType=NUMERIC},
+			</if>
+			<if test="tradeAmount != null">
+				trade_amount = #{tradeAmount,jdbcType=NUMERIC},
+			</if>
+			<if test="paymentType != null">
+				payment_type = #{paymentType,jdbcType=VARCHAR},
+			</if>
+			<if test="comment != null">
+				comment = #{comment,jdbcType=VARCHAR},
+			</if>
+			<if test="tradeDate != null">
+				trade_date = #{tradeDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="tradeStatus != null">
+				trade_status = #{tradeStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="traceNum != null">
+				trace_num = #{traceNum,jdbcType=VARCHAR},
+			</if>
+			<if test="bankPaymentTime != null">
+				bank_payment_time = #{bankPaymentTime,jdbcType=VARCHAR},
+			</if>
+			<if test="couponItemId != null">
+				coupon_item_id = #{couponItemId,jdbcType=VARCHAR},
+			</if>
+			<if test="createdby != null">
+				createdby = #{createdby,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedby != null">
+				updatedby = #{updatedby,jdbcType=VARCHAR},
+			</if>
+			<if test="created != null">
+				created = #{created,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updated != null">
+				updated = #{updated,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where trade_id = #{tradeId,jdbcType=VARCHAR}
+	</update>
+
+</mapper>

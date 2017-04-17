@@ -1,0 +1,8 @@
+apply plugin: 'war'
+
+dependencies {
+	compile project(':ztr-paygate:ztravel-paygate-core')
+	compile project(':ztr-payment:ztravel-payment')
+	compile libraries.jackson_mapper_asl
+	providedCompile libraries.servlet_api
+}

@@ -1,0 +1,10 @@
+apply plugin : 'eclipse'
+dependencies {
+    compile project(":ztr-common:ztravel-common")
+    compile project(":ztr-payment:ztravel-payment-client")
+    compile project(":ztr-order:ztravel-order-client")
+    compile project(":ztr-paygate:ztravel-paygate-wx-client")
+    compile project(":ztr-product:ztravel-product-client")
+    compile libraries.guava
+    testCompile libraries.junit
+}

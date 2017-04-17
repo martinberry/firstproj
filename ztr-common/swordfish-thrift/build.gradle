@@ -1,0 +1,21 @@
+apply plugin : 'eclipse'
+
+
+group = 'com.travelzen'
+version = "${versions.swordfish}"
+
+sourceSets.main.java.srcDirs 'src/main/gen'
+
+dependencies {
+//	compile libraries.jackson_mapper_asl
+//	compile libraries.framework_thrift_client_pool
+//	compile framework.framework_thrift
+//	compile project(':swordfish-common') 
+
+	compile libraries.spring_aop
+
+	compile project(":ztr-framework:framework")
+	compile project(":ztr-framework:framework-thrift")
+	compile project(":ztr-framework:framework-logger")
+	compile project(":ztr-framework:framework-logger-core")
+}

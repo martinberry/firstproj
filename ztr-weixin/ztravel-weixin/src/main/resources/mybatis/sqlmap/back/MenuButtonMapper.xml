@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.weixin.back.entity.MenuButtonMapper" >
+	<resultMap id="BaseResultMap" type="com.ztravel.weixin.back.entity.MenuButton">
+	    <id column="button_id" jdbcType="VARCHAR" property="buttonId" />
+	    <result column="name" jdbcType="VARCHAR" property="name" />
+	    <result column="parent_button_id" jdbcType="VARCHAR" property="parentButtonId" />
+	    <result column="button_level" jdbcType="VARCHAR" property="buttonLevel" />
+	    <result column="type" jdbcType="VARCHAR" property="type" />
+	    <result column="key" jdbcType="VARCHAR" property="key" />
+	    <result column="url" jdbcType="VARCHAR" property="url" />
+	    <result column="media_id" jdbcType="VARCHAR" property="mediaId" />
+	    <result column="priority" jdbcType="NUMERIC" property="priority" />
+	    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+	    <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="state" jdbcType="NUMERIC" property="state" />
+          <result column="view_state_id" jdbcType="VARCHAR" property="viewStateId" />
+             <result column="wx_url_flag" jdbcType="VARCHAR" property="wxUrlFlag" />
+    </resultMap>
+
+   <select id="select" resultMap="BaseResultMap" parameterType="map">
+		SELECT * FROM weixin.menu_button where 1=1
+	      <if test="buttonId != null">
+	       and button_id =  #{buttonId,jdbcType=VARCHAR}
+	      </if>
+	      <if test="name != null">
+	        and name = #{name,jdbcType=VARCHAR}
+	      </if>
+	      <if test="parentButtonId != null">
+	       and  parent_button_id = #{parentButtonId,jdbcType=VARCHAR}
+	      </if>
+	       <if test="buttonLevel != null">
+	        and button_level = #{buttonLevel,jdbcType=NUMERIC}
+	      </if>
+	      <if test="type != null">
+	        and type = #{type,jdbcType=VARCHAR}
+	      </if>
+	        <if test="key != null">
+	        and key = #{key,jdbcType=VARCHAR}
+	      </if>
+	        <if test="url != null">
+	        and url = #{url,jdbcType=VARCHAR}
+	      </if>
+	        <if test="mediaId != null">
+	        and mediaId = #{mediaId,jdbcType=VARCHAR}
+	      </if>
+	        <if test="priority != null">
+	        and priority = #{priority,jdbcType=NUMERIC}
+	      </if>
+	        <if test="createTime != null">
+	       and create_time = #{createTime,jdbcType=TIMESTAMP}
+	      </if>
+   		<if test="remark != null">
+	        and remark = #{remark,jdbcType=VARCHAR}
+	      </if>
+	      <if test="state != null">
+	        and state = #{state,jdbcType=NUMERIC}
+	      </if>
+	      <if test="viewStateId != null">
+	        and view_state_id = #{viewStateId,jdbcType=VARCHAR}
+	      </if>
+	        <if test="wxUrlFlag != null">
+	        and wx_url_flag = #{wxUrlFlag,jdbcType=VARCHAR}
+	      </if>
+	       <if test="orderBy != null">
+	       order by priority ${orderBy}
+	      </if>
+	</select>
+
+     <select id="selectAll" resultMap="BaseResultMap">
+		SELECT * FROM weixin.menu_button
+	</select>
+
+	<insert id="insert" parameterType="com.ztravel.weixin.back.entity.MenuButton">
+		insert into weixin.menu_button
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="buttonId != null">
+	        button_id,
+	      </if>
+	      <if test="name != null">
+	        name,
+	      </if>
+	        <if test="buttonLevel != null">
+	        button_level,
+	      </if>
+	      <if test="parentButtonId != null">
+	        parent_button_id,
+	      </if>
+	      <if test="type != null">
+	        type,
+	      </if>
+	        <if test="key != null">
+	        key,
+	      </if>
+	        <if test="url != null">
+	        url,
+	      </if>
+	         <if test="mediaId != null">
+	        media_id,
+	      </if>
+	         <if test="priority != null">
+	        priority,
+	      </if>
+	         <if test="remark != null">
+	        remark,
+	      </if>
+	         <if test="state != null">
+	        state,
+	      </if>
+	        <if test="createTime != null">
+	        create_time,
+	      </if>
+	          <if test="viewStateId != null">
+	        view_state_id,
+	      </if>
+	          <if test="wxUrlFlag != null">
+	        wx_url_flag,
+	      </if>
+
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="buttonId != null">
+	        #{buttonId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="name != null">
+	        #{name,jdbcType=VARCHAR},
+	      </if>
+	      <if test="buttonLevel != null">
+	        #{buttonLevel,jdbcType=NUMERIC},
+	      </if>
+	      <if test="parentButtonId != null">
+	        #{parentButtonId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="type != null">
+	        #{type,jdbcType=VARCHAR},
+	      </if>
+	        <if test="key != null">
+	        #{key,jdbcType=VARCHAR},
+	      </if>
+	        <if test="url != null">
+	        #{url,jdbcType=VARCHAR},
+	      </if>
+	        <if test="mediaId != null">
+	        #{mediaId,jdbcType=VARCHAR},
+	      </if>
+	        <if test="priority != null">
+	        #{priority,jdbcType=NUMERIC},
+	      </if>
+	   		<if test="remark != null">
+		        #{remark,jdbcType=VARCHAR},
+		      </if>
+		      <if test="state != null">
+		        #{state,jdbcType=NUMERIC},
+		      </if>
+		        <if test="createTime != null">
+		        #{createTime,jdbcType=TIMESTAMP},
+		      </if>
+		      	<if test="viewStateId != null">
+		        #{viewStateId,jdbcType=VARCHAR},
+		      </if>
+		      	<if test="wxUrlFlag != null">
+		        #{wxUrlFlag,jdbcType=VARCHAR},
+		      </if>
+	    </trim>
+	</insert>
+
+	<delete id="deleteById" parameterType="String">
+    	DELETE FROM weixin.menu_button WHERE button_id = #{buttonId,jdbcType=VARCHAR}
+	</delete>
+
+	<delete id="deleteAll">
+    	DELETE FROM weixin.menu_button WHERE 1=1;
+	</delete>
+</mapper>

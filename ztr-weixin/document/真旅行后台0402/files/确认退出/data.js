@@ -1,0 +1,126 @@
+﻿$axure.loadCurrentPage({
+  "url":"确认退出.html",
+  "generationDate":new Date(1427940048933.07),
+  "isCanvasEnabled":false,
+  "variables":["OnLoadVariable"],
+  "page":{
+    "packageId":"309d668f126449aba91561a36df7760c",
+    "type":"Axure:Page",
+    "name":"确认退出",
+    "notes":{
+},
+    "style":{
+      "baseStyle":"627587b6038d43cca051c114ac41ad32",
+      "pageAlignment":"near",
+      "fill":{
+        "fillType":"solid",
+        "color":0xFFFFFFFF},
+      "image":null,
+      "imageHorizontalAlignment":"near",
+      "imageVerticalAlignment":"near",
+      "imageRepeat":"auto",
+      "favicon":null,
+      "sketchFactor":"0",
+      "colorStyle":"appliedColor",
+      "fontName":"应用字体",
+      "borderWidth":"0"},
+    "adaptiveStyles":{
+},
+    "interactionMap":{
+},
+    "diagram":{
+      "objects":[{
+          "id":"488f5923ea45424796cc2b938484c5d9",
+          "label":"",
+          "type":"buttonShape",
+          "styleType":"buttonShape",
+          "visible":true,
+          "style":{
+            "fontName":"'应用字体 Regular', '应用字体'",
+            "verticalAlignment":"top",
+            "fill":{
+              "fillType":"solid",
+              "color":0xFFF2F2F2},
+            "size":{
+              "width":500,
+              "height":151}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"d233a46c13e54ff89e8ee857b1298e42",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "fontName":"'应用字体 Regular', '应用字体'",
+                "verticalAlignment":"top",
+                "fill":{
+                  "fillType":"solid",
+                  "color":0xFFF2F2F2},
+                "size":{
+                  "width":500,
+                  "height":151}},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"images/确认退出/u0.png"}},
+{
+          "id":"712b7ccdc47e4598adfe52b961983acc",
+          "label":"",
+          "type":"button",
+          "styleType":"button",
+          "visible":true,
+          "style":{
+            "fontName":"'应用字体 Regular', '应用字体'",
+            "location":{
+              "x":139,
+              "y":100},
+            "size":{
+              "width":100,
+              "height":25}},
+          "adaptiveStyles":{
+},
+          "interactionMap":{
+            "onClick":{
+              "description":"OnClick",
+              "cases":[{
+                  "description":"用例 1",
+                  "isNewIfGroup":false,
+                  "actions":[{
+                      "action":"linkWindow",
+                      "description":"Open 登陆页面 in New Window/Tab",
+                      "target":{
+                        "targetType":"page",
+                        "url":"登陆页面.html",
+                        "includeVariables":true},
+                      "linkType":"new"}]}]}},
+          "tabbable":true},
+{
+          "id":"d36be0db5e60496ca4053459d19c338a",
+          "label":"",
+          "type":"button",
+          "styleType":"button",
+          "visible":true,
+          "style":{
+            "fontName":"'应用字体 Regular', '应用字体'",
+            "location":{
+              "x":280,
+              "y":100},
+            "size":{
+              "width":100,
+              "height":25}},
+          "adaptiveStyles":{
+}}]}},
+  "masters":{
+},
+  "objectPaths":{
+    "488f5923ea45424796cc2b938484c5d9":{
+      "scriptId":"u0"},
+    "d233a46c13e54ff89e8ee857b1298e42":{
+      "scriptId":"u1"},
+    "712b7ccdc47e4598adfe52b961983acc":{
+      "scriptId":"u2"},
+    "d36be0db5e60496ca4053459d19c338a":{
+      "scriptId":"u3"}}});

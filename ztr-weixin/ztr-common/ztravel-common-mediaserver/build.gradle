@@ -1,0 +1,16 @@
+apply plugin: 'war'
+
+group = 'com.ztravel'
+
+dependencies {
+	compile project(":ztr-common:ztravel-common-mediaserver-dao")
+
+	compile libraries.spring_jdbc
+	compile libraries.spring_orm
+	compile libraries.spring_tx
+	compile libraries.spring_webmvc
+
+	providedCompile libraries.servlet_api
+	compile libraries.commons_io
+}
+

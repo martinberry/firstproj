@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ibatorConfiguration
+  PUBLIC "-//Apache Software Foundation//DTD Apache iBATIS Ibator Configuration 1.0//EN"
+  "http://ibatis.apache.org/dtd/ibator-config_1_0.dtd">
+
+<ibatorConfiguration>
+
+	<classPathEntry
+		location="/home/pengfei_zhao/.gradle/caches/modules-2/files-2.1/postgresql/postgresql/9.1-901.jdbc4/153f2f92a786f12fc111d0111f709012df87c808/postgresql-9.1-901.jdbc4.jar"/>
+
+	<ibatorContext id="FlatJava5" targetRuntime="Ibatis2Java5"
+		defaultModelType="flat">
+
+		<property name="suppressTypeWarnings" value="true" /> <!-- should be ignored -->
+
+		 <!-- Serializable化 -->
+        <ibatorPlugin type="org.apache.ibatis.ibator.plugins.SerializablePlugin" />
+
+		<ibatorPlugin type="org.apache.ibatis.ibator.plugins.EqualsHashCodePlugin" />
+
+		<ibatorPlugin type="org.apache.ibatis.ibator.plugins.SqlMapConfigPlugin">
+			<property name="targetPackage" value="ibatis.sqlmap.gen" />
+			<property name="targetProject"
+				value="/home/pengfei_zhao/work/git/tz-ztravel/ztr-front/ztravel-test/src/main/resources"/>
+		</ibatorPlugin>
+
+		<ibatorPlugin type="org.apache.ibatis.ibator.plugins.PaginationPlugin">
+			<property name="enablePagination" value="true" />
+			<property name="dbType" value="postgres" />
+		</ibatorPlugin>
+
+		<jdbcConnection driverClass="org.postgresql.Driver"
+			connectionURL="jdbc:postgresql://192.168.161.28:5436/ztravel" userId="postgres"
+			password="Abc12345" />
+
+		<javaModelGenerator targetPackage="com.ztravel.paygate.core.po.gen"
+			targetProject="/home/pengfei_zhao/work/git/tz-ztravel/ztr-front/ztravel-test/src/main/java">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="ibatis.sqlmap.gen"
+			targetProject="/home/pengfei_zhao/work/git/tz-ztravel/ztr-front/ztravel-test/src/main/resources">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<daoGenerator type="GENERIC-SI"
+			targetPackage="com.ztravel.paygate.core.dao.gen"
+			targetProject="/home/pengfei_zhao/work/git/tz-ztravel/ztr-front/ztravel-test/src/main/java">
+			<property name="enableSubPackages" value="false" />
+		</daoGenerator>
+		
+		
+		<table tableName="t_order_material_contactor" schema="ztorder"  domainObjectName="OrderMateriaContactor" />
+	</ibatorContext>
+
+</ibatorConfiguration>

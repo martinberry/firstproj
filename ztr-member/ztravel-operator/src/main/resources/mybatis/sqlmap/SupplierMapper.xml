@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.operator.financeMantain.po.SupplierMapper" >
+  <resultMap id="BaseResultMap" type="com.ztravel.operator.financeMantain.po.Supplier" >
+    <id column="supplier_id" property="supplierId" jdbcType="VARCHAR" />
+    <result column="supplier_name" property="supplierName" jdbcType="VARCHAR" />
+    <result column="account_bank" property="accountBank" jdbcType="VARCHAR" />
+    <result column="account_name" property="accountName" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="settlement_period" property="settlementPeriod" jdbcType="VARCHAR" />
+    <result column="bussiness_contacts" property="bussinessContacts" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="inner_contacts" property="innerContacts" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+
+
+      <!-- add by bzhou
+    -->
+
+    <select id="select" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select
+		*
+		from finance.t_supplier
+		<where>
+		<if test="supplierId != null">
+				supplier_id=#{supplierId,jdbcType=INTEGER}
+			</if>
+			<if test="supplierName != null">
+				supplier_name = #{supplierName,jdbcType=VARCHAR}
+			</if>
+		</where>
+		<include refid="Order_By_UPDATETIME_Clause" />
+		<if test="offset != null">
+			offset #{offset}
+		</if>
+		<if test="limit != null">
+			limit #{limit}
+		</if>
+	</select>
+
+	<select id="selectBySupplierName" resultMap="BaseResultMap" parameterType="string">
+		select
+		*
+		from finance.t_supplier
+		<where>
+				supplier_name like '%' || #{supplierName,jdbcType=VARCHAR} || '%'
+		</where>
+	</select>
+
+	    <select id="count" resultType="java.lang.Integer"  parameterType="java.util.Map">
+		select
+		count(*)
+		from finance.t_supplier
+		<where>
+			<if test="supplierName != null">
+				supplier_name=#{supplierName,jdbcType=VARCHAR}
+			</if>
+		</where>
+
+	</select>
+
+	<insert id="insert" parameterType="com.ztravel.operator.financeMantain.po.Supplier">
+		insert into finance.t_supplier
+
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="supplierId != null">
+				supplier_id,
+			</if>
+			<if test="supplierName != null">
+				supplier_name,
+			</if>
+			<if test="accountBank != null">
+				account_bank,
+			</if>
+			<if test="accountName != null">
+				account_name,
+			</if>
+			<if test="account != null">
+				account,
+			</if>
+			<if test="settlementPeriod != null">
+				settlement_period,
+			</if>
+			<if test="bussinessContacts != null">
+				bussiness_contacts,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="fax != null">
+				fax,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="innerContacts != null">
+				inner_contacts,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+				<if test="updateTime != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="supplierId != null">
+				#{supplierId,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierName != null">
+				#{supplierName,jdbcType=VARCHAR},
+			</if>
+			<if test="accountBank != null">
+				#{accountBank,jdbcType=VARCHAR},
+			</if>
+			<if test="accountName != null">
+				#{accountName,jdbcType=VARCHAR},
+			</if>
+			<if test="account != null">
+				#{account,jdbcType=NUMERIC},
+			</if>
+			<if test="settlementPeriod != null">
+				#{settlementPeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="bussinessContacts != null">
+				#{bussinessContacts,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="fax != null">
+				#{fax,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="innerContacts != null">
+				#{innerContacts,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+				<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+
+	<sql id="Order_By_UPDATETIME_Clause">
+		order by update_time desc
+	</sql>
+
+	<update id="update" parameterType="com.ztravel.operator.financeMantain.po.Supplier">
+		update finance.t_supplier
+		<set>
+			<if test="supplierName != null">
+				supplier_name = #{supplierName,jdbcType=VARCHAR},
+			</if>
+			<if test="accountBank != null">
+				account_bank = #{accountBank,jdbcType=VARCHAR},
+			</if>
+			<if test="account != null">
+				account = #{account,jdbcType=VARCHAR},
+			</if>
+			<if test="settlementPeriod != null">
+				settlement_period = #{settlementPeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="bussinessContacts != null">
+				bussiness_contacts = #{bussinessContacts,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="fax != null">
+				fax = #{fax,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="innerContacts != null">
+				inner_contacts = #{innerContacts,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where supplier_id = #{supplierId,jdbcType=NUMERIC}
+	</update>
+
+
+
+
+</mapper>

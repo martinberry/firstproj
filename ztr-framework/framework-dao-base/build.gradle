@@ -1,0 +1,31 @@
+group = 'com.ztravel'
+version = "${versions.ztravel}"
+//version = '1.0'
+
+jar { baseName =  'framework-dao-base' }
+dependencies {
+	compile project(':ztr-framework:framework-core')
+	compile project(':ztr-framework:framework-mongo')
+
+	compile 'org.mybatis:mybatis-spring:1.2.2'
+
+
+	compile (libraries.commons_pool){ force=true }
+
+	compile libraries.c3p0
+	compile libraries.commons_dbcp
+	compile libraries.mchange_commons_java
+
+	compile libraries.postgresql
+	compile libraries.spring_orm
+	compile libraries.spring_context
+	compile libraries.spring_security_core
+
+	//	compile (libraries.spring_core){ force=true }
+
+	compile libraries.ibatis
+	compile libraries.jdom
+
+	compile libraries.servlet_api
+
+}

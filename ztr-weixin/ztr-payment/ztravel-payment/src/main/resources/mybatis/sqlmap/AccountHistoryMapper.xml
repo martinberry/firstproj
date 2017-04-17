@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.payment.po.AccountHistoryMapper">
+	<resultMap id="BaseResultMap" type="com.ztravel.payment.po.AccountHistory">
+		<id column="account_history_id" jdbcType="VARCHAR" property="accountHistoryId" />
+		<result column="member_id" jdbcType="VARCHAR" property="memberId" />
+		<result column="order_id" jdbcType="VARCHAR" property="orderId" />
+		<result column="product_type" jdbcType="VARCHAR" property="productType" />
+		<result column="account_type" jdbcType="VARCHAR" property="accountType" />
+		<result column="amount" jdbcType="NUMERIC" property="amount" />
+		<result column="inout_type" jdbcType="VARCHAR" property="inoutType" />
+		<result column="inout_detail_type" jdbcType="VARCHAR" property="inoutDetailType" />
+		<result column="operate_date" jdbcType="TIMESTAMP" property="operateDate" />
+		<result column="createdby" jdbcType="VARCHAR" property="createdby" />
+		<result column="updatedby" jdbcType="VARCHAR" property="updatedby" />
+		<result column="created" jdbcType="TIMESTAMP" property="created" />
+		<result column="updated" jdbcType="TIMESTAMP" property="updated" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		account_history_id, member_id, order_id, product_type, account_type, amount, inout_type, inout_detail_type, operate_date,
+		createdby, updatedby, created, updated
+	</sql>
+
+	<sql id="Order_By_Operate_Date_Clause">
+		order by operate_date desc
+	</sql>
+
+	<select id="selectAccountHistory" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from payment.t_account_history
+		<where>
+			<if test="memberId != null">
+				member_id=#{memberId,jdbcType=VARCHAR}
+			</if>
+			<if test="orderId != null">
+				and order_id=#{orderId,jdbcType=VARCHAR}
+			</if>
+			<if test="productType != null">
+				and product_type=#{productType,jdbcType=VARCHAR}
+			</if>
+			<if test="accountType != null">
+				and account_type=#{accountType,jdbcType=VARCHAR}
+			</if>
+			<if test="inoutType != null">
+				and inout_type=#{inoutType,jdbcType=VARCHAR}
+			</if>
+			<if test="inoutDetailType != null">
+				and inout_detail_type=#{inoutDetailType,jdbcType=VARCHAR}
+			</if>
+			<if test="conditionOperateFrom != null">
+				and <![CDATA[operate_date >= #{conditionOperateFrom,jdbcType=TIMESTAMP}]]>
+			</if>
+			<if test="conditionOperateTo != null">
+			   and <![CDATA[operate_date <= #{conditionOperateTo,jdbcType=TIMESTAMP}]]>
+			</if>
+		</where>
+		<include refid="Order_By_Operate_Date_Clause" />
+		<if test="offset != null">
+			offset #{offset}
+		</if>
+		<if test="limit != null">
+			limit #{limit}
+		</if>
+	</select>
+
+	<select id="countAccountHistory" parameterType="map" resultType="java.lang.Integer">
+		select count(*)
+		from payment.t_account_history
+		<where>
+			<if test="memberId != null">
+				member_id=#{memberId,jdbcType=VARCHAR}
+			</if>
+			<if test="orderId != null">
+				and order_id=#{orderId,jdbcType=VARCHAR}
+			</if>
+			<if test="productType != null">
+				and product_type=#{productType,jdbcType=VARCHAR}
+			</if>
+			<if test="accountType != null">
+				and account_type=#{accountType,jdbcType=VARCHAR}
+			</if>
+			<if test="inoutType != null">
+				and inout_type=#{inoutType,jdbcType=VARCHAR}
+			</if>
+			<if test="inoutDetailType != null">
+				and inout_detail_type=#{inoutDetailType,jdbcType=VARCHAR}
+			</if>
+
+			<if test="conditionOperateFrom != null">
+				and <![CDATA[operate_date >= #{conditionOperateFrom,jdbcType=TIMESTAMP}]]>
+			</if>
+			<if test="conditionOperateTo != null">
+			   and <![CDATA[operate_date <= #{conditionOperateTo,jdbcType=TIMESTAMP}]]>
+			</if>
+		</where>
+	</select>
+
+	<insert id="insert" parameterType="com.ztravel.payment.po.AccountHistory">
+		insert into payment.t_account_history
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="accountHistoryId != null">
+				account_history_id,
+			</if>
+			<if test="memberId != null">
+				member_id,
+			</if>
+			<if test="orderId != null">
+				order_id,
+			</if>
+			<if test="productType != null">
+				product_type,
+			</if>
+			<if test="accountType != null">
+				account_type,
+			</if>
+			<if test="amount != null">
+				amount,
+			</if>
+			<if test="inoutType != null">
+				inout_type,
+			</if>
+			<if test="inoutDetailType != null">
+				inout_detail_type,
+			</if>
+			<if test="operateDate != null">
+				operate_date,
+			</if>
+			<if test="createdby != null">
+				createdby,
+			</if>
+			<if test="updatedby != null">
+				updatedby,
+			</if>
+			<if test="created != null">
+				created,
+			</if>
+			<if test="updated != null">
+				updated,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="accountHistoryId != null">
+				#{accountHistoryId,jdbcType=VARCHAR},
+			</if>
+			<if test="memberId != null">
+				#{memberId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderId != null">
+				#{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="productType != null">
+				#{productType,jdbcType=VARCHAR},
+			</if>
+			<if test="accountType != null">
+				#{accountType,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=NUMERIC},
+			</if>
+			<if test="inoutType != null">
+				#{inoutType,jdbcType=VARCHAR},
+			</if>
+			<if test="inoutDetailType != null">
+				#{inoutDetailType,jdbcType=VARCHAR},
+			</if>
+			<if test="operateDate != null">
+				#{operateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createdby != null">
+				#{createdby,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedby != null">
+				#{updatedby,jdbcType=VARCHAR},
+			</if>
+			<if test="created != null">
+				#{created,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updated != null">
+				#{updated,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+</mapper>

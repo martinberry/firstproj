@@ -1,0 +1,12 @@
+
+
+apply from : 'settings.ztr-framework.gradle'
+
+include ':ztr-common:ztravel-common'
+include ':ztr-common:ztravel-base'
+include ':ztr-common:ztravel-rbac'
+include ':ztr-demo:ztravel-demo-member'
+include ':ztr-demo:ztravel-demo-common'
+include ':ztr-common:ztravel-datasource'
+include ':ztr-demo:ztravel-demo-resource'
+include ':ztr-demo:ztravel-front-test'

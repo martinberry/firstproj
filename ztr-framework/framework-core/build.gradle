@@ -1,0 +1,45 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+group = 'com.ztravel'
+version = "${versions.ztravel}"
+//version = '1.0'
+
+jar {
+	baseName =  'framework-core'
+}
+
+dependencies {
+	testCompile libraries.junit
+	compile libraries.commons_lang3
+
+	compile libraries.guava
+	compile libraries.spring_core
+	
+	compile libraries.joda_time
+
+	compile libraries.fastjson
+	compile libraries.jackson_core_asl
+	compile libraries.jackson_mapper_asl
+
+	compile libraries.jcl_over_slf4j
+	compile libraries.logback
+	compile libraries.gson
+	compile libraries.javatuples
+	compile libraries.commons_collections
+	compile libraries.cat_client
+	compile libraries.commons_pool
+	compile (libraries.op4j) {
+		exclude group:'org.antlr', module:'antlr-runtime'
+	}
+	
+	compile  (libraries.zookeeper){
+		transitive  = false 
+	}
+	
+}
+idea.module.iml{
+    whenMerged { module ->
+        module.dependencies*.exported = true
+    }
+}

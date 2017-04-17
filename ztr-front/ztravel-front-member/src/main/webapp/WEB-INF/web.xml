@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+	<listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+ 	</listener>
+ 	<context-param>
+        <param-name>contextClass</param-name>
+        <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+ 	</context-param>
+ 	<context-param>
+ 		<param-name>contextConfigLocation</param-name>
+        <param-value>com.ztravel.front.member.config.AppConfig</param-value>
+ 	</context-param>
+	<display-name>ztravel-front-member</display-name>
+	<context-param>
+	  <param-name>appName</param-name>
+	  <param-value>ztravel-front-member</param-value>
+	</context-param>
+	<!-- Character Encoding filter -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>TokenFilter</filter-name>
+		<filter-class>com.ztravel.sso.filter.TokenFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>TokenFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+	    <filter-name>proxyMemberSessionFilter</filter-name>
+	    <filter-class>com.ztravel.common.filter.DelegatingFilterProxy</filter-class>
+	    <init-param>
+	        <param-name>targetFilterBean</param-name>
+	        <param-value>memberSessionFilter</param-value>
+	    </init-param>
+	</filter>
+	<filter-mapping>
+	    <filter-name>proxyMemberSessionFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+<!-- 	<filter> -->
+<!-- 		<filter-name>LoginAuthFilter</filter-name> -->
+<!-- 		<filter-class>com.ztravel.member.controller.demo.LoginFilter</filter-class> -->
+<!-- 	</filter> -->
+<!-- 	<filter-mapping> -->
+<!-- 		<filter-name>LoginAuthFilter</filter-name> -->
+<!-- 		<url-pattern>/*</url-pattern> -->
+<!-- 	</filter-mapping> -->
+
+
+	<servlet>
+	  <servlet-name>springDispatcher</servlet-name>
+	  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	   <init-param>
+	       <param-name>contextClass</param-name>
+	       <param-value>
+	           org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+	       </param-value>
+	   </init-param>
+	   <init-param>
+	       <param-name>contextConfigLocation</param-name>
+	       <param-value>
+	           com.ztravel.front.member.config.AppConfig
+	       </param-value>
+	   </init-param>
+	  <load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+	  <servlet-name>springDispatcher</servlet-name>
+	  <url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+	  <welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<error-page>
+	    <error-code>404</error-code>
+	    <location>/404</location>
+	</error-page>
+
+</web-app>

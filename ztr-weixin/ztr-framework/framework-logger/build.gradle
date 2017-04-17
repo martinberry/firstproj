@@ -1,0 +1,24 @@
+group = 'com.ztravel'
+version = "${versions.ztravel}"
+
+jar {
+	baseName =  'framework-logger'
+}
+dependencies {
+	
+	compile project(':ztr-framework:framework-core')
+	compile project(':ztr-framework:framework-config')
+	compile project(':ztr-framework:framework-dao-base')
+	
+	
+	
+	
+	
+	compile libraries.commons_cli
+	
+	compile libraries.aspectj
+	compile libraries.aspectj_rt
+	compile libraries.perf4j
+	compile libraries.groovy_all
+	compile libraries.spring_webmvc
+}

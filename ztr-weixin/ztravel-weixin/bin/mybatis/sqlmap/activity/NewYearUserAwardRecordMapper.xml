@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.weixin.activity.entity.NewYearUserAwardRecordMapper" >
+	<resultMap id="BaseResultMap" type="com.ztravel.weixin.activity.entity.NewYearUserAwardRecord">
+	    <id column="record_id" jdbcType="VARCHAR" property="recordId" />
+	    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+	    <result column="award_code" jdbcType="VARCHAR" property="awardCode" />
+	    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="amount" jdbcType="NUMERIC" property="amount" />
+        <result column="status" jdbcType="VARCHAR" property="status" />
+        <result column="record_result" jdbcType="VARCHAR" property="recordResult" />
+    </resultMap>
+
+    <resultMap id="AwardRecordVoMap" type="com.ztravel.weixin.activity.vo.AwardRecordVo">
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+        <result column="award_code" jdbcType="VARCHAR" property="awardCode" />
+        <result column="head_image_url" jdbcType="VARCHAR" property="headImageUrl" />
+    </resultMap>
+
+        <resultMap id="GameRecordVoMap" type="com.ztravel.weixin.activity.vo.GameRecordVo">
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+        <result column="detail_address" jdbcType="VARCHAR" property="address" />
+        <result column="real_name" jdbcType="VARCHAR" property="addressee" />
+        <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+        <result column="award_code" jdbcType="VARCHAR" property="awardCode" />
+  	 </resultMap>
+
+
+    <select id="countAchieveAwardRecordByOpenId" resultType="Integer" parameterType="String">
+        select count(record_id) from activity.new_year_user_award_record where open_id = #{openId,jdbcType=VARCHAR} and (status = 'INIT' or status = 'FINISHED')
+    </select>
+
+	<insert id="insert" parameterType="com.ztravel.weixin.activity.entity.NewYearUserAwardRecord">
+		insert into activity.new_year_user_award_record
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="recordId != null">
+	        record_id,
+	      </if>
+	      <if test="openId != null">
+	        open_id,
+	      </if>
+	      <if test="awardCode != null">
+	        award_code,
+	      </if>
+	      <if test="createTime != null">
+	        create_time,
+	      </if>
+          <if test="amount != null">
+            amount,
+          </if>
+          <if test="status != null">
+            status,
+          </if>
+          <if test="recordResult != null">
+            record_result,
+          </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="recordId != null">
+	        #{recordId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="openId != null">
+	        #{openId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="awardCode != null">
+	        #{awardCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="createTime != null">
+	        #{createTime,jdbcType=TIMESTAMP},
+	      </if>
+          <if test="amount != null">
+            #{amount,jdbcType=NUMERIC},
+          </if>
+          <if test="status != null">
+            #{status,jdbcType=VARCHAR},
+          </if>
+          <if test="recordResult != null">
+            #{recordResult,jdbcType=VARCHAR},
+          </if>
+	    </trim>
+	</insert>
+
+	<update id="update" parameterType="com.ztravel.weixin.activity.entity.NewYearUserAwardRecord">
+        update activity.new_year_user_award_record
+        <set>
+            <if test="openId != null">
+                open_id = #{openId,jdbcType=VARCHAR},
+            </if>
+            <if test="awardCode != null">
+                award_code = #{awardCode,jdbcType=VARCHAR},
+            </if>
+           <if test="amount != null">
+               amount = #{amount,jdbcType=NUMERIC},
+           </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="recordResult != null">
+                record_result = #{recordResult,jdbcType=VARCHAR},
+            </if>
+            </set>
+        where record_id = #{recordId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="select"  resultMap="BaseResultMap" parameterType="java.util.Map">
+    select * from activity.new_year_user_award_record for update
+    <where>
+    	    <if test="recordId != null">
+	        record_id,
+	      </if>
+	      <if test="openId != null">
+	        open_id,
+	      </if>
+	      <if test="awardCode != null">
+	        award_code,
+	      </if>
+	      <if test="createTime != null">
+	        create_time,
+	      </if>
+          <if test="amount != null">
+            amount,
+          </if>
+          <if test="status != null">
+            status,
+          </if>
+          <if test="recordResult != null">
+            record_result,
+          </if>
+    </where>
+    </select>
+
+    <select id="selectById"  resultMap="BaseResultMap" parameterType="String">
+    select * from activity.new_year_user_award_record
+  where record_id = #{recordId,jdbcType=VARCHAR}
+   </select>
+
+    <select id="searchAwardRecordList"  resultMap="AwardRecordVoMap">
+        select ur.nick_name, ur.head_image_url, rd.award_code
+        from (
+            select * from activity.new_year_user_award_record where (award_code = 'BAG' or award_code = 'CALENDARY' or award_code = 'COUPON3') AND status = 'FINISHED'
+            union all
+            select * from activity.new_year_user_award_record where (award_code = 'COUPON1' or award_code = 'COUPON2') AND status = 'FINISHED'  order by create_time desc limit 100) rd
+        left join activity.new_year_activity_user ur
+        on rd.open_id = ur.open_id
+        order by create_time desc
+   </select>
+
+       <select id="searchAwardRecordListByMap"  resultMap="GameRecordVoMap" parameterType="map">
+		     select u.nick_name, u.real_name,u.detail_address,record.award_code,u.mobile  from  activity.new_year_activity_user  u ,activity.new_year_user_award_record record
+		     where  u.open_id = record.open_id AND record.status = 'FINISHED'
+		     order by record.create_time desc
+		     	<if test="offset != null">
+					offset #{offset}
+				</if>
+				<if test="limit != null">
+					limit #{limit}
+				</if>
+   	</select>
+
+   	  <select id="countAwardRecordListByMap" resultType="Integer" parameterType="String">
+      select count(1)  from  activity.new_year_activity_user  u ,activity.new_year_user_award_record record
+		     where  u.open_id = record.open_id
+    </select>
+
+</mapper>

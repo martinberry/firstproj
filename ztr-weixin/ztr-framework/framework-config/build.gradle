@@ -1,0 +1,63 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin : 'java-library-distribution'
+
+group = 'com.ztravel'
+version = "${versions.ztravel}"
+
+dependencies {
+	
+	
+	compile project(':ztr-framework:framework-core')
+	compile project(':ztr-framework:framework-logger-core')
+	compile project(':ztr-framework:framework-spring')
+
+	compile libraries.commons_io
+	compile libraries.curator_client
+	compile libraries.curator_framework
+	compile libraries.curator_recipes
+	compile libraries.curator_x_discovery
+	compile  libraries.zkclient
+	
+	compile  libraries.typesafe_config
+	compile  libraries.snakeyaml
+
+	compile libraries.spring_beans
+	compile libraries.spring_context
+	compile libraries.servlet_api
+	
+	compile (libraries.spring_core){
+		force=true
+	}
+
+}
+
+distributions {
+	main {
+		contents {
+			from('src/main/') {
+				include 'libs/*'
+			}
+		}
+	}
+}
+
+jar {
+	baseName =  'framework-config'
+	manifest {
+		attributes (
+		"Manifest-Version"       : version,
+		"Created-By"             : "Gradle 1.12",
+		"Implementation-Title"   : "framework-config",
+		"Implementation-Version" : version,
+		"Main-Class": "com.travelzen.framwork.config.app.AppMain",
+		)
+		def manifestClasspath = configurations.runtime.collect { File file = it
+		"lib/${file.name}"
+		}.join(' ')
+		attributes 'Class-Path': manifestClasspath
+		attributes 'Build-At': new Date()
+	}
+	
+}
+

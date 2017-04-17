@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.order.po.OrderProductMapper" >
+  <resultMap id="BaseResultMap" type="com.ztravel.order.po.OrderProduct" >
+    <id column="snapshot_id" property="snapshotId" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="VARCHAR" />
+    <result column="product_title" property="productTitle" jdbcType="VARCHAR" />
+    <result column="product_no" property="productNo" jdbcType="VARCHAR" />
+    <result column="image_id" property="imageId" jdbcType="VARCHAR" />
+    <result column="provider_info" property="providerInfo" jdbcType="VARCHAR" />
+    <result column="product_type" property="productType" jdbcType="VARCHAR" />
+    <result column="trip_days" property="tripDays" jdbcType="INTEGER" />
+    <result column="book_date" property="bookDate" jdbcType="TIMESTAMP" />
+    <result column="back_date" property="backDate" jdbcType="TIMESTAMP" />
+    <result column="product_snapshot" property="productSnapshot" jdbcType="VARCHAR" />
+    <result column="package_id" property="packageId" jdbcType="VARCHAR"/>
+    <result column ="package_name" property="packageName" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <update id="update" parameterType="com.ztravel.order.po.OrderProduct">
+       update ztorder.t_order_product
+       <set>
+           <if test="snapshotId != null">
+               snapshot_id = #{snapshotId,jdbcType=VARCHAR},
+           </if>
+           <if test="productId != null">
+               product_id = #{productId,jdbcType=VARCHAR},
+           </if>
+           <if test="productTitle != null">
+               product_title = #{productTitle,jdbcType=VARCHAR},
+           </if>
+           <if test="productNo != null">
+               product_no = #{productNo,jdbcType=VARCHAR},
+           </if>
+           <if test="imageId != null">
+               image_id = #{imageId,jdbcType=VARCHAR},
+           </if>
+           <if test="providerInfo != null">
+               provider_info = #{providerInfo,jdbcType=VARCHAR},
+           </if>
+           <if test="productType != null">
+               product_type = #{productType,jdbcType=VARCHAR},
+           </if>
+           <if test="tripDays != null">
+               trip_days = #{tripDays,jdbcType=VARCHAR},
+           </if>
+           <if test="bookDate != null">
+               book_date = #{bookDate,jdbcType=VARCHAR},
+           </if>
+           <if test="backDate != null">
+               back_date = #{backDate,jdbcType=VARCHAR},
+           </if>
+           <if test="productSnapshot != null">
+               product_snapshot = #{productSnapshot,jdbcType=VARCHAR},
+           </if>
+           <if test="packageId != null">
+               package_id = #{packageId,jdbcType=VARCHAR},
+           </if>
+           <if test="packageName != null">
+               package_name = #{packageName,jdbcType=VARCHAR},
+           </if>
+       </set>
+       where order_id = #{orderId,jdbcType=VARCHAR}
+   </update>
+
+  <insert id="insert" parameterType="com.ztravel.order.po.OrderProduct" >
+    insert into ztorder.t_order_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="snapshotId != null" >
+        snapshot_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productTitle != null" >
+        product_title,
+      </if>
+      <if test="productNo != null" >
+        product_no,
+      </if>
+      <if test="imageId != null" >
+        image_id,
+      </if>
+      <if test="providerInfo != null" >
+        provider_info,
+      </if>
+      <if test="productType != null" >
+        product_type,
+      </if>
+      <if test="tripDays != null" >
+        trip_days,
+      </if>
+      <if test="bookDate != null" >
+        book_date,
+      </if>
+      <if test="backDate != null" >
+        back_date,
+      </if>
+      <if test="productSnapshot != null" >
+        product_snapshot,
+      </if>
+       <if test="packageId != null" >
+        package_id,
+      </if>
+       <if test="packageName != null" >
+        package_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="snapshotId != null" >
+        #{snapshotId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productTitle != null" >
+        #{productTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="productNo != null" >
+        #{productNo,jdbcType=VARCHAR},
+      </if>
+      <if test="imageId != null" >
+        #{imageId,jdbcType=VARCHAR},
+      </if>
+      <if test="providerInfo != null" >
+        #{providerInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null" >
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="tripDays != null" >
+        #{tripDays,jdbcType=VARCHAR},
+      </if>
+      <if test="bookDate != null" >
+        #{bookDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="backDate != null" >
+        #{backDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productSnapshot != null" >
+        #{productSnapshot,jdbcType=VARCHAR},
+      </if>
+       <if test="packageId!= null" >
+        #{packageId,jdbcType=VARCHAR},
+      </if>
+       <if test="packageName != null" >
+        #{packageName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+  <sql id="Base_Column_List" >
+   		snapshot_id, order_id, product_id, product_title, product_no,product_type,trip_days,book_date,back_date, product_snapshot, image_id, provider_info,package_name,package_id
+  </sql>
+
+  <sql id="Union_Column_List" >
+  		op.snapshot_id, op.order_id, op.product_id, op.product_title, op.product_no,op.product_type,op.trip_days,op.book_date,op.back_date, op.product_snapshot,
+  		op.image_id, o.creator as provider_info,op.package_name,op.package_id
+  </sql>
+
+  <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+	  select
+	    <include refid="Base_Column_List" />
+	    from ztorder.t_order_product
+	    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+
+	<select id="select" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from ztorder.t_order_product
+		<where>
+			<if test="bookDate != null">
+			  <![CDATA[book_date <= #{bookDate}]]>
+			</if>
+			<if test="backDate != null" >
+			  <![CDATA[back_date <= #{backDate}]]>
+			</if>
+			<if test="productNo != null" >
+			  product_no = #{productNo,jdbcType=VARCHAR}
+			</if>
+			<if test="productType != null" >
+			  product_type = #{productType,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	<select id="selectEQ" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from ztorder.t_order_product
+		<where>
+			<if test="bookDate != null">
+			  <![CDATA[book_date = #{bookDate}]]>
+			</if>
+			<if test="backDate != null" >
+			  <![CDATA[back_date = #{backDate}]]>
+			</if>
+			<if test="productNo != null" >
+			  product_no = #{productNo,jdbcType=VARCHAR}
+			</if>
+			<if test="productType != null" >
+			  product_type = #{productType,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<select id="selectBookRange" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select
+		<include refid="Union_Column_List" />
+		FROM ztorder.t_order o, ztorder.t_order_product op
+		<where>
+			o.order_id = op.order_id
+			<if test="bookDate != null and bookDate != ''">
+				and op.book_date &lt;= #{bookDate,jdbcType=VARCHAR}
+			</if>
+			<if test="frontState != null">
+				and o.front_state = #{frontState, jdbcType=VARCHAR}
+			</if>
+			<if test="backState != null">
+				and o.back_state = #{backState, jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<select id="selectUnion" resultMap="BaseResultMap" parameterType="java.util.Map">
+    SELECT op.order_id
+    FROM ztorder.t_order o, ztorder.t_order_product op
+    <where>
+        o.order_id = op.order_id
+        <if test="creator != null and creator != ''">
+            AND o.creator = #{creator, jdbcType=VARCHAR}
+        </if>
+        <if test="state != null and state != ''">
+            AND o.front_state = #{state, jdbcType=VARCHAR}
+        </if>
+        <if test="productId != null and productId != ''">
+            AND op.product_id = #{productId, jdbcType=VARCHAR}
+        </if>
+    </where>
+</select>
+
+</mapper>

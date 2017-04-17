@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.order.po.OrderMapper" >
+
+<resultMap id="BaseResultMap" type="com.ztravel.order.po.Order" >
+    <id column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="order_type" property="orderType" jdbcType="VARCHAR" />
+    <result column="product_nature" property="productNature" jdbcType="VARCHAR" />
+    <result column="order_from" property="orderFrom" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <result column="front_state" property="frontState" jdbcType="VARCHAR" />
+    <result column="back_state" property="backState" jdbcType="VARCHAR" />
+
+    <result column="pay_type" property="payType" jdbcType="VARCHAR" />
+    <result column="bed_prefer" property="bedPrefer" jdbcType="VARCHAR" />
+    <result column="operate_record" property="operateRecord" jdbcType="VARCHAR" />
+    <result column="pay_serial_num" property="paySerialNum" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+	<result column="is_to_pay" jdbcType="BOOLEAN" property="isToPay" />
+    <result column="state_change_history" property="stateChangeHistory" jdbcType="VARCHAR" />
+    <result column="progress" property="progress" jdbcType="INTEGER" />
+    <result column="discount_coupon_id" property="discountCouponId" jdbcType="VARCHAR" />
+    <result column="integral" property="integral" jdbcType="INTEGER" />
+    <result column="total_price" property="totalPrice" jdbcType="NUMERIC" />
+    <result column="pay_amount" property="payAmount" jdbcType="NUMERIC" />
+    <result column="integral_sub" property="integralSub" jdbcType="NUMERIC" />
+    <result column="coupon_sub" property="couponSub" jdbcType="NUMERIC" />
+    <result column="original_order" property="originalOrder" jdbcType="VARCHAR" />
+    <result column="temp_order" property="tempOrder" jdbcType="VARCHAR" />
+    
+  </resultMap>
+	<insert id="insert" parameterType="com.ztravel.order.po.Order" >
+     insert into ztorder.t_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="productNature != null" >
+        product_nature,
+      </if>
+      <if test="orderFrom != null" >
+        order_from,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="operator != null" >
+        operator,
+      </if>
+      <if test="frontState != null" >
+        front_state,
+      </if>
+      <if test="backState != null" >
+        back_state,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="bedPrefer != null" >
+        bed_prefer,
+      </if>
+      <if test="paySerialNum != null" >
+        pay_serial_num,
+      </if>
+      <if test="operateRecord != null" >
+        operate_record,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="isToPay != null" >
+        is_to_pay,
+      </if>
+      <if test="stateChangeHistory != null" >
+        state_change_history,
+      </if>
+      <if test="progress != null" >
+        progress,
+      </if>
+      <if test="discountCouponId != null" >
+        discount_coupon_id,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="totalPrice != null" >
+        total_price,
+      </if>
+      <if test="payAmount != null" >
+        pay_amount,
+      </if>
+      <if test="integralSub != null" >
+        integral_sub,
+      </if>
+      <if test="couponSub != null" >
+        coupon_sub,
+      </if>
+      <if test="originalOrder != null">
+      	original_order,
+      </if>
+      <if test="tempOrder != null">
+      	temp_order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="productNature != null" >
+        #{productNature,jdbcType=VARCHAR},
+      </if>
+      <if test="orderFrom != null" >
+        #{orderFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="frontState != null" >
+        #{frontState,jdbcType=VARCHAR},
+      </if>
+      <if test="backState != null" >
+        #{backState,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="bedPrefer != null" >
+        #{bedPrefer,jdbcType=VARCHAR},
+      </if>
+      <if test="paySerialNum != null" >
+        #{paySerialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="operateRecord != null" >
+        #{operateRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isToPay != null" >
+        #{isToPay,jdbcType=BOOLEAN},
+      </if>
+      <if test="stateChangeHistory != null" >
+        #{stateChangeHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="progress != null" >
+        #{progress,jdbcType=INTEGER},
+      </if>
+      <if test="discountCouponId != null" >
+        #{discountCouponId,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="payAmount != null" >
+        #{payAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="integralSub != null" >
+        #{integralSub,jdbcType=NUMERIC},
+      </if>
+      <if test="couponSub != null" >
+        #{couponSub,jdbcType=NUMERIC},
+      </if>
+      <if test="originalOrder != null">
+      	#{originalOrder, jdbcType=VARCHAR},
+      </if>
+      <if test="tempOrder != null">
+      	#{tempOrder, jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <sql id="Base_Column_List" >
+    order_id, order_no, order_type, product_nature,order_from,create_date, creator, update_date,operator, back_state,pay_type,bed_prefer,pay_serial_num,
+    operate_record,remark,is_to_pay, state_change_history, progress, discount_coupon_id,integral, total_price, front_state, pay_amount,
+    integral_sub,coupon_sub, original_order, temp_order
+  </sql>
+
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.String" >
+	  select
+	    <include refid="Base_Column_List" />
+	    from ztorder.t_order
+	    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+
+    <select id="selectBycouponitem" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	  select
+	    <include refid="Base_Column_List" />
+	    from ztorder.t_order
+	    where discount_coupon_id = #{discountCouponId,jdbcType=VARCHAR}
+  </select>
+
+
+
+  <select id="selectByNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+	  select
+	    <include refid="Base_Column_List" />
+	    from ztorder.t_order
+	    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectAutoTravelling" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select t1.* from ztorder.t_order as t1 where t1.back_state='OUTNOTICE' and t1.front_state='CONFIRM'
+  		and exists(select 1 from ztorder.t_order_product as t2 where t1.order_id=t2.order_id
+  		and <![CDATA[t2.book_date <= #{bookDate}]]>)
+  </select>
+
+  <select id="selectAutoCompleted" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select t1.* from ztorder.t_order as t1 where t1.back_state='OUTTING' and t1.front_state='OUTTING'
+  		and exists(select 1 from ztorder.t_order_product as t2 where t1.order_id=t2.order_id
+  		and <![CDATA[t2.back_date <= #{backDate}]]>)
+  </select>
+
+  <select id="selectAutoNotice" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select t1.* from ztorder.t_order as t1 where t1.back_state='COMPLETED' and t1.front_state='COMPLETED'
+  		and exists(select 1 from ztorder.t_order_product as t2 where t1.order_id=t2.order_id
+  		and <![CDATA[t2.back_date = #{backDate}]]>)
+  </select>
+
+  <select id="select" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	  select
+	    <include refid="Base_Column_List" />
+	    from ztorder.t_order
+	    where  true
+	    	<if test="orderId!= null">
+					and  order_id = #{orderId,jdbcType=VARCHAR}
+				</if>
+				<if test="orderNo!= null">
+					and order_no = #{orderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="orderType != null">
+					and order_type = #{orderType,jdbcType=VARCHAR}
+				</if>
+				<if test="productNature != null">
+					and product_nature = #{productNature,jdbcType=VARCHAR}
+				</if>
+				<if test="orderFrom != null">
+					and order_from = #{orderFrom,jdbcType=VARCHAR}
+				</if>
+				<if test="createDate != null">
+					and create_date = #{createDate,jdbcType=TIMESTAMP}
+				</if>
+				<if test="creator != null">
+					and creator = #{creator,jdbcType=VARCHAR}
+				</if>
+				<if test="updateDate != null">
+					and update_date = #{updateDate,jdbcType=TIMESTAMP}
+				</if>
+				<if test="operator != null">
+					and operator = #{operator,jdbcType=VARCHAR}
+				</if>
+				<if test="stateChangeHistory != null">
+					and state_change_history = #{stateChangeHistory,jdbcType=VARCHAR}
+				</if>
+				<if test="progress != null">
+					and progress = #{progress,jdbcType=INTEGER}
+				</if>
+				<if test="discountCouponId != null">
+					and discount_coupon_id = #{discountCouponId,jdbcType=VARCHAR}
+				</if>
+				<if test="integral != null">
+					and integral = #{integral,jdbcType=INTEGER}
+				</if>
+				<if test="totalPrice != null">
+					and total_price = #{totalPrice,jdbcType=NUMERIC}
+				</if>
+				<if test="payAmount != null">
+					and pay_amount = #{payAmount,jdbcType=NUMERIC}
+				</if>
+				<if test="integralSub != null">
+					and integral_sub = #{integralSub,jdbcType=NUMERIC}
+				</if>
+				<if test="couponSub != null">
+					and coupon_sub = #{couponSub,jdbcType=NUMERIC}
+				</if>
+				<if test=" backState != null">
+					and back_state = #{backState,jdbcType=VARCHAR}
+				</if>
+				<if test=" payType != null">
+					and pay_type = #{payType,jdbcType=VARCHAR}
+				</if>
+				<if test=" bedPrefer != null">
+					and bed_prefer = #{bedPrefer,jdbcType=VARCHAR}
+				</if>
+				<if test=" paySerialNum != null">
+					pay_serial_num = #{paySerialNum,jdbcType=VARCHAR}
+				</if>
+				<if test=" operateRecord != null">
+					and operate_record = #{operateRecord,jdbcType=VARCHAR}
+				</if>
+				<if test=" remark != null">
+					and remark = #{remark,jdbcType=VARCHAR}
+				</if>
+				<if test="frontState != null">
+					and front_state = #{frontState,jdbcType=VARCHAR}
+				</if>
+
+  </select>
+
+	<update id="update" parameterType="com.ztravel.order.po.Order">
+			update ztorder.t_order
+			<set>
+				<if test="orderId!= null">
+					order_id = #{orderId,jdbcType=VARCHAR},
+				</if>
+				<if test="orderNo!= null">
+					order_no = #{orderNo,jdbcType=VARCHAR},
+				</if>
+				<if test="orderType != null">
+					order_type = #{orderType,jdbcType=VARCHAR},
+				</if>
+				<if test="productNature != null">
+					product_nature = #{productNature,jdbcType=VARCHAR},
+				</if>
+				<if test="orderFrom != null">
+					order_from = #{orderFrom,jdbcType=VARCHAR},
+				</if>
+				<if test="createDate != null">
+					create_date = #{createDate,jdbcType=TIMESTAMP},
+				</if>
+				<if test="creator != null">
+					creator = #{creator,jdbcType=VARCHAR},
+				</if>
+				<if test="updateDate != null">
+					update_date = #{updateDate,jdbcType=TIMESTAMP},
+				</if>
+				<if test="operator != null">
+					operator = #{operator,jdbcType=VARCHAR},
+				</if>
+				<if test="stateChangeHistory != null">
+					state_change_history = #{stateChangeHistory,jdbcType=VARCHAR},
+				</if>
+				<if test="progress != null">
+					progress = #{progress,jdbcType=INTEGER},
+				</if>
+				<if test="discountCouponId != null">
+					discount_coupon_id = #{discountCouponId,jdbcType=VARCHAR},
+				</if>
+				<if test="integral != null">
+					integral = #{integral,jdbcType=INTEGER},
+				</if>
+				<if test="totalPrice != null">
+					total_price = #{totalPrice,jdbcType=NUMERIC},
+				</if>
+				<if test="payAmount != null">
+					pay_amount = #{payAmount,jdbcType=NUMERIC},
+				</if>
+				<if test="integralSub != null">
+					integral_sub = #{integralSub,jdbcType=NUMERIC},
+				</if>
+				<if test="couponSub != null">
+					coupon_sub = #{couponSub,jdbcType=NUMERIC},
+				</if>
+				<if test=" backState != null">
+					back_state = #{backState,jdbcType=VARCHAR},
+				</if>
+				<if test=" payType != null">
+					pay_type = #{payType,jdbcType=VARCHAR},
+				</if>
+				<if test=" bedPrefer != null">
+					bed_prefer = #{bedPrefer,jdbcType=VARCHAR},
+				</if>
+				<if test=" paySerialNum != null">
+					pay_serial_num = #{paySerialNum,jdbcType=VARCHAR},
+				</if>
+				<if test=" operateRecord != null">
+					operate_record = #{operateRecord,jdbcType=VARCHAR},
+				</if>
+				<if test=" remark != null">
+					remark = #{remark,jdbcType=VARCHAR},
+				</if>
+				<if test=" isToPay != null">
+					is_to_pay = #{isToPay,jdbcType=BOOLEAN},
+				</if>
+				<if test="frontState != null">
+					front_state = #{frontState,jdbcType=VARCHAR},
+				</if>
+				<if test="originalOrder != null">
+					original_order = #{originalOrder, jdbcType=VARCHAR},
+				</if>
+				<if test="tempOrder != null">
+					temp_order = #{tempOrder, jdbcType=VARCHAR},
+				</if>
+			</set>
+			where order_id = #{orderId,jdbcType=VARCHAR}
+		</update>
+
+
+    <select id="selectByCreator" resultMap="BaseResultMap" parameterType="java.lang.String" >
+	  select
+	    <include refid="Base_Column_List" />
+	    from ztorder.t_order
+	    where creator = #{creator,jdbcType=VARCHAR} order by create_date DESC
+  </select>
+
+  <update id="updateStatus" parameterType="map" >
+    update ztorder.t_order
+    <set >
+      <if test="frontState != null" >
+        front_state = #{frontState,jdbcType=VARCHAR},
+      </if>
+      <if test="backState != null" >
+        back_state = #{backState,jdbcType=VARCHAR},
+      </if>
+     </set>
+     where
+     	order_id=#{orderId,jdbcType=VARCHAR}
+  </update>
+	<!-- 退款流程状态修改 -->
+  <update id="refundUpdate" parameterType="map" >
+    update ztorder.t_order
+    <set >
+      <if test="frontState != null" >
+        front_state = #{frontState,jdbcType=VARCHAR},
+      </if>
+      <if test="backState != null" >
+        back_state = #{backState,jdbcType=VARCHAR},
+      </if>
+      <if test="operateRecord != null">
+		operate_record = #{operateRecord,jdbcType=VARCHAR},
+	  </if>
+	  <if test="updateDate != null">
+		update_date = #{updateDate,jdbcType=TIMESTAMP},
+	  </if>
+	   <if test="operator != null">
+		operator = #{operator,jdbcType=VARCHAR},
+	  </if>
+     </set>
+     where
+     	order_no=#{orderId,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateToTravelling" parameterType="String" >
+    update ztorder.t_order
+    <set >
+        front_state = 'OUTTING',
+        back_state = 'OUTTING',
+     </set>
+     where
+     	order_id
+     in
+     	(select order_id
+     	from
+     	ztorder.t_order_product
+     	where
+     	book_date=#{bookDate,jdbcType=VARCHAR})
+  </update>
+
+  <update id="updateToCompleted" parameterType="String" >
+    update ztorder.t_order
+    <set >
+        front_state = 'COMPLETED',
+        back_state = 'COMPLETED',
+     </set>
+     where
+        order_id
+     in
+       (select order_id
+        from
+        ztorder.t_order_product
+        where
+        back_date=#{backDate,jdbcType=VARCHAR})
+  </update>
+
+    <update id="tempOrderUpdate" parameterType="map" >
+        update ztorder.t_order
+        set temp_order = #{tempOrder,jdbcType=VARCHAR}
+        where order_id=#{orderId,jdbcType=VARCHAR}
+    </update>
+
+  <select id="countCompleted" resultType="int" parameterType="java.lang.String">
+  	select count(order_id) from ztorder.t_order
+  	<where>
+  		front_state = 'COMPLETED' and back_state = 'COMPLETED' and creator = #{creator,jdbcType=VARCHAR}
+  	</where>
+  </select>
+
+  <!-- weixin -->
+  <!-- 根据分页信息查询一个用户的所有订单 -->
+   <select id="selectByPage" resultMap="BaseResultMap" parameterType="map" >
+	  select
+	    <include refid="Base_Column_List" />
+	    from ztorder.t_order
+	    where
+	    creator = #{creator,jdbcType=VARCHAR}
+	    order by create_date DESC
+	    <if test="offset != null and offset != '0'">
+            offset #{offset}
+        </if>
+        <if test="limit != null and limit != ''">
+            limit #{limit}
+        </if>
+  </select>
+
+  <select id="orderCount" resultType="int" parameterType="map">
+  	select count(order_id) from ztorder.t_order
+  	<where>
+  		creator = #{creator,jdbcType=VARCHAR}
+  		<if test="backState != null and backState != ''">
+            and back_state = #{backState,jdbcType=VARCHAR}
+        </if>
+  	</where>
+  </select>
+
+</mapper>

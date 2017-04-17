@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/cglib/cglib-nodep/2.1_3/source/fd60a4ee07d2bce9fffcb2a3d88bdcdc1011ea5b/cglib-nodep-2.1_3-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/cglib/cglib-nodep/2.1_3/jar/58d3be5953547c0019e5704d6ed4ffda3b0c7c66/cglib-nodep-2.1_3.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.javassist/javassist/3.18.1-GA/source/d8d089f3a8845cce22d3006e02ab1403dd73b5b6/javassist-3.18.1-GA-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.javassist/javassist/3.18.1-GA/bundle/d9a09f7732226af26bf99f19e2cffe0ae219db5b/javassist-3.18.1-GA.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/ognl/ognl/2.6.9/source/b9e27acb4d76a2733e561c3ce7e6adb6a31e6022/ognl-2.6.9-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/ognl/ognl/2.6.9/jar/fad9692184899994e977b647998f9fa4a9cfec35/ognl-2.6.9.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.slf4j/slf4j-api/1.7.7/source/acd62e31cc314266e73eebed0b6dd7ea974a0ed/slf4j-api-1.7.7-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.slf4j/slf4j-api/1.7.7/jar/2b8019b6249bb05d81d3a3094e468753e2b21311/slf4j-api-1.7.7.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.slf4j/jcl-over-slf4j/1.7.7/source/b5a646b81b899e930f8600c5f45766dd82743d93/jcl-over-slf4j-1.7.7-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.slf4j/jcl-over-slf4j/1.7.7/jar/56003dcd0a31deea6391b9e2ef2f2dc90b205a92/jcl-over-slf4j-1.7.7.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.slf4j/log4j-over-slf4j/1.7.7/source/307e030bc37259ad60dce614530d698ac74c4dc/log4j-over-slf4j-1.7.7-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.slf4j/log4j-over-slf4j/1.7.7/jar/d521cb26a9c4407caafcec302e7804b048b07cea/log4j-over-slf4j-1.7.7.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.mybatis/mybatis-spring/1.2.2/source/37d4385e146df3794aab4f773ac709e6cb83517d/mybatis-spring-1.2.2-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.mybatis/mybatis-spring/1.2.2/jar/1e40a7f5373e4242075a1d386817e7dd49b1697d/mybatis-spring-1.2.2.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.mybatis.generator/mybatis-generator-core/1.3.2/source/2d53de709da0a6b0b4f349999b8769bdff4c37c6/mybatis-generator-core-1.3.2-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.mybatis.generator/mybatis-generator-core/1.3.2/jar/629a9852837433ba602101bae455673f44665871/mybatis-generator-core-1.3.2.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/net.javaforge.mybatis.generator/mybatis-generator-plugins/1.0.0/jar/2fddb0b1e6392b07e73639fb80b362250175bd94/mybatis-generator-plugins-1.0.0.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.ant/ant/1.9.0/source/3a6639ad333e5fda7d6bfd5f89b01ba1a7f9f3cb/ant-1.9.0-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.ant/ant/1.9.0/jar/d667bc2c030a338720bfcf794d2189ea5c663b9e/ant-1.9.0.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/joda-time/joda-time/2.4/source/61d71500037f0ac004d56c446ef9277f16bcf62d/joda-time-2.4-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/joda-time/joda-time/2.4/jar/89e9725439adffbbd41c5f5c215c136082b34a7f/joda-time-2.4.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-core/3.2.9.RELEASE/source/9c7e72bfa1ab9d0fcf742064094ef51b2d4b4e2a/spring-core-3.2.9.RELEASE-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.springframework/spring-core/3.2.9.RELEASE/jar/23566c793f7db5859dbceb98cd1a5789b489e0b5/spring-core-3.2.9.RELEASE.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/junit/junit/4.11/source/28e0ad201304e4a4abf999ca0570b7cffc352c3c/junit-4.11-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/junit/junit/4.11/jar/4e031bb61df09069aeb2bffb4019e7a5034a4ee0/junit-4.11.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.ant/ant-launcher/1.9.0/source/ba0b3aa3a2358d8251bdd587840100abc461ace9/ant-launcher-1.9.0-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.apache.ant/ant-launcher/1.9.0/jar/a76484a4e3a893dd0ee018afef34f74df8e4ef6c/ant-launcher-1.9.0.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/N/.gradle/caches/artifacts-26/filestore/org.hamcrest/hamcrest-core/1.3/source/1dc37250fbc78e23a65a67fbbaf71d2e9cbc3c0b/hamcrest-core-1.3-sources.jar" kind="lib" path="/Users/N/.gradle/caches/artifacts-26/filestore/org.hamcrest/hamcrest-core/1.3/jar/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+</classpath>

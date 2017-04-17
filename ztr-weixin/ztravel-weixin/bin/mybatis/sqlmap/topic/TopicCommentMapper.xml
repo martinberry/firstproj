@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ztravel.weixin.po.TopicCommentMapper">
+
+<resultMap id="BaseResultMap" type="com.ztravel.weixin.po.TopicComment" >
+    <id column="comment_id" property="commentId" jdbcType="VARCHAR" />
+    <result column="nickname" property="nickName" jdbcType="VARCHAR" />
+    <result column="comment_time" property="commentTime" jdbcType="TIMESTAMP" />
+    <result column="praise_num" property="praiseNum" jdbcType="NUMERIC" />
+    <result column="comment_detail" property="commentDetail" jdbcType="VARCHAR" />
+    <result column="topic_id" property="topicId" jdbcType="VARCHAR" />
+    <result column="submiter_id" property="submiterId" jdbcType="VARCHAR" />
+    <result column="anonymous" property="anonymous" jdbcType="NUMERIC" />
+    <result column="head_image" property="headImage" jdbcType="VARCHAR" />
+</resultMap>
+
+<sql id="Column_List">
+  tc.comment_id,tc.nickname,tc.comment_time,tc.praise_num,tc.comment_detail,tc.topic_id,tc.submiter_id,tc.anonymous,tc.head_image
+</sql>    
+
+<select id="select" resultMap="BaseResultMap" parameterType="map">
+    SELECT <include refid="Column_List" />
+    FROM weixin.t_topic_comment tc
+    <where>
+      true   
+        <if test="topicId != null and topicId != ''">
+            AND tc.topic_id = #{topicId, jdbcType=VARCHAR}
+        </if>     
+    </where>
+    ORDER BY tc.comment_time desc
+    <if test="offset != null and offset != '0'">
+        OFFSET #{offset}
+    </if>
+    <if test="limit != null and limit != ''">
+        LIMIT #{limit}
+    </if>
+</select>
+
+<select id="selectBysort" resultMap="BaseResultMap" parameterType="map">
+    SELECT <include refid="Column_List" />
+    FROM weixin.t_topic_comment tc
+    <where>
+      true  
+        <if test="topicId != null and topicId != ''">
+            AND tc.topic_id = #{topicId, jdbcType=VARCHAR}
+        </if>        
+    </where>
+    ORDER BY tc.praise_num desc
+    <if test="offset != null and offset != '0'">
+        OFFSET #{offset}
+    </if>
+    <if test="limit != null and limit != ''">
+        LIMIT #{limit}
+    </if>
+</select>
+
+
+<select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select <include refid="Column_List" />
+    from weixin.t_topic_comment tc
+    where  tc.comment_id = #{commentId, jdbcType=VARCHAR}
+</select>
+
+<select id="count" resultType="Integer" parameterType="map">
+    SELECT count(tc.comment_id)
+    FROM weixin.t_topic_comment tc
+    <where>
+      true 
+        <if test="topicId != null and topicId != ''">
+            AND tc.topic_id = #{topicId, jdbcType=VARCHAR}
+        </if>       
+    </where>
+</select>
+
+
+<delete id="deleteById" parameterType="String">
+   	DELETE FROM weixin.t_topic_comment WHERE comment_id = #{commentId,jdbcType=VARCHAR}
+</delete>
+
+
+<update id="update" parameterType="com.ztravel.weixin.po.TopicComment">
+	update weixin.t_topic_comment 
+		<set>
+		       <if test="nickName != null and nickName !=''" >
+		        nickname = #{nickName,jdbcType=VARCHAR},
+		      </if>
+		      <if test="commentTime != null and commentTime !=''" >
+		        comment_time = #{commentTime,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="praiseNum != null" >
+		        praise_num = #{praiseNum,jdbcType=NUMERIC},
+		      </if>
+		      <if test="commentDetail != null and commentDetail !=''" >
+		         comment_detail = #{commentDetail,jdbcType=VARCHAR},
+		      </if>
+		</set>
+		<where>
+		    
+		        comment_id = #{commentId,jdbcType=VARCHAR}
+	
+	    </where>
+</update>
+
+<insert id="insert" parameterType="com.ztravel.weixin.po.TopicComment">
+	insert into weixin.t_topic_comment(comment_id,nickname,comment_time,praise_num,comment_detail,topic_id,anonymous,submiter_id,head_image)
+	values(#{commentId,jdbcType=VARCHAR},#{nickName,jdbcType=VARCHAR},#{commentTime,jdbcType=TIMESTAMP},#{praiseNum,jdbcType=NUMERIC},#{commentDetail,jdbcType=VARCHAR}
+	,#{topicId,jdbcType=VARCHAR},#{anonymous,jdbcType=NUMERIC},#{submiterId,jdbcType=VARCHAR},#{headImage,jdbcType=VARCHAR}) ;
+</insert>
+
+</mapper>

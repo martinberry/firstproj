@@ -1,0 +1,17 @@
+apply plugin : 'eclipse'
+
+
+dependencies {
+
+	compile project(":ztr-common:ztravel-common")
+	compile project(":ztr-common:ztravel-common-adapter")
+	compile project(":ztr-product:ztravel-product-client")
+	compile project(":ztr-member:ztravel-member-client")
+	compile project(":ztr-order:ztravel-order-client")
+	compile project(":ztr-sso:ztravel-sso-client")
+	compile project(":ztr-weixin:ztravel-weixin-client")
+	compile project(":ztr-payment:ztravel-payment-client")
+	compile project(":ztr-common:ztravel-common-mediaclient")
+	compile project(":ztr-member:ztravel-operator-client")
+	
+}

@@ -1,0 +1,66 @@
+/////
+Author:pengfei.zhao
+Date:2015.10.9	
+数据表　paygate.wx_pay_record　添加字段　confirm_result，类型character varying,长度10
+
+/////
+Author:pengfei.zhao
+Date:2015.10.13
+数据表　member.t_member　添加字段　open_id，类型character varying,长度100
+数据表　member.t_member　修改字段　head_image_id，将长度变为255
+
+
+/////
+Author:bzhou
+Date:2015.10.21
+
+数据库表　weixin.material_media
+数据库表　weixin.material_news_item
+数据库表　weixin.menu_button
+数据库表　rbac.t_permission    插入 微信菜单  微信列表
+数据库表　weixin.view_state
+
+
+/////
+Author:bo.zhou
+Date:2015.11.04
+数据表　rbac.t_permission　
+INSERT INTO rbac.t_permission(
+            permission_name, type, url, description, createdby, updatedby, 
+            update_time, create_time, parent_id, permission_id)
+    VALUES ('广告位管理','MENU_2','/adSpots/index','81','administrator','administrator',now(),now(),'PERM_1004','PERM_1029');
+
+
+
+
+///Author:nyn
+Date:2015.11.04
+数据表 rbac.t_permission
+INSERT INTO rbac.t_permission(
+permission_name,type,url,description,createdby,updatedby,update_time,create_time,parent_id,permission_id)
+VALUES(
+'推荐产品管理','MENU_2','/recProduct/index','86','administrator','administrator',now(),now(),'PERM_1004','PERM_1030');
+
+
+/////
+Author:tian1.xu
+Date:2015.11.05
+数据库表　增加库表 member.t_wx_openid_member
+
+
+/////
+Author:bo.zhou
+Date:2015.11.04
+数据表　rbac.t_permission　
+INSERT INTO rbac.t_permission(
+            permission_name, type, url, description, createdby, updatedby, 
+            update_time, create_time, parent_id, permission_id)
+    VALUES ('查看游戏数据','MENU_2','/happy2016/gameRecord/index','87','administrator','administrator',now(),now(),'PERM_1004','PERM_1031');
+
+
+
+
+
+
+
+

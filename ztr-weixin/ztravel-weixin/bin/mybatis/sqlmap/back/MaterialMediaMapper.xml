@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.weixin.back.entity.MaterialMediaEntityMapper" >
+	<resultMap id="BaseResultMap" type="com.ztravel.weixin.back.entity.MaterialMediaEntity">
+	    <id column="id" jdbcType="VARCHAR" property="id" />
+	    <result column="media_id" jdbcType="VARCHAR" property="mediaId" />
+	    <result column="name" jdbcType="VARCHAR" property="name" />
+	    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
+        <result column="url" jdbcType="VARCHAR" property="url" />
+        <result column="type" jdbcType="VARCHAR" property="type" />
+	    <result column="last_modify_time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+    </resultMap>
+
+	<insert id="insert" parameterType="com.ztravel.weixin.back.entity.MaterialMediaEntity">
+		insert into weixin.material_media
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        id,
+	      </if>
+	      <if test="mediaId != null">
+	        media_id,
+	      </if>
+	      <if test="name != null">
+	        name,
+	      </if>
+	      <if test="updateTime != null">
+	        update_time,
+	      </if>
+	      <if test="url != null">
+	        url,
+	      </if>
+          <if test="type != null">
+            type,
+          </if>
+          <if test="lastModifyTime != null">
+            last_modify_time,
+          </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        #{id,jdbcType=VARCHAR},
+	      </if>
+	      <if test="mediaId != null">
+	        #{mediaId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="name != null">
+	        #{name,jdbcType=VARCHAR},
+	      </if>
+	      <if test="updateTime != null">
+	        #{updateTime,jdbcType=VARCHAR},
+	      </if>
+	      <if test="url != null">
+	        #{url,jdbcType=VARCHAR},
+	      </if>
+          <if test="type != null">
+            #{type,jdbcType=VARCHAR},
+          </if>
+          <if test="lastModifyTime != null">
+            #{lastModifyTime,jdbcType=TIMESTAMP},
+          </if>
+	    </trim>
+	</insert>
+
+	 <select id="selectMediaIdsByMediaIds" resultType="java.lang.String" parameterType="java.util.List" >
+      select media_id
+        from weixin.material_media
+        where media_id in
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+<select id="select" resultMap="BaseResultMap" parameterType="map">
+    select *
+    from weixin.material_media
+   <where>
+        <if test="id != null and id != ''">
+           AND id=#{id, jdbcType=VARCHAR}
+        </if>
+           <if test="mediaId != null and mediaId != ''">
+           AND media_id=#{mediaId, jdbcType=VARCHAR}
+        </if>
+           <if test="name != null and name != ''">
+           AND name like #{name, jdbcType=VARCHAR}
+        </if>
+           <if test="updateTime != null and updateTime != ''">
+           AND update_time =#{updateTime, jdbcType=VARCHAR}
+        </if>
+           <if test="url != null and url != ''">
+           AND url=#{url, jdbcType=VARCHAR}
+        </if>
+           <if test="type != null and type != ''">
+           AND type=#{type, jdbcType=VARCHAR}
+        </if>
+          <if test="lastModifyTime != null">
+	       AND last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP}
+	      </if>
+  </where>
+  <if test="offset != null and offset != '0'">
+        OFFSET #{offset}
+    </if>
+    <if test="limit != null and limit != ''">
+        LIMIT #{limit}
+    </if>
+</select>
+
+<select id="count" resultType="Integer" parameterType="map">
+    select count(weixin.material_media.id)
+    from weixin.material_media
+<where>
+    true
+        <if test="name != null and name != ''">
+             AND name like #{name, jdbcType=VARCHAR}
+        </if>
+     </where>
+</select>
+
+<select id="selectById" resultType="com.ztravel.weixin.back.entity.MaterialMediaEntity" parameterType="String">
+select * from weixin.material_media where media_id=#{mediaId,jdbcType=VARCHAR}
+</select>
+
+
+<delete id="deleteAll">
+delete from weixin.material_media
+</delete>
+
+</mapper>

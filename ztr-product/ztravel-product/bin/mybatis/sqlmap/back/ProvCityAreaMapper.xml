@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztravel.product.back.hotel.po.ProvCityAreaMapper" >
+
+	<resultMap id="ProvCityAreaResult" type="com.ztravel.product.back.hotel.po.ProvCityArea">
+	    <id column="id"  property="id"  jdbcType="INTEGER"  />
+	    <result column="no"  property="no"  jdbcType="VARCHAR"  />
+	    <result column="areaname"  property="areaName"  jdbcType="VARCHAR"  />
+	    <result column="topno"  property="topNo"  jdbcType="VARCHAR"  />
+	    <result column="arealevel"  property="areaLevel"  jdbcType="VARCHAR"  />
+<!-- 	    <result column="areacode"  property="areaCode"  jdbcType="VARCHAR"  />
+	    <result column="typename"  property="typeName"  jdbcType="VARCHAR"  /> -->
+    </resultMap>
+
+    <sql id="Column_List">
+        id, no, areaname, arealevel, topno
+    </sql>
+
+    <select id="select" parameterType="map" resultMap="ProvCityAreaResult">
+        select
+        <include refid="Column_List" />
+        from common.t_prov_city_area
+        <where>
+            <if test="areaLevel != null and areaLevel != ''">
+                arealevel = #{areaLevel}
+            </if>
+            <if test="topNo != null and topNo != ''">
+                and topno = #{topNo}
+            </if>
+        </where>
+    </select>
+
+</mapper>
